@@ -1,5 +1,3 @@
-import { EventClickType } from "../../utils/types/event.type";
-
 export interface ILoginFormRequiredProps {
     onLoginClick: (email: string, password: string) => void
 }
