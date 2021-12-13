@@ -36,7 +36,7 @@ const onRequestError = async (error: AxiosError)  => {
 }
 
 const axiosInstance = axiosStatic.create({
-    baseURL: 'http://localhost:5000/',
+    baseURL: 'http://localhost:5001/',
 });
 
 axiosInstance.interceptors.response.use(onRequestSuccess, onRequestError);
