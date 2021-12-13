@@ -1,0 +1,28 @@
+.formContainer{
+    display: flex;
+    justify-content: center;
+}
+
+.cadre{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 400px;
+    width: 700px;
+    margin: 10%;
+    background-color: aliceblue;
+    border-radius: 10%;
+}
+
+.inputContainer{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.title{
+    margin-left: 50px;
+    margin-top: 15px;
+    margin-bottom: 30px;
+}

@@ -7,7 +7,8 @@ export interface IStringInputRequiredProps {
 
 export interface IStringInputOptionalProps {
     disabled: boolean,
-    placeholder: string
+    placeholder: string,
+    className: string
 }
 
 export interface IStringInputProps extends IStringInputRequiredProps, IStringInputOptionalProps {}

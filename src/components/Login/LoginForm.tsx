@@ -4,6 +4,8 @@ import Button from '../Button/Button';
 import StringInput from '../StringInput/StringInput';
 import { ILoginFormProps } from './loginForm.type';
 
+import './LoginForm.css'
+
 const LoginForm = ({
     onLoginClick
 }: ILoginFormProps) => {
@@ -17,11 +19,22 @@ const LoginForm = ({
     const onValidation = (event: EventClickType) => onLoginClick(email, password);
     
     return (
-        <>
-            <StringInput value={email} onChange={onEmailChange} placeholder='Addresse email' />
-            <StringInput value={password} onChange={onPasswordChange} placeholder='Mot de passe' />
+      <div className="formContainer">
+        <div className="cadre">
+            <div className="title">
+                <h1>Entrez vos identifiants</h1>
+            </div>
+          <div className="inputContainer">
+            <StringInput className="login-form" value={email} onChange={onEmailChange} placeholder="Addresse email" />
+          </div>
+          <div className="inputContainer">
+            <StringInput className="login-form" value={password} onChange={onPasswordChange} placeholder="Mot de passe" />
+          </div>
+          <div className="inputContainer">
             <Button onClick={onValidation}>Valider</Button>
-        </>
+          </div>
+        </div>
+      </div>
     );
 }
 
