@@ -7,14 +7,14 @@ const Marker = ({
 }: IMarkerProps) => {
     const getIcon = ():Icon => {
         return icon({
-            iconUrl: require('./public/Map_marker.png'),
-            iconSize: [30,30]
-        })
+            iconUrl: './Map_marker.png',
+            iconSize: [30,50]
+        });
     }
 
     return (
-        // <MarkerLeaflet position={position} icon={getIcon()}/>
-        <></>
+        <MarkerLeaflet position={position} icon={getIcon()}/>
+      
     )
 }
 
