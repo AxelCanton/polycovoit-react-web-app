@@ -1,2 +1,6 @@
 export const LOGIN_URL = '/auth/login';
-export const LOCATIONS_FETCH_BY_COORD_URL = '';
+
+// Location routes
+export const LOCATIONS_FETCH_BY_COORD_URL = '/location';
+export const LOCATIONS_FETCH_BY_USER_URL = '/location';
+export const LOCATIONS_CREATE_URL = '/location';

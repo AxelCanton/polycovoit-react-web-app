@@ -1,7 +1,7 @@
 import { loginReducer } from '../slices/LoginSlice';
-import { locationReducer } from '../slices/LocationSlice';
+import { locationsReducer } from '../slices/LocationsSlice';
 
 export const rootReducer = {
     loginReducer,
-    locationReducer
+    locationsReducer
 }

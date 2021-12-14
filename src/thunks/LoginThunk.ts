@@ -1,4 +1,4 @@
-import { AxiosError, AxiosResponse } from "axios";
+import axios, { AxiosResponse } from "axios";
 import { RootState } from "../app/store";
 import { loginActions } from "../slices/LoginSlice";
 import { ThunkAction } from 'redux-thunk';
@@ -31,9 +31,9 @@ export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unkno
 
     axiosInstance.post(LOGIN_URL, data).then(
         (response: AxiosResponse<ILoginSuccessResponse>) => {
-        console.debug(response)
         if(response.status === 200) {
             const tokens = response.data;
+            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${tokens.access_token}`
             dispatch(loginActions.loginSuccess(tokens));
         }
     });
