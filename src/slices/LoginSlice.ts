@@ -43,8 +43,8 @@ const loginSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
-        reset(state) {
-            state = initialState;
+        reset() {
+            return initialState;
         }
         
     },
