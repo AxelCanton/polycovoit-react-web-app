@@ -9,6 +9,7 @@ const defaultProps: IMapComponentOptionalProps = {
     minZoom: 3,
     maxZoom: 20,
     placeholder: 'Carte de France',
+    renderMarkerPopup: () => null,
     whenReady: () => {},
     whenCreated: () => {},
     onClick: null,
@@ -19,6 +20,7 @@ const MapComponent = ({
     initialPosition,
     initialZoom,
     markersData,
+    renderMarkerPopup,
     minZoom,
     maxZoom,
     placeholder,
@@ -29,7 +31,7 @@ const MapComponent = ({
 }: IMapComponentProps) => {
     return (
         <MapContainer
-        center={initialPosition}
+        center={[initialPosition.latitude, initialPosition.longitude]}
         zoom={initialZoom}
         scrollWheelZoom={false}
         style={{ height: '100vh', width: '100wh' }}
@@ -40,7 +42,7 @@ const MapComponent = ({
         whenCreated={whenCreated}
         >
             <MapEvents onClick={onClick || undefined} onMoveEnd={onMoveEnd || undefined} />
-            <Markers markersData={markersData} />
+            <Markers markersData={markersData} renderPopupContent={renderMarkerPopup}/>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

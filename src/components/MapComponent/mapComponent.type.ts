@@ -1,16 +1,18 @@
-import { LatLng, LeafletEventHandlerFn, Map } from "leaflet";
-import { ILocationMarkerData } from "../../interfaces/location.interface"; 
+import { LeafletEventHandlerFn, Map } from "leaflet";
+import React from "react";
+import { ILatLng } from "../../interfaces/location.interface";
 
 export interface IMapComponentRequiredProps {
-    initialPosition: LatLng,
+    initialPosition: ILatLng,
     initialZoom: number,
-    markersData: ILocationMarkerData[]
+    markersData: ILatLng[]
 }
 
 export interface IMapComponentOptionalProps {
     minZoom: number,
     maxZoom: number,
     placeholder: string,
+    renderMarkerPopup: (data: any) => React.ReactNode
     whenReady: () => void,
     whenCreated: (map: Map) => void,
     onClick: LeafletEventHandlerFn | null,

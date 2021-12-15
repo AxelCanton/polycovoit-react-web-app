@@ -1,8 +1,14 @@
+export interface ILatLng {
+    latitude: number,
+    longitude: number
+}
+
 export interface ILocation {
     id: number
     latitude: number,
     longitude: number,
     postalCode: number,
+    city: string,
     userGender: string,
 }
 
@@ -30,7 +36,7 @@ export interface ILocationSuccessFetchResponse {
     postalCode: number,
     userGender: string,
     address?: string,
-    city?: string
+    city: string
 }
 
 export interface ILocationMarkerData {
