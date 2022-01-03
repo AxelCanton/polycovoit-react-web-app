@@ -25,10 +25,10 @@ const LoginForm = ({
                 <h1>Entrez vos identifiants</h1>
             </div>
           <div className="inputContainer">
-            <StringInput className="login-form" value={email} onChange={onEmailChange} placeholder="Addresse email" />
+            <StringInput className="login-form" required value={email} onChange={onEmailChange} label="Addresse email" />
           </div>
           <div className="inputContainer">
-            <StringInput className="login-form" value={password} onChange={onPasswordChange} placeholder="Mot de passe" />
+            <StringInput className="login-form" required type='password' value={password} onChange={onPasswordChange} label="Mot de passe" />
           </div>
           <div className="inputContainer">
             <Button onClick={onValidation}>Valider</Button>

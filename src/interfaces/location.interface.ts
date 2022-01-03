@@ -24,9 +24,10 @@ export interface ILocationFetchBody {
 }
 
 export interface ILocationCreateBody {
-    address: string,
-    city: string,
+    latitude: number,
+    longitude: number,
     postalCode: number,
+    city: string
 }
 
 export interface ILocationSuccessFetchResponse {
@@ -43,4 +44,13 @@ export interface ILocationMarkerData {
     latitude: number,
     longitude: number,
     gender: string
+}
+
+export interface IJsonLocation {
+    nom_commune: string,
+    nom_departement: string,
+    nom_region: string,
+    code_postal: number,
+    latitude: number | string,
+    longitude: number | string,
 }

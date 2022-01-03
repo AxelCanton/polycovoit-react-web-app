@@ -10,6 +10,7 @@ interface LocationState {
 
 const initialState = {
     isLoading: false,
+    message: '',
     locations: [] as ILocation[]
 } as LocationState
 
@@ -19,6 +20,7 @@ const locationsSlice = createSlice({
     reducers: {
         locationFetchStart(state) {
             state.isLoading = true;
+            state.message = '';
         },
         locationFetchSuccess(state, action: PayloadAction<ILocation[]>) {
             state.isLoading = false;
@@ -30,6 +32,7 @@ const locationsSlice = createSlice({
         },
         locationCreateStart(state) {
             state.isLoading = true;
+            state.message = '';
         },
         locationCreateSuccess(state, action: PayloadAction<string>) {
             state.isLoading = false;

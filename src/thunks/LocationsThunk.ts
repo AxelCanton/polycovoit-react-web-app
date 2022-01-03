@@ -8,7 +8,7 @@ import { ILocationCreateBody, ILocationFetchBody, ILocationSuccessFetchResponse 
 import { locationsActions } from "../slices/LocationsSlice";
 import { makeUrl } from "../utils/makeUrl";
 
-const SUCCESS_CREATE_MESSAGE = 'Création réussie !';
+export const SUCCESS_CREATE_MESSAGE = 'Création réussie !';
 const FAILURE_CREATE_MESSAGE = 'Création échouée, veuillez réessayer plus tard.'
 
 export const locationFetchThunk = (bounds: LatLngBounds): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
@@ -30,13 +30,14 @@ export const locationFetchThunk = (bounds: LatLngBounds): ThunkAction<void, Root
     });
 }
 
-export const locationCreateThunk = (address: string, city: string, postalCode: number): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
+export const locationCreateThunk = (city: string, postalCode: number, latitude: number, longitude: number): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(locationsActions.locationCreateStart());
     
     const body: ILocationCreateBody = {
-        address,
-        city,
-        postalCode
+        latitude,
+        longitude,
+        postalCode,
+        city
     }
     axiosInstance.post(LOCATIONS_CREATE_URL, body)
     .then(

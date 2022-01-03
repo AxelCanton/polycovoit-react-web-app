@@ -1,9 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
+import { IDecodedToken } from "../interfaces/user.interface";
 import { ILoginSuccessResponse } from "../thunks/LoginThunk";
 
 interface LoginState {
     isLoading: boolean,
     accessToken: string,
+    decodedToken: IDecodedToken
     refreshToken: string,
     isAuth: boolean,
     error: string
