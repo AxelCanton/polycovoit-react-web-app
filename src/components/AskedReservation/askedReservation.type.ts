@@ -8,8 +8,7 @@ export interface IAskedReservationProps extends IAskedReservationRequiredProps, 
 
 export interface IAskedReservation {
     accepted: number,
-    id: number
-    location: Object | undefined,
+    id: number,
     message: string,
     postalCode: number | undefined,
     date: Date,

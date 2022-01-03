@@ -1,7 +1,9 @@
 import { loginReducer } from '../slices/LoginSlice';
-import { locationReducer } from '../slices/LocationSlice';
+import { locationsReducer } from '../slices/LocationsSlice';
+import { askedReservationReducer } from '../slices/AskedReservationSlice';
 
 export const rootReducer = {
     loginReducer,
-    locationReducer
+    locationsReducer,
+    askedReservationReducer
 }

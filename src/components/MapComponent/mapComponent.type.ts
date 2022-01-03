@@ -1,9 +1,10 @@
-import { LatLngExpression, Map } from "leaflet";
-import React from "react";
+import { LatLng, LeafletEventHandlerFn, Map } from "leaflet";
+import { ILocationMarkerData } from "../../interfaces/location.interface"; 
 
 export interface IMapComponentRequiredProps {
-    initialPosition: LatLngExpression,
-    initialZoom: number
+    initialPosition: LatLng,
+    initialZoom: number,
+    markersData: ILocationMarkerData[]
 }
 
 export interface IMapComponentOptionalProps {
@@ -11,7 +12,9 @@ export interface IMapComponentOptionalProps {
     maxZoom: number,
     placeholder: string,
     whenReady: () => void,
-    whenCreated: (map: Map) => void
+    whenCreated: (map: Map) => void,
+    onClick: LeafletEventHandlerFn | null,
+    onMoveEnd: LeafletEventHandlerFn | null,
 }
 
 export interface IMapComponentProps extends IMapComponentOptionalProps, IMapComponentRequiredProps {}

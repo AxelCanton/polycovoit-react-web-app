@@ -9,6 +9,7 @@ interface AskedReservationState {
 
 const initialState = {
     isLoading: false,
+    reservations: [] as IAskedReservation[],
 } as AskedReservationState
 
 const askedReservationSlice = createSlice({
