@@ -44,6 +44,7 @@ const onRequestError = async (error: AxiosError)  => {
 
 const axiosInstance = axiosStatic.create({
     baseURL: 'http://localhost:5001/',
+    headers: { 'Authorization': 'Bearer ' + localStorage.getItem('access_token')}
 });
 
 axiosInstance.interceptors.response.use(onRequestSuccess, onRequestError);

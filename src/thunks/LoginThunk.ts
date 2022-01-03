@@ -33,7 +33,8 @@ export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unkno
         (response: AxiosResponse<ILoginSuccessResponse>) => {
         if(response.status === 200) {
             const tokens = response.data;
-            axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${tokens.access_token}`;
+            localStorage.setItem('access_token', tokens.access_token);
+            localStorage.setItem('refresh_token', tokens.refresh_token);
             dispatch(loginActions.loginSuccess(tokens));
         }
     });

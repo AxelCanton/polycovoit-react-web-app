@@ -23,8 +23,6 @@ const loginSlice = createSlice({
         },
         loginSuccess(state, action: PayloadAction<ILoginSuccessResponse>) {
             state.isLoading = false;
-            state.accessToken = action.payload.access_token;
-            state.refreshToken = action.payload.refresh_token;
             state.isAuth = true;
         },
         loginError(state, action: PayloadAction<string>){
