@@ -14,6 +14,7 @@ export interface IButtonRequiredProps {
 export interface IButtonOptionalProps {
     variant: ButtonVariant,
     disabled: boolean,
+    isLoading: boolean
 }
 
 export interface IButtonProps extends IButtonRequiredProps, IButtonOptionalProps {}

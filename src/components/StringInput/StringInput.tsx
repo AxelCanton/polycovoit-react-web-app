@@ -1,11 +1,13 @@
-import * as React from 'react';
-import { Input } from '@mui/material';
+import { TextField } from '@mui/material';
 import { IStringInputOptionalProps, IStringInputProps } from './stringInput.type';
 import "./StringInput.css"
 
 const defaultProps: IStringInputOptionalProps = {
     disabled: false,
-    placeholder: '',
+    fullWidth: false,
+    label: '',
+    required: false,
+    type: 'string',
     className: ''
 }
 
@@ -13,15 +15,21 @@ const StringInput = ({
     value,
     onChange,
     disabled,
-    placeholder,
+    fullWidth,
+    label,
+    required,
+    type,
     className
 }: IStringInputProps) => {
-    return <Input
+    return <TextField
     value={value}
     onChange={onChange}
     disabled={disabled} 
-    placeholder={placeholder}
+    label={label}
+    required={required}
+    type={type}
     className={className}
+    fullWidth={fullWidth}
     />
 }
 
