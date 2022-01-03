@@ -6,12 +6,15 @@ import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter } from 'react-router-dom';
+import CustomThemeProvider from './app/CustomThemeProvider/CustomThemeProvider';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
-        <App />
+        <CustomThemeProvider>
+          <App />
+        </CustomThemeProvider>
       </Provider>
     </BrowserRouter>
   </React.StrictMode>,
