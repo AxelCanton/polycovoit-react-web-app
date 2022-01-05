@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {  Route, Routes } from 'react-router-dom';
 import './App.css';
 import AuthVerifComponent from './components/AuthVerifComponent/AuthVerifComponent';
@@ -13,13 +13,21 @@ import { IDecodedRefreshToken, IDecodedToken } from './interfaces/user.interface
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { loginActions } from './slices/LoginSlice';
 import { refreshThunk } from './thunks/LoginThunk';
+import { notificationActions } from './slices/NotificationSlice';
+import { useSnackbar } from 'notistack';
+import MuiAppBar from './components/AppBar/AppBar';
+
+
 export const ACCESS_TOKEN = 'access_token';
 export const REFRESH_TOKEN = 'refresh_token';
 
 function App() {
+  const { enqueueSnackbar } = useSnackbar();
   const [isAppReady, setIsAppReady] = useState(false);
 
+  const dispatch = useAppDispatch();
   
+  const { message, severity } = useAppSelector((state) => state.notificationReducer);
 
   const renderElement = (element: React.ReactNode) => <AuthVerifComponent>{element}</AuthVerifComponent>
 
@@ -58,6 +66,16 @@ function App() {
       setIsAppReady(true);
     }
   }, [dispatch]);
+
+  useEffect(() => {
+    if (message) {
+      enqueueSnackbar(message, {
+        variant: severity
+      })
+      dispatch(notificationActions.reset());
+    }
+  }, [dispatch, enqueueSnackbar, message, severity] )
+  
   return isAppReady ? (
     <>
     <MuiAppBar />

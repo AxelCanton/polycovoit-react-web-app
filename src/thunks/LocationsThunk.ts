@@ -1,10 +1,10 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
-import axios, { AxiosError, AxiosResponse } from "axios";
-import { LatLngBounds, LatLngBoundsExpression, LatLngBoundsLiteral } from "leaflet";
+import { AxiosError, AxiosResponse } from "axios";
+import { LatLngBounds } from "leaflet";
 import { RootState } from "../app/store";
 import axiosInstance from "../config/axios.config";
 import { LOCATIONS_CREATE_URL, LOCATIONS_FETCH_BY_COORD_URL, LOCATIONS_FETCH_BY_USER_URL } from "../config/routes";
-import { ILocationCreateBody, ILocationFetchBody, ILocationSuccessFetchResponse } from "../interfaces/location.interface";
+import { ILocationCreateBody, ILocationSuccessFetchResponse } from "../interfaces/location.interface";
 import { locationsActions } from "../slices/LocationsSlice";
 import { makeUrl } from "../utils/makeUrl";
 

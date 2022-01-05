@@ -11,7 +11,7 @@ const LoginPage = () => {
     
     useEffect(() => {
         if(isAuth) {
-            navigate('/asked-reservations');
+            navigate('/map');
         }
     }, [isAuth, navigate]);
 
