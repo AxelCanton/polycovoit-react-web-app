@@ -12,7 +12,16 @@ export interface IUser {
     locations: ILocation[],
 };
 
-export interface IDecodedToken {
+interface IToken {
     sub: number,
-    email: string,
+    iat: number,
+    exp: number
+}
+
+export interface IDecodedToken extends IToken {
+    email: string
+}
+
+export interface IDecodedRefreshToken extends IToken {
+    refreshToken: boolean
 }
