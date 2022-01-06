@@ -5,18 +5,20 @@ import { LoadingButton as MuiButton } from '@mui/lab';
 const defaultProps: IButtonOptionalProps = {
     variant: ButtonVariant.Contained,
     disabled: false,
-    isLoading: false
+    isLoading: false,
+    autoFocus: false
 }
 
 const Button = ({
+    autoFocus,
     variant,
     disabled,
     isLoading,
     onClick,
-    children
+    children,
 }: IButtonProps) => {
 
-    return <MuiButton loading={isLoading} onClick={onClick} variant={variant} disabled={disabled}>{children}</MuiButton>;
+    return <MuiButton loading={isLoading} onClick={onClick} variant={variant} disabled={disabled} autoFocus={autoFocus}>{children}</MuiButton>;
 }
 
 Button.defaultProps = defaultProps;

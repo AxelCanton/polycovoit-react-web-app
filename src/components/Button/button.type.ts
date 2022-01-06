@@ -12,9 +12,10 @@ export interface IButtonRequiredProps {
 }
 
 export interface IButtonOptionalProps {
+    autoFocus: boolean
     variant: ButtonVariant,
     disabled: boolean,
-    isLoading: boolean
+    isLoading: boolean,
 }
 
 export interface IButtonProps extends IButtonRequiredProps, IButtonOptionalProps {}
