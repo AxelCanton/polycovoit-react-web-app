@@ -8,6 +8,7 @@ import AskedReservationsPage from './pages/AskedReservationsPage/AskedReservatio
 import LoginPage from './pages/LoginPage/LoginPage';
 import MapPage from './pages/MapPage/MapPage';
 import SettingsPage from './pages/SettingsPage/SettingsPage';
+import WaitingReservationsPage from './pages/WaitingReservationsPage/WaitingReservationsPage';
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
       <Route path="/login" element={<LoginPage/>} />
       <Route path="/map" element={<MapPage/>} />
       <Route path="/asked-reservations" element={<AskedReservationsPage/>}/>
+      <Route path="/waiting-reservations" element={<WaitingReservationsPage/>}/>
       <Route path="/map" element={renderElement(<MapPage/>)} />
       <Route path="/settings" element={renderElement(<SettingsPage/>)} />
     </Routes>

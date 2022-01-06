@@ -1,12 +1,20 @@
 export interface IAskedReservationRequiredProps {
-    reservation: IAskedReservation
+    reservation: IReservation
 }
 
 export interface IAskedReservationOptionalProps {}
 
 export interface IAskedReservationProps extends IAskedReservationRequiredProps, IAskedReservationOptionalProps {}
 
-export interface IAskedReservation {
+export interface IWaitingReservationRequiredProps {
+    reservation: IReservation
+}
+
+export interface IWaitingReservationOptionalProps {}
+
+export interface IWaitingReservationProps extends IWaitingReservationRequiredProps, IWaitingReservationOptionalProps {}
+
+export interface IReservation {
     accepted: number,
     id: number,
     message: string,

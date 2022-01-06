@@ -1,15 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IAskedReservation } from "../components/AskedReservation/askedReservation.type";
+import { IReservation } from "../components/Reservation/reservation.type";
 
 interface AskedReservationState {
     isLoading: boolean,
-    reservations: IAskedReservation[],
+    reservations: IReservation[],
     error: string
 }
 
 const initialState = {
     isLoading: false,
-    reservations: [] as IAskedReservation[],
+    reservations: [] as IReservation[],
 } as AskedReservationState
 
 const askedReservationSlice = createSlice({
@@ -19,7 +19,7 @@ const askedReservationSlice = createSlice({
         askedReservationFetchStart(state){
             state.isLoading = true;
         },
-        askedReservationFetchSuccess(state, action: PayloadAction<IAskedReservation[]>){
+        askedReservationFetchSuccess(state, action: PayloadAction<IReservation[]>){
             state.isLoading = false;
             state.reservations = action.payload;
         }

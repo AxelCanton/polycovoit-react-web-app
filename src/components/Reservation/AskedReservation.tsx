@@ -1,4 +1,4 @@
-import { IAskedReservationProps } from "./askedReservation.type";
+import { IAskedReservationProps } from "./reservation.type";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
