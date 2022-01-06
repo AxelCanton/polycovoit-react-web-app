@@ -8,3 +8,4 @@ export const LOCATIONS_CREATE_URL = '/location';
 
 // User routes
 export const USER_FETCH_URL = (id: number) => `/user/${id}`;
+export const USER_DELETE_URL = (id: number) => `/user/${id}`;

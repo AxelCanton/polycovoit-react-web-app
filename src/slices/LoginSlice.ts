@@ -1,6 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { IDecodedToken } from "../interfaces/user.interface";
 import { ILoginSuccessResponse } from "../thunks/LoginThunk";
+import jwt_decode from "jwt-decode";
+
 
 interface LoginState {
     isLoading: boolean,
@@ -28,6 +30,8 @@ const loginSlice = createSlice({
             state.isAuth = true;
             state.accessToken = action.payload.access_token;
             state.refreshToken = action.payload.refresh_token;
+            state.decodedToken = jwt_decode(action.payload.access_token);
+
         },
         loginError(state, action: PayloadAction<string>){
             state.isLoading = false;
@@ -41,6 +45,7 @@ const loginSlice = createSlice({
             state.isAuth = true;
             state.accessToken = action.payload.access_token;
             state.refreshToken = action.payload.refresh_token;
+            state.decodedToken = jwt_decode(action.payload.access_token);
 
         },
         refreshTokenFailure(state, action: PayloadAction<string>) {

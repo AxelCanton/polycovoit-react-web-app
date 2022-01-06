@@ -2,13 +2,15 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { IUser } from "../interfaces/user.interface";
 
 interface LoginState {
-    isLoading: boolean,
+    isLoading: boolean
     user: IUser
+    success: boolean
     error: string
 }
 
 const initialState = {
     isLoading: false,
+    success: false
 } as LoginState
 
 const userSlice = createSlice({
@@ -17,14 +19,28 @@ const userSlice = createSlice({
     reducers: {
         userFetchStart(state) {
             state.isLoading = true;
+            state.success = false;
         },
         userFetchSuccess(state, action: PayloadAction<IUser>) {
             state.isLoading = false;
             state.user = action.payload;
+            state.success = true;
         },
         userFetchError(state, action: PayloadAction<string>){
             state.isLoading = false;
             state.error = action.payload;
+        },
+        userDeleteStart(state) {
+            state.isLoading = true;
+            state.success = false;
+        },
+        userDeleteSuccess(state) {
+            state.isLoading = false;
+            state.success = true;
+        },
+        userDeleteError(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;       
         },
         reset() {
             return initialState;

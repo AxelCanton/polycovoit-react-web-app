@@ -36,7 +36,6 @@ const ModalAddLocation = ({
 
     useEffect(() => {
       if (message === SUCCESS_CREATE_MESSAGE) {
-        console.log('aaa')
         onClose();
       }
     }, [message, onClose]);
