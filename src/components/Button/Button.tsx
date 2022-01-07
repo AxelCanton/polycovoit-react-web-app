@@ -1,8 +1,9 @@
-import * as React from 'react';
-import { ButtonVariant, IButtonOptionalProps, IButtonProps } from './button.type';
+import { IButtonOptionalProps, IButtonProps } from './button.type';
 import { LoadingButton as MuiButton } from '@mui/lab';
+import { ButtonColor, ButtonVariant } from '../../utils/enum/button.enum';
 
 const defaultProps: IButtonOptionalProps = {
+    color: ButtonColor.primary,
     variant: ButtonVariant.Contained,
     disabled: false,
     isLoading: false,
@@ -11,6 +12,7 @@ const defaultProps: IButtonOptionalProps = {
 
 const Button = ({
     autoFocus,
+    color,
     variant,
     disabled,
     isLoading,
@@ -18,7 +20,15 @@ const Button = ({
     children,
 }: IButtonProps) => {
 
-    return <MuiButton loading={isLoading} onClick={onClick} variant={variant} disabled={disabled} autoFocus={autoFocus}>{children}</MuiButton>;
+    return <MuiButton
+    color={color}
+    loading={isLoading}
+    onClick={onClick}
+    variant={variant}
+    disabled={disabled}
+    autoFocus={autoFocus}>
+        {children}
+    </MuiButton>;
 }
 
 Button.defaultProps = defaultProps;

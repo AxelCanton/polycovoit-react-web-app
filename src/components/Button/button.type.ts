@@ -1,10 +1,5 @@
+import { ButtonColor, ButtonVariant } from "../../utils/enum/button.enum";
 import { EventClickType } from "../../utils/types/event.type";
-
-export enum ButtonVariant {
-    Text = 'text',
-    Contained = 'contained',
-    Outlined = 'outlined',
-}
 
 export interface IButtonRequiredProps {
     children: React.ReactNode,
@@ -13,6 +8,7 @@ export interface IButtonRequiredProps {
 
 export interface IButtonOptionalProps {
     autoFocus: boolean
+    color: ButtonColor
     variant: ButtonVariant,
     disabled: boolean,
     isLoading: boolean,
