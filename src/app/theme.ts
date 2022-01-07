@@ -7,7 +7,7 @@ const getDesignTokens = (mode: PaletteMode) => ({
         main: '#029bde',
       },
       secondary: {
-        main: '#ffffff',
+        main: '#003a79',
       },
       error: {
         main: '#f44336',

@@ -1,7 +1,6 @@
 import { Typography } from "@mui/material";
-import React, { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import Button from "../../components/Button/Button";
 import CustomDivider from "../../components/CustomDivider/CustomDivider";
 import CenteredLayout from "../../components/Layout/CenteredLayout/CenteredLayout";
 import Fade from "../../components/Transitions/Fade/Fade";
@@ -11,7 +10,6 @@ import { TypographyVariantEnum } from "../../utils/enum/typography.variant.enum"
 import AccountDeletion from "./AccountDeletion/AccountDeletion";
 import AddLocation from "./AddLocation/AddLocation";
 import Locations from "./Locations/Locations";
-import ModalAddLocation from "./ModalAddLocation/ModalAddLocation";
 
 const SettingsPage = () => {
     const dispatch = useAppDispatch();
