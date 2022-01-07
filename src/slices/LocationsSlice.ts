@@ -42,6 +42,18 @@ const locationsSlice = createSlice({
             state.isLoading = false;
             state.error = action.payload;
         },
+        locationDeleteStart(state) {
+            state.isLoading = true;
+            state.message = '';
+        },
+        locationDeleteSuccess(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.message = action.payload;
+        },
+        locationDeleteFailure(state, action: PayloadAction<string>) {
+            state.isLoading = false;
+            state.error = action.payload;
+        },
         reset(state) {
             state = initialState;
         }

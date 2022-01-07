@@ -3,6 +3,7 @@ import { useAppDispatch } from "../../../app/hooks";
 import Button from "../../../components/Button/Button";
 import Dialog from "../../../components/Dialog/Dialog";
 import { deleteUserThunk } from "../../../thunks/UserThunk";
+import { ButtonColor } from "../../../utils/enum/button.enum";
 import { IAccountDeletionProps } from "./accountDeletion";
 
 const AccountDeletion = ({ id }: IAccountDeletionProps) => {
@@ -20,7 +21,7 @@ const AccountDeletion = ({ id }: IAccountDeletionProps) => {
 
     return (
         <>
-        <Button onClick={showValidationMessage}>Se désinscrire</Button>
+        <Button color={ButtonColor.error} onClick={showValidationMessage}>Se désinscrire</Button>
         <Dialog
         open={validateUnsubscribeVisible}
         onClose={hideValidationMessage}

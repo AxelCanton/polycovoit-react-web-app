@@ -3,7 +3,7 @@ import { IUser } from "../interfaces/user.interface";
 
 interface LoginState {
     isLoading: boolean
-    user: IUser
+    user?: IUser
     success: boolean
     error: string
 }

@@ -3,13 +3,16 @@ export interface ILatLng {
     longitude: number
 }
 
-export interface ILocation {
+export interface ILocation extends ILocationWithoutGender {
+    userGender: string
+}
+
+export interface ILocationWithoutGender {
     id: number
     latitude: number,
     longitude: number,
     postalCode: number,
     city: string,
-    userGender: string,
 }
 
 export interface ILocationFetchBody {

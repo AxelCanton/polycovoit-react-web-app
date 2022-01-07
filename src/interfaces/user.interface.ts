@@ -1,4 +1,4 @@
-import { ILocation } from "./location.interface";
+import { ILocationWithoutGender } from "./location.interface";
 
 export interface IUser {
     id: number,
@@ -9,7 +9,7 @@ export interface IUser {
     isAdmin: boolean,
     askedReservations: string,
     receivedReservations: string,
-    locations: ILocation[],
+    locations: ILocationWithoutGender[],
 };
 
 interface IToken {
