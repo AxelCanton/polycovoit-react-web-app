@@ -4,7 +4,7 @@ import Button from "../../../components/Button/Button";
 import Dialog from "../../../components/Dialog/Dialog";
 import { deleteUserThunk } from "../../../thunks/UserThunk";
 import { ButtonColor } from "../../../utils/enum/button.enum";
-import { IAccountDeletionProps } from "./accountDeletion";
+import { IAccountDeletionProps } from "./accountDeletion.type";
 
 const AccountDeletion = ({ id }: IAccountDeletionProps) => {
     const [validateUnsubscribeVisible, setValidateUnsubscribeVisible] = useState(false);
