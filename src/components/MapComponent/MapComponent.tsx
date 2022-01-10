@@ -31,6 +31,7 @@ const MapComponent = ({
 }: IMapComponentProps) => {
     return (
         <MapContainer
+        tap={false}
         center={[initialPosition.latitude, initialPosition.longitude]}
         zoom={initialZoom}
         scrollWheelZoom={false}

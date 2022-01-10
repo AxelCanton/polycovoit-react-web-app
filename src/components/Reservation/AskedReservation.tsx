@@ -19,7 +19,7 @@ const AskedReservation = ({reservation}: IAskedReservationProps) => {
                 <Grid container spacing={2}>
                     <Grid item xs={10}>
                         <Typography variant="h5">
-                            Demande {reservation.accepted === 0? " en attente":(reservation.accepted === 1? (" acceptée par " + reservation.receivingUser) : " refusée")}
+                            Demande {reservation.accepted === 0? " en attente":(reservation.accepted === 1? (" acceptée par " + reservation.receivingUser!.firstName+" " + reservation.receivingUser!.lastName) : " refusée")}
                         </Typography>
                     </Grid> 
                     <Grid item xs={2}>
@@ -31,7 +31,7 @@ const AskedReservation = ({reservation}: IAskedReservationProps) => {
                     <Typography>
                         Code postal : {reservation.postalCode}
                         <br/>
-                        {reservation.accepted === 1? "Mail : lplplplplpl@gmail.com":null}
+                        {reservation.accepted === 1? "Mail : "+reservation.receivingUser!.email:null}
                     </Typography>
                     </Grid>
                 </Grid>
@@ -39,11 +39,11 @@ const AskedReservation = ({reservation}: IAskedReservationProps) => {
             <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
                     <Typography>
-                        Sexe : {reservation.receivingUserGender}
+                        Sexe : {reservation.receivingUser!.gender}
+                        <br/>
+                        Date : {new Date(reservation.date).toLocaleDateString()}
                         <br/>
                         Message : {reservation.message}
-                        <br/>
-                        Date : A impl
                     </Typography>
                 </CardContent>
             </Collapse>

@@ -8,7 +8,7 @@ interface LoginState {
     decodedToken: IDecodedToken
     refreshToken: string,
     isAuth: boolean,
-    error: string
+    error?: string
 }
 
 const initialState = {
@@ -26,6 +26,8 @@ const loginSlice = createSlice({
         loginSuccess(state, action: PayloadAction<ILoginSuccessResponse>) {
             state.isLoading = false;
             state.isAuth = true;
+            state.accessToken = action.payload.access_token;
+            state.refreshToken = action.payload.refresh_token;
         },
         loginError(state, action: PayloadAction<string>){
             state.isLoading = false;
@@ -36,8 +38,10 @@ const loginSlice = createSlice({
         },
         refreshTokenSuccess(state,  action: PayloadAction<ILoginSuccessResponse>) {
             state.isLoading = false;
+            state.isAuth = true;
             state.accessToken = action.payload.access_token;
             state.refreshToken = action.payload.refresh_token;
+
         },
         refreshTokenFailure(state, action: PayloadAction<string>) {
             state.isLoading = false;

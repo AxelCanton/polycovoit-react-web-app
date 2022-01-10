@@ -12,7 +12,25 @@ export interface IUser {
     locations: ILocation[],
 };
 
-export interface IDecodedToken {
+export interface IPrivateUser {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string | undefined;
+    gender: string  
+    speciality: string;
+}
+
+interface IToken {
     sub: number,
-    email: string,
+    iat: number,
+    exp: number
+}
+
+export interface IDecodedToken extends IToken {
+    email: string
+}
+
+export interface IDecodedRefreshToken extends IToken {
+    refreshToken: boolean
 }
