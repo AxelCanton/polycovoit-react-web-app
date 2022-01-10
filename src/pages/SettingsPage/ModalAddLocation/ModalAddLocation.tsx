@@ -4,7 +4,7 @@ import LocationForm from "../../../components/LocationForm/LocationForm";
 import Modal from "../../../components/Modal/Modal";
 import { IJsonLocation } from "../../../interfaces/location.interface";
 import { locationCreateThunk, SUCCESS_CREATE_MESSAGE } from "../../../thunks/LocationsThunk";
-import { IModalAddLocationProps } from "./modalAddLocation";
+import { IModalAddLocationProps } from "./modalAddLocation.types";
 
 const ModalAddLocation = ({
     isVisible,

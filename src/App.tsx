@@ -5,6 +5,7 @@ import AuthVerifComponent from './components/AuthVerifComponent/AuthVerifCompone
 import { useEffect } from 'react';
 import axiosInstance from './config/axios.config';
 import AskedReservationsPage from './pages/AskedReservationsPage/AskedReservationsPage';
+import WaitingReservationsPage from './pages/WaitingReservationsPage/WaitingReservationsPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import MapPage from './pages/MapPage/MapPage';
 import SettingsPage from './pages/SettingsPage/SettingsPage';
@@ -82,6 +83,7 @@ function App() {
     <Routes>
       <Route path="/login" element={<LoginPage/>} />
       <Route path="/asked-reservations" element={<AskedReservationsPage/>}/>
+      <Route path="/waiting-reservations" element={<WaitingReservationsPage/>}/>
       <Route path="/map" element={renderElement(<MapPage/>)} />
       <Route path="/settings" element={renderElement(<SettingsPage/>)} />
     </Routes>

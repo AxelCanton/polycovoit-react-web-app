@@ -12,6 +12,15 @@ export interface IUser {
     locations: ILocationWithoutGender[],
 };
 
+export interface IPrivateUser {
+    id: number;
+    firstName: string;
+    lastName: string;
+    email: string | undefined;
+    gender: string  
+    speciality: string;
+}
+
 interface IToken {
     sub: number,
     iat: number,
