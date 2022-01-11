@@ -1,15 +1,16 @@
-import { ILocationWithoutGender } from "./location.interface";
+import { Gender } from "../utils/enum/gender.enum";
+import { ILocationWithoutUserData } from "./location.interface";
 
 export interface IUser {
     id: number,
     email: string,
     firstName: string,
     lastName: string,
-    gender: string,
+    gender: Gender,
     isAdmin: boolean,
     askedReservations: string,
     receivedReservations: string,
-    locations: ILocationWithoutGender[],
+    locations: ILocationWithoutUserData[],
     speciality: ISpeciality;
 };
 

@@ -9,6 +9,7 @@ import { locationsActions } from "../slices/LocationsSlice";
 import { notificationActions } from "../slices/NotificationSlice";
 import { SeverityEnum } from "../utils/enum/severity.enum";
 import { makeUrl } from "../utils/makeUrl";
+import { refactorLocations } from "../utils/refactorLocations";
 
 export const SUCCESS_CREATE_MESSAGE = 'Création de l\'addresse réussie !';
 export const SUCCESS_DELETE_MESSAGE = 'Suppression de l\'addresse réussie !';
@@ -16,6 +17,7 @@ export const SUCCESS_DELETE_MESSAGE = 'Suppression de l\'addresse réussie !';
 export const FAILURE_CREATE_MESSAGE = 'Création de l\'addresse échouée, veuillez réessayer plus tard.';
 export const FAILURE_DELETE_MESSAGE = 'Suppression de l\'addresse échouée, veuillez réessayer plus tard.';
 
+export const FAILURE_FETCH_MESSAGE = 'Une erreur est survenue.'
 
 export const locationFetchThunk = (bounds: LatLngBounds): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(locationsActions.locationFetchStart());
@@ -25,14 +27,18 @@ export const locationFetchThunk = (bounds: LatLngBounds): ThunkAction<void, Root
         ne_long: bounds.getNorthEast().lng,
         sw_lat: bounds.getSouthWest().lat,
         sw_long: bounds.getSouthWest().lng
-    })
+    });
 
     axiosInstance.get(url)
     .then((response: AxiosResponse<ILocationSuccessFetchResponse[]>) => {
-        dispatch(locationsActions.locationFetchSuccess(response.data));
+
+        dispatch(locationsActions.locationFetchSuccess(refactorLocations(response.data)));
     })
     .catch((error: AxiosError) => {
-
+        dispatch(notificationActions.showNotification({
+            message: FAILURE_FETCH_MESSAGE,
+            severity: SeverityEnum.error
+        }))
     });
 }
 
@@ -74,7 +80,7 @@ export const locationFetchByUserThunk = (userId: number): ThunkAction<void, Root
     axiosInstance.get(url)
     .then((response: AxiosResponse<ILocationSuccessFetchResponse[]>) => {
         if(response.status === 200) {
-            dispatch(locationsActions.locationFetchSuccess(response.data))
+            dispatch(locationsActions.locationFetchSuccess(refactorLocations(response.data)))
         }
     })
     .catch((error) => {

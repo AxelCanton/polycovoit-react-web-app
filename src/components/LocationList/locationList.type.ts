@@ -1,11 +1,11 @@
-import { ILocationWithoutGender } from "../../interfaces/location.interface";
+import { ILocationWithoutUserData } from "../../interfaces/location.interface";
 
 export interface ILocationListRequiredProps {
-    locations: ILocationWithoutGender[],
+    locations: ILocationWithoutUserData[],
 }
 
 export interface ILocationListOptionalProps {
-    onLocationClick: (location: ILocationWithoutGender) => void
+    onLocationClick: (location: ILocationWithoutUserData) => void
     title?: string
 }
 

@@ -1,18 +1,28 @@
+import { Gender } from "../utils/enum/gender.enum";
+import { Speciality } from "../utils/enum/speciality.enum";
+
 export interface ILatLng {
     latitude: number,
     longitude: number
 }
 
-export interface ILocation extends ILocationWithoutGender {
-    userGender: string
+export interface ILocation extends ILocationWithoutUserData {
+    userGender: Gender,
+    userSpeciality: Speciality
 }
 
-export interface ILocationWithoutGender {
+export interface ILocationWithoutUserData {
     id: number
     latitude: number,
     longitude: number,
     postalCode: number,
     city: string,
+}
+
+export interface ILocationRefactored {
+    city: string,
+    postalCode: number,
+    locations: ILocation[]
 }
 
 export interface ILocationFetchBody {
@@ -38,7 +48,8 @@ export interface ILocationSuccessFetchResponse {
     latitude: number,
     longitude: number,
     postalCode: number,
-    userGender: string,
+    userGender: Gender,
+    userSpeciality: Speciality,
     address?: string,
     city: string
 }

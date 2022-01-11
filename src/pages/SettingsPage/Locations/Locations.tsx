@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import Dialog from "../../../components/Dialog/Dialog";
 import LocationList from "../../../components/LocationList/LocationList";
 import Progress from "../../../components/Progress/Progress";
-import { ILocationWithoutGender } from "../../../interfaces/location.interface";
+import { ILocationWithoutUserData } from "../../../interfaces/location.interface";
 import { deleteLocationThunk } from "../../../thunks/LocationsThunk";
 
 const Locations = () => {
@@ -15,7 +15,7 @@ const Locations = () => {
     const { user, isLoading } = useAppSelector((state) => state.userReducer);
     const dispatch = useAppDispatch();
 
-    const onLocationClick = (location: ILocationWithoutGender) => {
+    const onLocationClick = (location: ILocationWithoutUserData) => {
         setOpenDialog(true);
         selectedLocation.current = location.id;
     }
