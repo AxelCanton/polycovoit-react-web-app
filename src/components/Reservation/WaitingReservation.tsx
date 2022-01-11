@@ -8,6 +8,7 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import EventIcon from '@mui/icons-material/Event';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
+import PolytechIcon from "../PolytechIcon/PolytechIcon";
 
 
 const gridText = {
@@ -43,7 +44,7 @@ const WaitingReservation = (
                                 </Typography>
                             </Grid>
                             <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
-                                <SchoolOutlinedIcon color="secondary"/> 
+                                <PolytechIcon speciality={reservation.askingUser!.speciality}/> 
                             </Grid>
                             <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                 <Typography>

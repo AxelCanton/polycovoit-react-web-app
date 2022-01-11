@@ -1,4 +1,5 @@
 import { Gender } from "../utils/enum/gender.enum";
+import { Speciality } from "../utils/enum/speciality.enum";
 import { ILocationWithoutUserData } from "./location.interface";
 
 export interface IUser {
@@ -11,7 +12,7 @@ export interface IUser {
     askedReservations: string,
     receivedReservations: string,
     locations: ILocationWithoutUserData[],
-    speciality: ISpeciality;
+    speciality: Speciality;
 };
 
 export interface IPrivateUser {
@@ -20,11 +21,7 @@ export interface IPrivateUser {
     lastName: string;
     email: string | undefined;
     gender: string  
-    speciality: ISpeciality;
-}
-
-export interface ISpeciality {
-    specialityName: string;
+    speciality: Speciality;
 }
 
 interface IToken {
