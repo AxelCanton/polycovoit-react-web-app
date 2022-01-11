@@ -8,13 +8,9 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import EventIcon from '@mui/icons-material/Event';
 import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
-import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
-import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
-import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
 
 
 const gridText = {
-    margin: 0.5
 }
 
 
@@ -28,9 +24,9 @@ const WaitingReservation = (
         dispatch(answerReservationThunk(reservation.id, answer))
     }
     return (
-        <Card>
+        <Card sx={{marginBottom: 5}}>
             <CardContent>
-                <Grid container spacing={2}>
+                <Grid container spacing={5}>
                     <Grid item xs={10}>
                         <Typography variant="h5">
                             Demande de {reservation.askingUser!.firstName+" "+reservation.askingUser!.lastName}
@@ -38,38 +34,61 @@ const WaitingReservation = (
                     </Grid> 
                     <Grid item xs={10.5}>
                         <Grid container spacing={1}>
-                            <Grid item xs={1}>
+                            <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
                                 <LocationCityIcon color="secondary"/> 
                             </Grid>
-                            <Grid item xs={10} sx={gridText}>
+                            <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                 <Typography>
                                     Code postal : {reservation.postalCode}
                                 </Typography>
                             </Grid>
-                            <Grid item xs={1}>
-                                    <EventIcon color="secondary"/>
+                            <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
+                                <SchoolOutlinedIcon color="secondary"/> 
                             </Grid>
-                            <Grid item xs={10} sx={gridText}>
+                            <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                 <Typography>
-                                    Date : {new Date(reservation.date).toLocaleDateString()}
+                                    Spécialité : {reservation.askingUser!.speciality}
+                                </Typography>
+                            </Grid>
+                            <Grid container xs={1} direction="column" justifyContent="center" alignItems="center">
+                                    <AlternateEmailIcon color="secondary"/>
+                            </Grid>
+                            <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start">
+                                <Typography>
+                                    Mail : {reservation.askingUser!.email}
                                 </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Typography>
-                            Date : {new Date(reservation.date).toLocaleDateString()}
-                            <br/>
-                            Message : {reservation.message}
-                        </Typography>
+                    <Grid item xs={10.5}>
+                        <Grid container spacing={1}>
+                            <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
+                                <EventIcon color="secondary"/> 
+                            </Grid>
+                            <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
+                                <Typography>
+                                Date : {new Date(reservation.date).toLocaleDateString()}
+                                </Typography>
+                            </Grid>
+                            <Grid container xs={1} direction="column" justifyContent="center" alignItems="center">
+                                    <MessageOutlinedIcon color="secondary"/>
+                            </Grid>
+                            <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start">
+                                <Typography>
+                                    Message : {reservation.message}
+                                </Typography>
+                            </Grid>
+                        </Grid>
                     </Grid>
-                    <Grid container spacing={2} justifyContent="center">
-                            <Button onClick={() => answerReservation(true)}>
+                    <Grid item xs={12} sx={{marginTop:3}}>
+                        <Grid container spacing={2} justifyContent="center">
+                            <Button onClick={() => answerReservation(true)} color="success" sx={{marginRight:2}}>
                                 Accepter
                             </Button>
-                            <Button onClick={() => answerReservation(false)}>
+                            <Button onClick={() => answerReservation(false)} color="error" sx={{marginLeft:2}}>
                                 Refuser
                             </Button>
+                        </Grid>
                     </Grid>
                 </Grid>
             </CardContent>

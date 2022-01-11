@@ -19,7 +19,7 @@ const defaultProps : IAskedReservationOptionalProps = {
 }
 
 const gridText = {
-    margin: 0.5
+    
 }
 
 const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
@@ -47,26 +47,26 @@ const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
                         </Grid>
                         <Grid item xs={10.5}>
                             <Grid container spacing={1}>
-                                <Grid item xs={1}>
+                                <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
                                     <LocationCityIcon color="secondary"/> 
                                 </Grid>
-                                <Grid item xs={10} sx={gridText}>
+                                <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                     <Typography>
                                         Code postal : {reservation.postalCode}
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={1}>
+                                <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
                                         <EventIcon color="secondary"/>
                                     </Grid>
-                                    <Grid item xs={10} sx={gridText}>
+                                    <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                         <Typography>
                                             Date : {new Date(reservation.date).toLocaleDateString()}
                                         </Typography>
                                     </Grid>
-                                <Grid item xs={1}>
+                                <Grid container xs={1} direction="column" justifyContent="center" alignItems="center">
                                     {reservation.accepted === 1? <AlternateEmailIcon color="secondary"/> :null}
                                 </Grid>
-                                <Grid item xs={10} sx={gridText}>
+                                <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start">
                                     <Typography>
                                         {reservation.accepted === 1? "Email : "+reservation.receivingUser!.email:null}
                                     </Typography>
@@ -74,14 +74,14 @@ const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
                             </Grid>
                         </Grid>
                         <Fade in={!expanded}>
-                            <Grid item xs={1}>
+                            <Grid container xs={1} direction="column" justifyContent="center" alignItems="center">
                             {reservation.accepted === 1? (
-                                <CheckCircleOutlineOutlinedIcon fontSize="large" color="success" sx={{marginTop:3}}/>
+                                <CheckCircleOutlineOutlinedIcon fontSize="large" color="success"/>
                                 ):(
                                     reservation.accepted === 0? (
-                                        <HourglassBottomOutlinedIcon fontSize="large" color="info" sx={{marginTop:3}}/>
+                                        <HourglassBottomOutlinedIcon fontSize="large" color="info" />
                                     ):(
-                                        <CancelOutlinedIcon fontSize="large" color="error" sx={{marginTop:3}}/>
+                                        <CancelOutlinedIcon fontSize="large" color="error"/>
                                     ))}
                             </Grid>
                         </Fade>
@@ -92,26 +92,26 @@ const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
                         <Grid container spacing={2}>
                             <Grid item xs={10.5}>
                                 <Grid container spacing={1}>
-                                    <Grid item xs={1}>
+                                    <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
                                         <LocationCityIcon color="secondary"/> 
                                     </Grid>
-                                    <Grid item xs={10} sx={gridText}>
+                                    <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                         <Typography>
                                             Genre : {reservation.receivingUser!.gender}
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={1}>
+                                    <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
                                         <SchoolOutlinedIcon color="secondary"/>
                                     </Grid>
-                                    <Grid item xs={10} sx={gridText}>
+                                    <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                         <Typography>
-                                            Specialité : {reservation.receivingUser!.speciality.specialityName}
+                                            Specialité : {reservation.receivingUser!.speciality}
                                         </Typography>
                                     </Grid>
-                                    <Grid item xs={1}>
+                                    <Grid container xs={1} direction="column" justifyContent="center" alignItems="center">
                                         <MessageOutlinedIcon color="secondary"/>
                                     </Grid>
-                                    <Grid item xs={9.5} sx={gridText}>
+                                    <Grid container xs={10.5} direction="column" justifyContent="center" alignItems="flex-start">
                                         <Typography>
                                             Message : {reservation.message}
                                         </Typography>
@@ -119,14 +119,14 @@ const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
                                 </Grid>
                             </Grid>
                                 <Fade in={expanded}>
-                                        <Grid item xs={1}>
+                                        <Grid container xs={1} direction="column" justifyContent="center" alignItems="center">
                                         {reservation.accepted === 1? (
-                                            <CheckCircleOutlineOutlinedIcon color="success" sx={{marginTop:3,fontSize: 45}}/>
+                                            <CheckCircleOutlineOutlinedIcon color="success" sx={{fontSize: 45}}/>
                                             ):(
                                                 reservation.accepted === 0? (
-                                                    <HourglassBottomOutlinedIcon fontSize="large" color="info" sx={{marginTop:3,fontSize: 45}}/>
+                                                    <HourglassBottomOutlinedIcon fontSize="large" color="info" sx={{fontSize: 45}}/>
                                                 ):(
-                                                    <CancelOutlinedIcon fontSize="large" color="error" sx={{marginTop:3,fontSize: 45}}/>
+                                                    <CancelOutlinedIcon fontSize="large" color="error" sx={{fontSize: 45}}/>
                                                 ))}
                                         </Grid>
                                 </Fade>
