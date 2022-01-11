@@ -1,5 +1,5 @@
 import { LatLngBounds, Map } from 'leaflet';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import MapComponent from '../../components/MapComponent/MapComponent';
 import { ILatLng, ILocation } from '../../interfaces/location.interface';
@@ -29,7 +29,12 @@ const MapPage = () => {
         if(currentMapBounds){
             dispatch(locationFetchThunk(currentMapBounds as LatLngBounds));
         }
-    }
+    };
+
+    // Load the markers once when the map has loaded
+    useEffect(() => {
+        onMoveEnd();
+    }, [map]);
 
     const renderMarkerPopup = (data: ILocation): React.ReactNode => {
         const locationsRefactored = locations.find(loc => loc.postalCode === data.postalCode);
@@ -41,7 +46,7 @@ const MapPage = () => {
     const renderMarkerColor = (data: ILocation): string => retrieveColor(data.userSpeciality);
 
     function closeReservationModal(){
-        setPopupData(null)
+        setPopupData(null);
     }
 
     return (
