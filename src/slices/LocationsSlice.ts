@@ -1,9 +1,9 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { ILocation } from "../interfaces/location.interface";
+import { ILocationRefactored } from "../interfaces/location.interface";
 
 interface LocationState {
     isLoading: boolean,
-    locations: ILocation[],
+    locations: ILocationRefactored[],
     message: string,
     error: string
 }
@@ -11,8 +11,8 @@ interface LocationState {
 const initialState = {
     isLoading: false,
     message: '',
-    locations: [] as ILocation[]
-} as LocationState
+    locations: [] as ILocationRefactored[]
+} as LocationState;
 
 const locationsSlice = createSlice({
     name: 'location',
@@ -22,7 +22,7 @@ const locationsSlice = createSlice({
             state.isLoading = true;
             state.message = '';
         },
-        locationFetchSuccess(state, action: PayloadAction<ILocation[]>) {
+        locationFetchSuccess(state, action: PayloadAction<ILocationRefactored[]>) {
             state.isLoading = false;
             state.locations = action.payload;
         },

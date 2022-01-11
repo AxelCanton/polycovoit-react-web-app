@@ -32,16 +32,11 @@ const MapPage = () => {
     }
 
     const renderMarkerPopup = (data: ILocation): React.ReactNode => {
-        return (
-            <>
-                Ville : {data.city} <br/>
-                Code postal : {data.postalCode}<br/>
-                Genre: { data.userGender}<br/>
-
-                <Button onClick={()=>{setPopupData(data)}}>Faire une demande</Button>
-            </>
-        )
-    }
+        const locationsRefactored = locations.find(loc => loc.postalCode === data.postalCode);
+        return locationsRefactored 
+        ? <PopupMarker data={locationsRefactored} setSelectedPopupData={setPopupData} />
+        : <></>
+    };
 
     const renderMarkerColor = (data: ILocation): string => retrieveColor(data.userSpeciality);
 
@@ -54,7 +49,7 @@ const MapPage = () => {
         <MapComponent
         initialPosition={INITIAL_POSITION}
         initialZoom={INITIAL_ZOOM}
-        markersData={locations}
+        markersData={locations.map(locRefactored => locRefactored.locations[0])}
         renderMarkerColor={renderMarkerColor}
         renderMarkerPopup={renderMarkerPopup}
         whenCreated={setMap}

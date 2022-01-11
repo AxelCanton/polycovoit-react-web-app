@@ -14,8 +14,9 @@ const Markers = ({
 
     return (
         <>
-        {markersData.map((data) => {
+        {markersData.map((data, index) => {
             return <Marker
+            key={index}
             position={data}
             popupContent={renderPopupContent ? renderPopupContent(data) : null}
             color={renderMarkerColor ? renderMarkerColor(data) : null}
