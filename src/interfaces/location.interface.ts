@@ -1,10 +1,13 @@
+import { Speciality } from "../utils/enum/speciality.enum";
+
 export interface ILatLng {
     latitude: number,
     longitude: number
 }
 
 export interface ILocation extends ILocationWithoutGender {
-    userGender: string
+    userGender: string,
+    userSpeciality: Speciality
 }
 
 export interface ILocationWithoutGender {
@@ -39,6 +42,7 @@ export interface ILocationSuccessFetchResponse {
     longitude: number,
     postalCode: number,
     userGender: string,
+    userSpeciality: Speciality,
     address?: string,
     city: string
 }

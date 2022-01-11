@@ -6,7 +6,8 @@ export interface IMarkerRequiredProps {
 }
 
 export interface IMarkerOptionalProps {
-    popupContent?: React.ReactNode
+    popupContent?: React.ReactNode,
+    color: string | null
 }
 
 export interface IMarkerProps extends IMarkerOptionalProps, IMarkerRequiredProps {}

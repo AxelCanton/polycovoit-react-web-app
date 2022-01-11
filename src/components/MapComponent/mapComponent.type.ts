@@ -12,7 +12,8 @@ export interface IMapComponentOptionalProps {
     minZoom: number,
     maxZoom: number,
     placeholder: string,
-    renderMarkerPopup: (data: any) => React.ReactNode
+    renderMarkerColor?: (data: any) => string,
+    renderMarkerPopup: (data: any) => React.ReactNode,
     whenReady: () => void,
     whenCreated: (map: Map) => void,
     onClick: LeafletEventHandlerFn | null,

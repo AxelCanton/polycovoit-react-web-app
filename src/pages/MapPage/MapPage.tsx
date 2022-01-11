@@ -1,4 +1,3 @@
-import { Button } from '@mui/material';
 import { LatLngBounds, Map } from 'leaflet';
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -7,6 +6,8 @@ import { ILatLng, ILocation } from '../../interfaces/location.interface';
 import { locationFetchThunk } from '../../thunks/LocationsThunk';
 import Modal from '../../components/Modal/Modal'
 import CreateReservation from '../../components/Reservation/CreateReservation';
+import PopupMarker from './PopupMarker/PopupMarker';
+import usePolytechSpecialities from '../../hooks/usePolytechSpecilities';
 
 const INITIAL_POSITION: ILatLng = {
     latitude: 46,
@@ -16,9 +17,10 @@ const INITIAL_ZOOM = 6;
 
 const MapPage = () => {
     const dispatch = useAppDispatch();
-    const { isLoading, locations, error } = useAppSelector((state) => state.locationsReducer);
+    const { locations } = useAppSelector((state) => state.locationsReducer);
     const [map, setMap] = useState<Map |null>(null);
-    const [mapBounds, setMapBounds] = useState<LatLngBounds | null>(null)
+
+    const { retrieveColor } = usePolytechSpecialities();
 
     const [popupData, setPopupData] = useState<ILocation| null>(null);
 
@@ -41,6 +43,8 @@ const MapPage = () => {
         )
     }
 
+    const renderMarkerColor = (data: ILocation): string => retrieveColor(data.userSpeciality);
+
     function closeReservationModal(){
         setPopupData(null)
     }
@@ -51,6 +55,7 @@ const MapPage = () => {
         initialPosition={INITIAL_POSITION}
         initialZoom={INITIAL_ZOOM}
         markersData={locations}
+        renderMarkerColor={renderMarkerColor}
         renderMarkerPopup={renderMarkerPopup}
         whenCreated={setMap}
         onMoveEnd={onMoveEnd}
