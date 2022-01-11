@@ -10,6 +10,7 @@ export interface IUser {
     askedReservations: string,
     receivedReservations: string,
     locations: ILocationWithoutGender[],
+    speciality: ISpeciality;
 };
 
 export interface IPrivateUser {
@@ -18,7 +19,11 @@ export interface IPrivateUser {
     lastName: string;
     email: string | undefined;
     gender: string  
-    speciality: string;
+    speciality: ISpeciality;
+}
+
+export interface ISpeciality {
+    specialityName: string;
 }
 
 interface IToken {

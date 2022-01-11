@@ -31,6 +31,14 @@ const AppBar = () => {
       navigate('/map');
     };
 
+    const onAskedResClick = () => {
+      navigate('/asked-reservations');
+    };
+
+    const onWaitingResClick = () => {
+      navigate('/waiting-reservations');
+    };
+
     const onSettingsClick = () => {
       navigate('/settings');
       handleCloseUserMenu();
@@ -61,6 +69,8 @@ const AppBar = () => {
             <>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <MenuButton text="Carte" onClick={onMapClick}/>
+              <MenuButton text="Reservations envoyées" onClick={onAskedResClick}/>
+              <MenuButton text="Reservations reçues" onClick={onWaitingResClick}/>
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>

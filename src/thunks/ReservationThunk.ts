@@ -78,9 +78,10 @@ export const answerReservationThunk = (reservationId: number, answer: boolean): 
 
     axiosInstance.patch(RESERVATION_URL+"/"+reservationId, body)
     .then((response: AxiosResponse) => {
-        if(response.status === 201){
+        if(response.status === 200){
             dispatch(reservationActions.answerReservationSuccess(answer? SUCCESS_ACCEPT_MESSAGE:SUCCESS_REFUSE_MESSAGE))
             dispatch(notificationActions.showNotification({message: answer? SUCCESS_ACCEPT_MESSAGE:SUCCESS_REFUSE_MESSAGE, severity: SeverityEnum.info}))
+            dispatch(waitingReservationFetch())
         } else {
             dispatch(reservationActions.answerReservationFailure(FAILURE_ANSWER_MESSAGE))
             dispatch(notificationActions.showNotification({message: FAILURE_ANSWER_MESSAGE, severity: SeverityEnum.error}))

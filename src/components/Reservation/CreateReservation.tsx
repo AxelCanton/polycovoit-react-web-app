@@ -9,6 +9,8 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Button from "../Button/Button";
 import { createReservationThunk } from "../../thunks/ReservationThunk";
 import { SUCCESS_CREATE_MESSAGE } from "../../thunks/LocationsThunk";
+import { notificationActions } from "../../slices/NotificationSlice";
+import { SeverityEnum } from "../../utils/enum/severity.enum";
 
 const CreateReservation = ({location, closeModal}: ICreateReservationProps) => {
 
@@ -16,7 +18,7 @@ const CreateReservation = ({location, closeModal}: ICreateReservationProps) => {
     const [message, setMessage] = useState<string>("")
 
     const dispatch = useAppDispatch();
-    const { isLoading, resultMessage } = useAppSelector((state) => state.reservationReducer);
+    const { isLoading } = useAppSelector((state) => state.reservationReducer);
     
     const formTitle:string = "Demande de reservation pour le code postal " + location!.postalCode;
 
@@ -24,11 +26,9 @@ const CreateReservation = ({location, closeModal}: ICreateReservationProps) => {
     const validate = () => {
         if(date && date.toString() !== "Invalid Date" && message !== "" && location){
             dispatch(createReservationThunk(location.id, message, date))
-            if(resultMessage === SUCCESS_CREATE_MESSAGE){
-                closeModal();
-            }
+            closeModal()
         } else {
-            //TODO :: gestion d'erreur
+            dispatch(notificationActions.showNotification({message: "Les informations rentrées ne sont pas correctes, verifiez les et réessayez.", severity: SeverityEnum.warning}))
         }
         
     }

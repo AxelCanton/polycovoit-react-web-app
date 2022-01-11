@@ -1,4 +1,4 @@
-import { List, ListItem, ListSubheader,ListItemIcon, ListItemText, IconButton } from "@mui/material";
+import { List, ListItem, ListSubheader,ListItemIcon, ListItemText, IconButton, Divider } from "@mui/material";
 import { ILocationListProps } from "./locationList.type";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,9 +17,9 @@ const LocationList = ({
     return (
         <List subheader={title && <ListSubheader>{title}</ListSubheader>}>
             {locations.map((loc) => (
-                <ListItem divider secondaryAction={
+                <ListItem secondaryAction={
                     <IconButton onClick={() => onLocationClick(loc)} edge="end" aria-label="delete">
-                      <DeleteIcon color="error"/>
+                    <DeleteIcon color="error"/>
                     </IconButton>
                 }>
                     <ListItemIcon>

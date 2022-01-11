@@ -36,7 +36,7 @@ const SettingsPage = () => {
     return isAuth ? (
         <Fade>
             <CenteredLayout>
-                <Typography variant={TypographyVariantEnum.h2}>Paramètres</Typography>
+                <Typography variant={TypographyVariantEnum.h3}>Paramètres</Typography>
             </CenteredLayout>
             <CenteredLayout>
                 <AddLocation />
