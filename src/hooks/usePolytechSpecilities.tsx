@@ -75,7 +75,7 @@ const usePolytechSpecialities = () => {
         return speciality ? speciality.name : "";
     }
 
-    const retrieveList = (short: Speciality) => {
+    const retrieveList = () => {
         return specialities.map(element => element.short);
     }
 
