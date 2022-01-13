@@ -1,31 +1,13 @@
-import { Autocomplete, autocompleteClasses, createFilterOptions, Popper, styled, TextField, Typography } from "@mui/material";
-import { useCityDataRetriever } from "../../hooks/useCityDataRetriever";
-import { IJsonLocation } from "../../interfaces/location.interface";
+import { Typography } from "@mui/material";
 import Button from "../Button/Button";
 import FormLayout from "../Layout/FormLayout/FormLayout";
-import ListboxComponent from "./ListBoxComponent";
+import LocationSearchInput from "../LocationSearchInput/LocationSearchInput";
 import { ILocationFormOptionalProps, ILocationFormProps } from "./locationForm.type";
 
 const defaultProps: ILocationFormOptionalProps = {
     isLoading: false,
     title: 'Ajouter une addresse'
 } 
-
-const StyledPopper = styled(Popper)({
-    [`& .${autocompleteClasses.listbox}`]: {
-      boxSizing: 'border-box',
-      '& ul': {
-        padding: 0,
-        margin: 0,
-      },
-    },
-  });
-
-
-const filterOptions = createFilterOptions({
-    matchFrom: 'start',
-});
-
 
 const LocationForm = ({
     location,
@@ -34,13 +16,7 @@ const LocationForm = ({
     title,
     validate,
 }: ILocationFormProps) => {
-    const { data } = useCityDataRetriever();
-
     const isEmptySelection = location === null;
-
-    const onLocationChange = (event: any, newValue: IJsonLocation | null) => {
-        setLocation(newValue);
-    }
 
     const renderTypographies = () => {
         return isEmptySelection
@@ -56,20 +32,7 @@ const LocationForm = ({
 
     return (
         <FormLayout title={title} footer={<Button isLoading={isLoading} onClick={validate} disabled={isEmptySelection}>Valider</Button>}>
-            <Autocomplete
-            // @ts-ignore
-            onChange={onLocationChange}
-            options={data}
-            // @ts-ignore
-            getOptionLabel={(option) => option.code_postal.toString()}
-            // @ts-ignore
-            renderOption={(props, option) => [props, `${option.code_postal}, ${option.nom_commune}, ${option.nom_departement}, ${option.nom_region}`]}
-            renderInput={(params) => <TextField {...params} label="Code postal" type="number" />}
-            ListboxComponent={ListboxComponent}
-            disableListWrap
-            PopperComponent={StyledPopper}
-            filterOptions={filterOptions}
-            />
+            <LocationSearchInput setLocation={setLocation} />
             {renderTypographies()}
         </FormLayout>
     );
