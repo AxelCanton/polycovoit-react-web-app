@@ -3,7 +3,7 @@ import { IPopupOptionalProps } from "../../../components/MapComponent/common/Pop
 import { IPopupMarkerProps } from "./PopupMarker.type";
 import LocationUser from "./LocationUser/LocationUser";
 import CustomDivider from "../../../components/CustomDivider/CustomDivider";
-import { Typography } from "@mui/material";
+import { List, Typography } from "@mui/material";
 import { TypographyVariantEnum } from "../../../utils/enum/typography.variant.enum";
 
 const defaultProps: IPopupOptionalProps = {
@@ -20,7 +20,9 @@ const PopupMarker = ({
         <Typography variant={TypographyVariantEnum.h4} color="secondary">{data.city}</Typography>
         <Typography variant={TypographyVariantEnum.h5}>{data.postalCode}</Typography>
         <CustomDivider />
+        <List>
         {data.locations.map(location => <LocationUser key={location.id} data={location} setSelectedPopupData={setSelectedPopupData} />)}
+        </List>
        </>
     );
 };
