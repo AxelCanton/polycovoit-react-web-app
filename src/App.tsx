@@ -17,6 +17,7 @@ import { refreshThunk } from './thunks/LoginThunk';
 import { notificationActions } from './slices/NotificationSlice';
 import { useSnackbar } from 'notistack';
 import MuiAppBar from './components/AppBar/AppBar';
+import NotFound from './components/NotFound/NotFound';
 
 
 export const ACCESS_TOKEN = 'access_token';
@@ -86,6 +87,7 @@ function App() {
       <Route path="/waiting-reservations" element={<WaitingReservationsPage/>}/>
       <Route path="/map" element={renderElement(<MapPage/>)} />
       <Route path="/settings" element={renderElement(<SettingsPage/>)} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
     </>
   )
