@@ -11,7 +11,7 @@ const AuthVerifComponent = ({
 
     useEffect(() => {
         if(!isAuth) {
-            navigate('/login');
+            navigate('/');
         }
     }, [isAuth, navigate]);
     

@@ -49,7 +49,7 @@ export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unkno
         }))
         dispatch(loginActions.loginError("Failed"));
     });
-}
+};
 
 export const refreshThunk = (): ThunkAction<Promise<boolean>, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(loginActions.refreshTokenStart());
@@ -68,4 +68,14 @@ export const refreshThunk = (): ThunkAction<Promise<boolean>, RootState, unknown
         dispatch(loginActions.reset());
         return false;
     });
-}
+};
+
+export const disconnectThunk = (): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
+    dispatch(loginActions.reset());
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('refresh_token');
+    dispatch(notificationActions.showNotification({
+      message: 'Déconnection réussie !',
+      severity: SeverityEnum.success
+    }));
+};

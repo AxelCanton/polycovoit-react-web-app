@@ -81,7 +81,7 @@ function App() {
     <>
     <MuiAppBar />
     <Routes>
-      <Route path="/login" element={<LoginPage/>} />
+      <Route path="/" element={<LoginPage/>} />
       <Route path="/asked-reservations" element={<AskedReservationsPage/>}/>
       <Route path="/waiting-reservations" element={<WaitingReservationsPage/>}/>
       <Route path="/map" element={renderElement(<MapPage/>)} />

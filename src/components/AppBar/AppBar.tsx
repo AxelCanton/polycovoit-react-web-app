@@ -4,11 +4,9 @@ import LogoutIcon from '@mui/icons-material/Logout';
 import SettingsIcon from '@mui/icons-material/Settings';
 import React, { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { loginActions } from '../../slices/LoginSlice';
 import MenuButton from './MenuButton/MenuButton';
 import { useNavigate } from 'react-router-dom';
-import { notificationActions } from '../../slices/NotificationSlice';
-import { SeverityEnum } from '../../utils/enum/severity.enum';
+import { disconnectThunk } from '../../thunks/LoginThunk';
 
 const AppBar = () => {
     const dispatch = useAppDispatch();
@@ -46,11 +44,7 @@ const AppBar = () => {
 
     const onDisconnect = () => {
       handleCloseUserMenu();
-      dispatch(loginActions.reset());
-      dispatch(notificationActions.showNotification({
-        message: 'Déconnection réussie !',
-        severity: SeverityEnum.success
-      }));
+      dispatch(disconnectThunk());
     };
 
     return (
