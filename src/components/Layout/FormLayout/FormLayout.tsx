@@ -24,8 +24,8 @@ const FormLayout = ({
         </> 
         : <></>}
 
-        {Array.isArray(children) ? children.map((child) => {
-            return <Box sx={{
+        {Array.isArray(children) ? children.map((child, index) => {
+            return <Box key={index} sx={{
                 marginTop: 5,
                 marginBottom: 5
             }}>
