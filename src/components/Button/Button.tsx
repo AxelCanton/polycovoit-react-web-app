@@ -7,7 +7,9 @@ const defaultProps: IButtonOptionalProps = {
     variant: ButtonVariant.Contained,
     disabled: false,
     isLoading: false,
-    autoFocus: false
+    autoFocus: false,
+    startIcon: null,
+    endIcon: null
 }
 
 const Button = ({
@@ -17,6 +19,8 @@ const Button = ({
     disabled,
     isLoading,
     onClick,
+    startIcon,
+    endIcon,
     children,
 }: IButtonProps) => {
 
@@ -26,7 +30,10 @@ const Button = ({
     onClick={onClick}
     variant={variant}
     disabled={disabled}
-    autoFocus={autoFocus}>
+    autoFocus={autoFocus}
+    startIcon={startIcon}
+    endIcon={endIcon}
+    >
         {children}
     </MuiButton>;
 }

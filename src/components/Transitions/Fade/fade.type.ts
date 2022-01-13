@@ -3,7 +3,8 @@ export interface IFadeRequiredProps {
 }
 
 export interface IFadeOptionalProps {
-    show: boolean
+    show: boolean,
+    timeout: number
 }
 
 export interface IFadeProps extends IFadeRequiredProps, IFadeOptionalProps {}

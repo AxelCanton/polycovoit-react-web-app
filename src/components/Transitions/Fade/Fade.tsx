@@ -13,16 +13,18 @@ const WrapComponent = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
 });
 
 const defaultProps: IFadeOptionalProps = {
-    show: true
+    show: true,
+    timeout: 1000
 }
 
 const Fade = ({
     children,
-    show
+    show,
+    timeout
 }: IFadeProps) => {
 
     return (
-    <MuiFade in={show}>
+    <MuiFade timeout={timeout} in={show}>
         <WrapComponent>{children}</WrapComponent>
     </MuiFade>
     );

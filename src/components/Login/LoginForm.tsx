@@ -2,12 +2,18 @@ import React, { useState } from 'react';
 import { EventChangeType, EventClickType } from '../../utils/types/event.type';
 import Button from '../Button/Button';
 import StringInput from '../StringInput/StringInput';
-import { ILoginFormProps } from './loginForm.type';
-
+import { ILoginFormOptionalProps, ILoginFormProps } from './loginForm.type';
+import LoginIcon from '@mui/icons-material/Login';
 import './LoginForm.css'
+import FormLayout from '../Layout/FormLayout/FormLayout';
+
+const defaultProps: ILoginFormOptionalProps = {
+  isLoading: false
+};
 
 const LoginForm = ({
-    onLoginClick
+  isLoading,  
+  onLoginClick
 }: ILoginFormProps) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -19,23 +25,13 @@ const LoginForm = ({
     const onValidation = (event: EventClickType) => onLoginClick(email, password);
     
     return (
-      <div className="formContainer">
-        <div className="cadre">
-            <div className="title">
-                <h1>Entrez vos identifiants</h1>
-            </div>
-          <div className="inputContainer">
-            <StringInput className="login-form" required value={email} onChange={onEmailChange} label="Addresse email" />
-          </div>
-          <div className="inputContainer">
-            <StringInput className="login-form" required type='password' value={password} onChange={onPasswordChange} label="Mot de passe" />
-          </div>
-          <div className="inputContainer">
-            <Button onClick={onValidation}>Valider</Button>
-          </div>
-        </div>
-      </div>
+      <FormLayout title="Entrez vos identifiants" footer={<Button isLoading={isLoading} endIcon={<LoginIcon />} onClick={onValidation}>Se connecter</Button>}>
+        <StringInput required value={email} onChange={onEmailChange} label="Addresse email" />
+        <StringInput required type='password' value={password} onChange={onPasswordChange} label="Mot de passe" />
+      </FormLayout>
     );
-}
+};
+
+LoginForm.defaultProps = defaultProps;
 
 export default LoginForm;
