@@ -6,7 +6,7 @@ const Popup = ({
     content
 }: IPopupProps) => {
     const { width, height } = useWindowDimensions();
-    return <PopupLeaflet minWidth={200} maxWidth={width-10} maxHeight={height-10}>{content}</PopupLeaflet>
+    return <PopupLeaflet autoPan={false} minWidth={200} maxWidth={width-10} maxHeight={height-10}>{content}</PopupLeaflet>
 }
 
 export default Popup;

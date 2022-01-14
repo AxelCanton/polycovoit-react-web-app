@@ -2,15 +2,19 @@ import { LatLngBounds, Map } from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import MapComponent from '../../components/MapComponent/MapComponent';
-import { ILatLng, ILocation } from '../../interfaces/location.interface';
+import { IJsonLocation, ILatLng, ILocation } from '../../interfaces/location.interface';
 import { locationFetchThunk } from '../../thunks/LocationsThunk';
 import Modal from '../../components/Modal/Modal'
 import CreateReservation from '../../components/Reservation/CreateReservation';
 import PopupMarker from './PopupMarker/PopupMarker';
 import usePolytechSpecialities from '../../hooks/usePolytechSpecilities';
-import { Grid } from '@mui/material';
+import { Paper, Box, Fab, Stack } from '@mui/material';
 import Panel from './Panel/Panel';
 import { Speciality } from '../../utils/enum/speciality.enum';
+import ScrollableComponent from '../../components/Layout/ScrollableComponent/ScrollableComponent';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import Collapse from '../../components/Transitions/Collapse/Collapse';
 
 const INITIAL_POSITION: ILatLng = {
     latitude: 46,
@@ -27,6 +31,8 @@ const MapPage = () => {
     const [map, setMap] = useState<Map |null>(null);
     const [popupData, setPopupData] = useState<ILocation| null>(null);
     const [selectedSpecialities, setSelectedSpecialities] = useState<Speciality[]>(retrieveList());
+    const [selectedLocation, setSelectedLocation] = useState<IJsonLocation | null>(null);
+    const [showPanel, setShowPanel] = useState(false);
     
     const fetchLocations = () => {
         const currentMapBounds = map?.getBounds();
@@ -41,6 +47,18 @@ const MapPage = () => {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     useEffect(() => fetchLocations(), [selectedSpecialities]);
+
+    useEffect(() => {
+        if (selectedLocation && map) {
+            const latitude = parseFloat(selectedLocation.latitude.toString());
+            const longitude = parseFloat(selectedLocation.longitude.toString());
+            map.setView([latitude, longitude], 10, {
+                animate: true,
+                duration: 1,
+                easeLinearity: 0.25
+            });
+        }
+    }, [map, selectedLocation]);
 
     const renderMarkerPopup = (data: ILocation): React.ReactNode => {
         const locationsRefactored = locations.find(loc => loc.postalCode === data.postalCode);
@@ -64,21 +82,42 @@ const MapPage = () => {
         if (index !== -1) {
             const oldState = [...selectedSpecialities];
             oldState.splice(index, 1);
-            console.log(oldState)
             setSelectedSpecialities(oldState);
         }
     }
 
     return (
-    <div>
-        <Grid container>
-            <Grid item xs={2}>
-                <Panel
-                selectedSpecialities={selectedSpecialities}
-                addSpeciality={addToSelectedSpecialities}
-                removeSpeciality={removeFromSelectedSpecialities} />
-            </Grid>
-            <Grid item  xs={10}>
+        <>
+        <Box sx={{ position: 'relative' }}>
+            <Box sx={{
+                position: 'absolute',
+                top: '10vh',
+                right: '5vh',
+                zIndex: 'modal'
+                }}>
+                    <Stack
+                    direction="column"
+                    justifyContent="flex-start"
+                    alignItems="flex-end"
+                    spacing={2}
+                    >
+                        <Fab color="secondary" size="small" aria-label="add" onClick={() => setShowPanel(!showPanel)}>
+                            { showPanel ? <KeyboardArrowUpIcon />: <KeyboardArrowDownIcon /> }
+                        </Fab>
+                            <Collapse show={showPanel}>
+                            <Paper variant="elevation" elevation={12} sx={{ height: '60vh'}}>
+                                <ScrollableComponent>
+                                    <Panel
+                                    selectedSpecialities={selectedSpecialities}
+                                    addSpeciality={addToSelectedSpecialities}
+                                    removeSpeciality={removeFromSelectedSpecialities}
+                                    setSelectedLocation={setSelectedLocation}
+                                    />
+                                </ScrollableComponent>
+                            </Paper>
+                        </Collapse>
+                     </Stack>
+            </Box>
                 <MapComponent
                 initialPosition={INITIAL_POSITION}
                 initialZoom={INITIAL_ZOOM}
@@ -89,12 +128,11 @@ const MapPage = () => {
                 onMoveEnd={fetchLocations}
                 height='93vh'
                 />
-            </Grid>
-        </Grid>
+        </Box>
         <Modal isVisible={popupData? true:false} close={() => closeReservationModal()} >
             <CreateReservation location={popupData} closeModal={() => closeReservationModal()}></CreateReservation>
         </Modal>
-    </div>
+        </>
     );
 
 }
