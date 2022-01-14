@@ -12,6 +12,8 @@ export interface IMapComponentOptionalProps {
     minZoom: number,
     maxZoom: number,
     placeholder: string,
+    height: string,
+    width: string,
     renderMarkerColor?: (data: any) => string,
     renderMarkerPopup: (data: any) => React.ReactNode,
     whenReady: () => void,

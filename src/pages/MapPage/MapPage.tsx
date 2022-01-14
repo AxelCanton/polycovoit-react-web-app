@@ -87,6 +87,7 @@ const MapPage = () => {
                 renderMarkerPopup={renderMarkerPopup}
                 whenCreated={setMap}
                 onMoveEnd={fetchLocations}
+                height='93vh'
                 />
             </Grid>
         </Grid>

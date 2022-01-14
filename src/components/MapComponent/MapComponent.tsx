@@ -14,13 +14,17 @@ const defaultProps: IMapComponentOptionalProps = {
     whenReady: () => {},
     whenCreated: () => {},
     onClick: null,
-    onMoveEnd: null
+    onMoveEnd: null,
+    height: "",
+    width: ""
 }
 
 const MapComponent = ({
     initialPosition,
     initialZoom,
     markersData,
+    height,
+    width,
     renderMarkerColor,
     renderMarkerPopup,
     minZoom,
@@ -36,8 +40,7 @@ const MapComponent = ({
         tap={false}
         center={[initialPosition.latitude, initialPosition.longitude]}
         zoom={initialZoom}
-        scrollWheelZoom={false}
-        style={{ height: '100vh', width: '100wh' }}
+        style={{ height, width }}
         minZoom={minZoom}
         maxZoom={maxZoom}
         placeholder={<p>{placeholder}</p>}
