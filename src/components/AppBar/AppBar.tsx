@@ -48,7 +48,7 @@ const AppBar = () => {
     };
 
     return (
-    <MuiAppBar position="static">
+    <MuiAppBar sx={{ height: '7vh', minHeight: '50px'}} position="static">
       <Container maxWidth="xl">
       <Toolbar disableGutters>
           <Typography

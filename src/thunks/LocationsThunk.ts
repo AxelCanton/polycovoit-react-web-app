@@ -8,6 +8,7 @@ import { ILocationCreateBody, ILocationSuccessFetchResponse } from "../interface
 import { locationsActions } from "../slices/LocationsSlice";
 import { notificationActions } from "../slices/NotificationSlice";
 import { SeverityEnum } from "../utils/enum/severity.enum";
+import { Speciality } from "../utils/enum/speciality.enum";
 import { makeUrl } from "../utils/makeUrl";
 import { refactorLocations } from "../utils/refactorLocations";
 
@@ -19,14 +20,15 @@ export const FAILURE_DELETE_MESSAGE = 'Suppression de l\'addresse échouée, veu
 
 export const FAILURE_FETCH_MESSAGE = 'Une erreur est survenue.'
 
-export const locationFetchThunk = (bounds: LatLngBounds): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
+export const locationFetchThunk = (bounds: LatLngBounds, specialities: Speciality[]): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(locationsActions.locationFetchStart());
 
     const url = makeUrl(LOCATIONS_FETCH_BY_COORD_URL, {
         ne_lat: bounds.getNorthEast().lat,
         ne_long: bounds.getNorthEast().lng,
         sw_lat: bounds.getSouthWest().lat,
-        sw_long: bounds.getSouthWest().lng
+        sw_long: bounds.getSouthWest().lng,
+        specialities
     });
 
     axiosInstance.get(url)

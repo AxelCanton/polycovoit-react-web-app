@@ -1,5 +1,5 @@
 import React from "react";
-import { MapContainer, TileLayer } from "react-leaflet";
+import { MapContainer, TileLayer, ZoomControl } from "react-leaflet";
 import { IMapComponentOptionalProps, IMapComponentProps } from "./mapComponent.type";
 import 'leaflet/dist/leaflet.css';
 import MapEvents from "./MapEvents";
@@ -14,13 +14,17 @@ const defaultProps: IMapComponentOptionalProps = {
     whenReady: () => {},
     whenCreated: () => {},
     onClick: null,
-    onMoveEnd: null
+    onMoveEnd: null,
+    height: "",
+    width: ""
 }
 
 const MapComponent = ({
     initialPosition,
     initialZoom,
     markersData,
+    height,
+    width,
     renderMarkerColor,
     renderMarkerPopup,
     minZoom,
@@ -36,13 +40,13 @@ const MapComponent = ({
         tap={false}
         center={[initialPosition.latitude, initialPosition.longitude]}
         zoom={initialZoom}
-        scrollWheelZoom={false}
-        style={{ height: '100vh', width: '100wh' }}
+        style={{ height, width }}
         minZoom={minZoom}
         maxZoom={maxZoom}
         placeholder={<p>{placeholder}</p>}
         whenReady={whenReady}
         whenCreated={whenCreated}
+        zoomControl={false}
         >
             <MapEvents onClick={onClick || undefined} onMoveEnd={onMoveEnd || undefined} />
             <Markers markersData={markersData} renderPopupContent={renderMarkerPopup} renderMarkerColor={renderMarkerColor}/>
@@ -50,6 +54,7 @@ const MapComponent = ({
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <ZoomControl position='bottomleft'/>
         </MapContainer> 
     )
 }
