@@ -110,7 +110,7 @@ const AskedReservationsPage = () => {
                     </Grid>
                     <CustomDivider spacingDown={5} />
                     <Fade show={filters} children={filterComponent()}/>
-                    <Fade>
+                    <>
                         {reservations.map((reservation) => {
                             if(new Date(reservation.date) >= new Date(today.getFullYear(), today.getMonth(),today.getDate()-1)){
                                 if(filters){
@@ -154,7 +154,7 @@ const AskedReservationsPage = () => {
                                 }
                             }
                         })}
-                    </Fade>
+                    </>
                     <Typography variant={TypographyVariantEnum.h4}> Vos demandes passées : </Typography>
                     <CustomDivider spacing={5} />
                     <>

@@ -1,4 +1,5 @@
-import { List, ListItem, Stack, Checkbox, Tooltip, FormControlLabel } from "@mui/material";
+import { List, ListItem, Stack, Checkbox, Tooltip, FormControlLabel, Grid, Typography } from "@mui/material";
+import CustomDivider from "../../../components/CustomDivider/CustomDivider";
 import LocationSearchInput from "../../../components/LocationSearchInput/LocationSearchInput";
 import PolytechIcon from "../../../components/PolytechIcon/PolytechIcon";
 import usePolytechSpecialities from "../../../hooks/usePolytechSpecilities";
@@ -22,21 +23,25 @@ const Panel = ({
     };
 
     return (
-        <Stack direction="column" justifyContent="space-around" sx={{ width: '30vw' }}>
-            <List dense sx={{ width: '30%', minWidth: '40px' }}>
+        <Stack direction="column" justifyContent="space-around" sx={{ width: '20vw', padding: '20px'}}>
+            <Typography variant="h5">Filtrer par spécialité : </Typography>
+            <CustomDivider spacing={2}></CustomDivider>
+            <Grid container spacing={2} sx={{marginBottom:'20px'}}>
             {retrieveList().map((speciality) => (
                 <Tooltip placement="right" key={speciality} title={speciality}>
-                    <ListItem>
+                    <Grid item xs={4}>
                         <FormControlLabel
                         labelPlacement="start"
                         control={<Checkbox checked={selectedSpecialities.includes(speciality)} onChange={(event) => onCheckboxChange(event.target.checked, speciality)} />}
                         disableTypography
                         label={<PolytechIcon speciality={speciality} />}
                         />
-                    </ListItem>
+                    </Grid>
                  </Tooltip>
             ))}
-            </List>
+            </Grid>
+            <Typography variant="h5">Filtrer par code postal : </Typography>
+            <CustomDivider spacing={2}></CustomDivider>
             <LocationSearchInput setLocation={setSelectedLocation} />
         </Stack>
     );
