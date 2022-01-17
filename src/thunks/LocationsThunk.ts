@@ -92,7 +92,7 @@ export const locationFetchByUserThunk = (userId: number): ThunkAction<void, Root
 }
 
 export const deleteLocationThunk = (id: number): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
-    dispatch(locationsActions.locationFetchStart());
+    dispatch(locationsActions.locationDeleteStart());
 
     axiosInstance.delete(LOCATION_DELETE_URL(id))
     .then((response: AxiosResponse) => {

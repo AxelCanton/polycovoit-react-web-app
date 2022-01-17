@@ -16,7 +16,7 @@ import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutl
 import PolytechIcon from "../PolytechIcon/PolytechIcon";
 
 const defaultProps : IAskedReservationOptionalProps = {
-    disabled: false,
+    disabled: false
 }
 
 const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {

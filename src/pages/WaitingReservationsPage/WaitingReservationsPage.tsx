@@ -22,11 +22,10 @@ const WaitingReservationsPage = () => {
                     <Typography variant={TypographyVariantEnum.h3}> Demandes de reservations : </Typography>
                     <CustomDivider spacing={5} />
                     <>
-                        {reservations.map((reservation) => {
-                            if(reservation.accepted === 0){
-                                return <WaitingReservation reservation={reservation} key={reservation.id}></WaitingReservation>
-                            }
-                        })}
+                        {reservations.map((reservation) => reservation.accepted === 0
+                        ? <WaitingReservation reservation={reservation} key={reservation.id}></WaitingReservation>
+                        : <></>
+                        )}
                     </>
                 </CenteredLayout>
         </Fade>

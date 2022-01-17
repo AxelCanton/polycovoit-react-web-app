@@ -3,7 +3,7 @@ import { RootState } from "../app/store";
 import { reservationActions } from "../slices/ReservationSlice";
 import axiosInstance from "../config/axios.config";
 import { GET_ASKED_RESERVATIONS_URL, GET_WAITING_RESERVATIONS_URL, RESERVATION_URL } from "../config/routes";
-import axios, { AxiosError, AxiosResponse } from "axios";
+import { AxiosError, AxiosResponse } from "axios";
 import { SeverityEnum } from "../utils/enum/severity.enum";
 import { notificationActions } from "../slices/NotificationSlice";
 

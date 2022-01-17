@@ -1,4 +1,4 @@
-import { Grid, Box, IconButton, List, ListItem, ListItemIcon,ListItemText, Tooltip, ListItemButton } from "@mui/material";
+import { Grid, List, ListItem, ListItemIcon,ListItemText, Tooltip, ListItemButton } from "@mui/material";
 import FemaleIcon from '@mui/icons-material/Female';
 import MaleIcon from '@mui/icons-material/Male';
 import TransgenderIcon from '@mui/icons-material/Transgender';

@@ -1,14 +1,12 @@
 import { DesktopDatePicker, LocalizationProvider } from "@mui/lab";
 import {Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { ILocation } from "../../interfaces/location.interface";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import FormLayout from "../Layout/FormLayout/FormLayout";
 import { ICreateReservationProps } from "./reservation.type";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import Button from "../Button/Button";
 import { createReservationThunk } from "../../thunks/ReservationThunk";
-import { SUCCESS_CREATE_MESSAGE } from "../../thunks/LocationsThunk";
 import { notificationActions } from "../../slices/NotificationSlice";
 import { SeverityEnum } from "../../utils/enum/severity.enum";
 
