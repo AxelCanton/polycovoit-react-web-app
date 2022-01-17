@@ -102,6 +102,101 @@ const AskedReservationsPage = () => {
 
     const reservations = useAppSelector((state) => state.reservationReducer.askedReservations);
 
+    function isNull(list:(JSX.Element | null | undefined)[]):boolean {
+        let res = true;
+        for(let i in list) {
+            if(list[i] !== null){
+                res = false;
+            }
+        }
+
+        return res;
+    }
+
+    const reservationsToDisplay = ():(JSX.Element | null | undefined)[] => {
+        return (
+            reservations.map((reservation) => {
+                if(new Date(reservation.date) >= new Date(today.getFullYear(), today.getMonth(),today.getDate()-1)){
+                    if(filters){
+                        if(dateFilter&& postCodeFilter){
+                            if((reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter) && new Date(reservation.date) === dateFilter){
+                                if((reservation.accepted === 1 && acceptedChecked) || (reservation.accepted === 0 && waitingChecked) || (reservation.accepted === -1 && refusedChecked)){
+                                    return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
+                                }
+                                else {
+                                    return null
+                                }
+                            }
+                        } else if (dateFilter){
+                            if(new Date(reservation.date) === dateFilter){
+                                if((reservation.accepted === 1 && acceptedChecked) || (reservation.accepted === 0 && waitingChecked) || (reservation.accepted === -1 && refusedChecked)){
+                                    return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
+                                }
+                                else {
+                                    return null
+                                }
+                            }
+                        } else if (postCodeFilter){
+                            if(reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter){
+                                if((reservation.accepted === 1 && acceptedChecked) || (reservation.accepted === 0 && waitingChecked) || (reservation.accepted === -1 && refusedChecked)){
+                                    return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
+                                }
+                                else {
+                                    return null
+                                }
+                            }
+                        } else {
+                            if((reservation.accepted === 1 && acceptedChecked) || (reservation.accepted === 0 && waitingChecked) || (reservation.accepted === -1 && refusedChecked)){
+                                return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
+                            }
+                            else {
+                                return null
+                            }
+                        }
+                    } else {
+                        return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
+                    }
+                } else {
+                    return null;
+                }
+            })
+        )
+    }
+
+    const reservationsPassed = ():(JSX.Element | null | undefined)[] => {
+        return(
+            reservations.map((reservation) => {
+            if(new Date(reservation.date) < new Date() && reservation.accepted === 1){
+                if(filters){
+                    if(acceptedChecked){
+                        if(dateFilter && postCodeFilter){
+                            if((reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter) && new Date(reservation.date) === dateFilter){
+                                return <AskedReservation reservation={reservation} key={reservation.id} disabled={true}></AskedReservation>
+                            }
+                        } else if (dateFilter){
+                            if(new Date(reservation.date) === dateFilter){
+                                return <AskedReservation reservation={reservation} key={reservation.id} disabled={true}></AskedReservation>
+                            }
+                        } else if (postCodeFilter){
+                            if(reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter){
+                                return <AskedReservation reservation={reservation} key={reservation.id} disabled={true}></AskedReservation>
+                            }
+                        } else {
+                            return <AskedReservation reservation={reservation} key={reservation.id} disabled={true}></AskedReservation>
+                        }
+                    } else {
+                        return null;
+                    }
+                } else {
+                    return <AskedReservation reservation={reservation} key={reservation.id} disabled={true}></AskedReservation>
+                }
+            } else {
+                return null;
+            }
+        })
+        )
+    }
+
     return(
         <>
                 <CenteredLayout>
@@ -113,77 +208,13 @@ const AskedReservationsPage = () => {
                     </Grid>
                     <CustomDivider spacingDown={5} />
                     <Fade show={filters} children={filterComponent()}/>
-                    <Fade>
-                        {reservations.map((reservation) => {
-                            if(new Date(reservation.date) >= new Date(today.getFullYear(), today.getMonth(),today.getDate()-1)){
-                                if(filters){
-                                    if(dateFilter&& postCodeFilter){
-                                        if((reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter) && new Date(reservation.date) === dateFilter){
-                                            return reservation.accepted === 1? 
-                                                (acceptedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null):
-                                                (reservation.accepted === 0?
-                                                    (waitingChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null):
-                                                    (refusedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null)
-                                                )
-                                        }
-                                    } else if (dateFilter){
-                                        if(new Date(reservation.date) === dateFilter){
-                                            return reservation.accepted === 1? 
-                                                (acceptedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null):
-                                                (reservation.accepted === 0?
-                                                    (waitingChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null):
-                                                    (refusedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null)
-                                                )
-                                        }
-                                    } else if (postCodeFilter){
-                                        if(reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter){
-                                            return reservation.accepted === 1? 
-                                                (acceptedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null):
-                                                (reservation.accepted === 0?
-                                                    (waitingChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null):
-                                                    (refusedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null)
-                                                )
-                                        }
-                                    } else {
-                                        return reservation.accepted === 1? 
-                                                (acceptedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null):
-                                                (reservation.accepted === 0?
-                                                    (waitingChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null):
-                                                    (refusedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null)
-                                                )
-                                    }
-                                } else {
-                                    return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
-                                }
-                            }
-                        })}
-                    </Fade>
+                    <>
+                        {isNull(reservationsToDisplay())? <Typography variant="h5" sx={{margin:5}}>Aucune reservation en cours !</Typography>:reservationsToDisplay()}
+                    </>
                     <Typography variant={TypographyVariantEnum.h4}> Vos demandes passées : </Typography>
                     <CustomDivider spacing={5} />
                     <>
-                        {reservations.map((reservation) => {
-                            if(new Date(reservation.date) < new Date() && reservation.accepted === 1){
-                                if(filters){
-                                    if(dateFilter&& postCodeFilter){
-                                        if((reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter) && new Date(reservation.date) === dateFilter){
-                                            return acceptedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null
-                                        }
-                                    } else if (dateFilter){
-                                        if(new Date(reservation.date) === dateFilter){
-                                            return acceptedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null
-                                        }
-                                    } else if (postCodeFilter){
-                                        if(reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter){
-                                            return acceptedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null
-                                        }
-                                    } else {
-                                        return acceptedChecked? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>:null
-                                    }
-                                } else {
-                                    return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
-                                }
-                            }
-                        })}
+                        {isNull(reservationsPassed())? <Typography variant="h5" sx={{margin:5}}>Aucune reservation passée !</Typography>:reservationsPassed()}
                     </>
                 </CenteredLayout>
         </>
