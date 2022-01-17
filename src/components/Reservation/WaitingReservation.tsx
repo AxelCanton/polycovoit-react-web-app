@@ -11,10 +11,6 @@ import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import PolytechIcon from "../PolytechIcon/PolytechIcon";
 
 
-const gridText = {
-}
-
-
 const WaitingReservation = (
     {reservation}: IWaitingReservationProps
 ) => {

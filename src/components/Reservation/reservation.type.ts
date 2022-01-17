@@ -6,7 +6,7 @@ export interface IAskedReservationRequiredProps {
 }
 
 export interface IAskedReservationOptionalProps {
-    disabled: boolean
+    disabled: boolean,
 }
 
 export interface IAskedReservationProps extends IAskedReservationRequiredProps, IAskedReservationOptionalProps {}

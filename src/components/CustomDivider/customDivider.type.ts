@@ -10,7 +10,8 @@ export interface ICustomDividerRequiredProps {
 export interface ICustomDividerOptionalProps {
     content?: string,
     orientation: OrientationDividerEnum,
-    spacing: number
+    spacing: number,
+    spacingDown?: number
 }
 
 export interface ICustomDividerProps extends ICustomDividerRequiredProps, ICustomDividerOptionalProps {}

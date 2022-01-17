@@ -13,13 +13,10 @@ import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
+import PolytechIcon from "../PolytechIcon/PolytechIcon";
 
 const defaultProps : IAskedReservationOptionalProps = {
-    disabled: false
-}
-
-const gridText = {
-    
+    disabled: false,
 }
 
 const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
@@ -101,7 +98,7 @@ const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
                                         </Typography>
                                     </Grid>
                                     <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
-                                        <SchoolOutlinedIcon color="secondary"/>
+                                        <PolytechIcon speciality={reservation.receivingUser!.speciality}/> 
                                     </Grid>
                                     <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                         <Typography>

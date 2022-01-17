@@ -4,18 +4,20 @@ import { ICustomDividerOptionalProps, ICustomDividerProps, OrientationDividerEnu
 const defaultProps: ICustomDividerOptionalProps = {
     content: undefined,
     orientation: OrientationDividerEnum.HORIZONTAL,
-    spacing: 1
+    spacing: 1, 
+    spacingDown: undefined,
 }
 
 const CustomDivider = ({
     content,
     orientation,
-    spacing
+    spacing,
+    spacingDown,
 }: ICustomDividerProps) => {
     
     return (<Divider sx={{
         marginTop: spacing,
-        marginBottom: spacing
+        marginBottom: spacingDown? spacingDown:spacing,
     }} orientation={orientation}>{content}</Divider>);
 }
 
