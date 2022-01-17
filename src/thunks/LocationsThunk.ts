@@ -3,7 +3,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { LatLngBounds } from "leaflet";
 import { RootState } from "../app/store";
 import axiosInstance from "../config/axios.config";
-import { LOCATIONS_CREATE_URL, LOCATIONS_FETCH_BY_COORD_URL, LOCATIONS_FETCH_BY_USER_URL, LOCATION_DELETE_URL } from "../config/routes";
+import { LOCATIONS_CREATE_URL, LOCATIONS_FETCH_BY_COORD_URL, LOCATION_DELETE_URL } from "../config/routes";
 import { ILocationCreateBody, ILocationSuccessFetchResponse } from "../interfaces/location.interface";
 import { locationsActions } from "../slices/LocationsSlice";
 import { notificationActions } from "../slices/NotificationSlice";
@@ -71,24 +71,6 @@ export const locationCreateThunk = (city: string, postalCode: number, latitude: 
             severity: SeverityEnum.error
         }));
     })
-}
-
-export const locationFetchByUserThunk = (userId: number): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
-    dispatch(locationsActions.locationFetchStart());
-    const url = makeUrl(LOCATIONS_FETCH_BY_USER_URL, {
-        user: userId
-    })
-
-    axiosInstance.get(url)
-    .then((response: AxiosResponse<ILocationSuccessFetchResponse[]>) => {
-        if(response.status === 200) {
-            dispatch(locationsActions.locationFetchSuccess(refactorLocations(response.data)))
-        }
-    })
-    .catch((error) => {
-        dispatch(locationsActions.locationFetchFailure('error'));
-    });
-
 }
 
 export const deleteLocationThunk = (id: number): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
