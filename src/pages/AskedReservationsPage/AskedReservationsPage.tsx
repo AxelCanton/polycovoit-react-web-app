@@ -2,18 +2,15 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import AskedReservation from "../../components/Reservation/AskedReservation";
 import { askedReservationFetch } from "../../thunks/ReservationThunk";
-import {IReservation} from "../../components/Reservation/reservation.type"
+import Fade from "../../components/Transitions/Fade/Fade";
 import CenteredLayout from "../../components/Layout/CenteredLayout/CenteredLayout";
 import { Box, Button, Checkbox, Grid, TextField, Typography } from "@mui/material";
 import CustomDivider from "../../components/CustomDivider/CustomDivider";
 import { TypographyVariantEnum } from "../../utils/enum/typography.variant.enum";
-import Fade from "../../components/Transitions/Fade/Fade";
-
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { DesktopDatePicker, LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-
-
+import { IReservation } from "../../components/Reservation/reservation.type";
 
 const AskedReservationsPage = () => {
 
@@ -23,7 +20,7 @@ const AskedReservationsPage = () => {
         dispatch(askedReservationFetch())
     }, [dispatch])
 
-    const today:Date = new Date()
+    const today = new Date()
 
     const [filters, setFilters] = useState(false)
 

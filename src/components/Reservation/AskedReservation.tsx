@@ -8,7 +8,6 @@ import { useState } from "react";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import EventIcon from '@mui/icons-material/Event';
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutlineOutlined';
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
@@ -16,7 +15,7 @@ import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutl
 import PolytechIcon from "../PolytechIcon/PolytechIcon";
 
 const defaultProps : IAskedReservationOptionalProps = {
-    disabled: false,
+    disabled: false
 }
 
 const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {

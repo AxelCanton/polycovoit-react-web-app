@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import Dialog from "../../../components/Dialog/Dialog";
 import LocationList from "../../../components/LocationList/LocationList";
-import Progress from "../../../components/Progress/Progress";
 import { ILocationWithoutUserData } from "../../../interfaces/location.interface";
 import { deleteLocationThunk } from "../../../thunks/LocationsThunk";
 
@@ -12,7 +11,7 @@ const Locations = () => {
 
     const hideDialog = () => setOpenDialog(false);
 
-    const { user, isLoading } = useAppSelector((state) => state.userReducer);
+    const { user } = useAppSelector((state) => state.userReducer);
     const dispatch = useAppDispatch();
 
     const onLocationClick = (location: ILocationWithoutUserData) => {
@@ -26,9 +25,9 @@ const Locations = () => {
         }
     }
 
-    return isLoading || !user ? <Progress /> : (
+    return (
         <>
-            <LocationList locations={user.locations} onLocationClick={onLocationClick} />
+            {user && <LocationList locations={user.locations} onLocationClick={onLocationClick} />}
             <Dialog
                 open={openDialog}
                 onClose={hideDialog}

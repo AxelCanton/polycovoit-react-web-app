@@ -1,4 +1,4 @@
-import { List, ListItem, ListSubheader,ListItemIcon, ListItemText, IconButton, Divider } from "@mui/material";
+import { List, ListItem, ListSubheader,ListItemIcon, ListItemText, IconButton } from "@mui/material";
 import { ILocationListProps } from "./locationList.type";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import DeleteIcon from '@mui/icons-material/Delete';

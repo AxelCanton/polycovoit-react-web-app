@@ -6,10 +6,8 @@ import { IWaitingReservationProps } from "./reservation.type";
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import LocationCityIcon from '@mui/icons-material/LocationCity';
 import EventIcon from '@mui/icons-material/Event';
-import SchoolOutlinedIcon from '@mui/icons-material/SchoolOutlined';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import PolytechIcon from "../PolytechIcon/PolytechIcon";
-
 
 const WaitingReservation = (
     {reservation}: IWaitingReservationProps

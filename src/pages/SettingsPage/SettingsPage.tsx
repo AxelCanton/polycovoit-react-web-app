@@ -22,7 +22,7 @@ const SettingsPage = () => {
         if (decodedToken) {
             getUserData();
         }
-    }, [dispatch, decodedToken, message, getUserData]);
+    }, [dispatch, decodedToken, getUserData]);
 
     // On location creation, retrieve user data in order to update the location list
     useEffect(() => {

@@ -92,17 +92,19 @@ const MapPage = () => {
             <Box sx={{
                 position: 'absolute',
                 top: '10vh',
-                right: '5vh',
+                left: '5vh',
                 zIndex: 'modal'
                 }}>
                     <Stack
                     direction="column"
                     justifyContent="flex-start"
-                    alignItems="flex-end"
+                    alignItems="flex-start"
                     spacing={2}
                     >
-                        <Fab color="secondary" size="small" aria-label="add" onClick={() => setShowPanel(!showPanel)}>
+                        <Fab color="secondary" variant="extended" size="small" aria-label="add" sx={{paddingLeft: 2}} onClick={() => setShowPanel(!showPanel)}>
+                             Filtres
                             { showPanel ? <KeyboardArrowUpIcon />: <KeyboardArrowDownIcon /> }
+
                         </Fab>
                             <Collapse show={showPanel}>
                             <Paper variant="elevation" elevation={12} sx={{ height: '60vh'}}>
