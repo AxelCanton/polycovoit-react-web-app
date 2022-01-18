@@ -1,4 +1,4 @@
-import { List, ListItem, Stack, Checkbox, Tooltip, FormControlLabel, Grid, Typography } from "@mui/material";
+import { Stack, Checkbox, Tooltip, FormControlLabel, Grid, Typography } from "@mui/material";
 import CustomDivider from "../../../components/CustomDivider/CustomDivider";
 import LocationSearchInput from "../../../components/LocationSearchInput/LocationSearchInput";
 import PolytechIcon from "../../../components/PolytechIcon/PolytechIcon";
@@ -28,16 +28,16 @@ const Panel = ({
             <CustomDivider spacing={2}></CustomDivider>
             <Grid container spacing={2} sx={{marginBottom:'20px'}}>
             {retrieveList().map((speciality) => (
-                <Tooltip placement="right" key={speciality} title={speciality}>
                     <Grid item xs={4}>
+                        <Tooltip placement="right" key={speciality} title={speciality}>
                         <FormControlLabel
                         labelPlacement="start"
                         control={<Checkbox checked={selectedSpecialities.includes(speciality)} onChange={(event) => onCheckboxChange(event.target.checked, speciality)} />}
                         disableTypography
                         label={<PolytechIcon speciality={speciality} />}
                         />
+                        </Tooltip>
                     </Grid>
-                 </Tooltip>
             ))}
             </Grid>
             <Typography variant="h5">Filtrer par code postal : </Typography>
