@@ -13,6 +13,7 @@ export interface IUser {
     receivedReservations: string,
     locations: ILocationWithoutUserData[],
     speciality: Speciality;
+    isValid: boolean;
 };
 
 export interface IPrivateUser {
@@ -22,6 +23,7 @@ export interface IPrivateUser {
     email: string | undefined;
     gender: string  
     speciality: Speciality;
+    isValid: boolean;
 }
 
 interface IToken {

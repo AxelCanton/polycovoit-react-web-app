@@ -8,6 +8,7 @@ export const LOCATION_DELETE_URL = (id: number) => `/location/${id}`;
 // User routes
 export const USER_FETCH_URL = (id: number) => `/user/${id}`;
 export const USER_DELETE_URL = (id: number) => `/user/${id}`;
+export const USER_VALIDATE_URL = (id: number) => `/user/validate/${id}`;
 
 //Reservation routes
 export const GET_ASKED_RESERVATIONS_URL = 'reservation/by-user'

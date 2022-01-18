@@ -44,7 +44,20 @@ const userSlice = createSlice({
         },
         reset() {
             return initialState;
-        }
+        },
+        userValidateStart(state){
+            state.isLoading = true;
+            state.success = false;
+        },
+        userValidateSuccess(state, action: PayloadAction<IUser>){
+            state.isLoading = false;
+            state.user = action.payload;
+            state.success = true;
+        },
+        userValidateError(state, action: PayloadAction<string>){
+            state.isLoading = false;
+            state.error = action.payload;
+        },
         
     },
 });

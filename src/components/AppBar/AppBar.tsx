@@ -12,7 +12,7 @@ const AppBar = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const isAuth = useAppSelector((state) => state.loginReducer.isAuth)
+    const {isAuth} = useAppSelector((state) => state.loginReducer)
 
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 

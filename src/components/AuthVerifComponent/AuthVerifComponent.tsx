@@ -6,14 +6,18 @@ import { IAuthVerifComponentProps } from "./authVerifComponent.type";
 const AuthVerifComponent = ({
     children
 }: IAuthVerifComponentProps) => {
-    const isAuth = useAppSelector((state) => state.loginReducer.isAuth);
+    const {isAuth, isValid} = useAppSelector((state) => state.loginReducer);
     const navigate = useNavigate();
 
     useEffect(() => {
         if(!isAuth) {
             navigate('/');
+        } else {
+            if(!isValid){
+                navigate('/map')
+            }
         }
-    }, [isAuth, navigate]);
+    }, [isAuth,isValid, navigate]);
     
     return (<>{children}</>);
 }

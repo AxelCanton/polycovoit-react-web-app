@@ -18,6 +18,7 @@ import { notificationActions } from './slices/NotificationSlice';
 import { useSnackbar } from 'notistack';
 import MuiAppBar from './components/AppBar/AppBar';
 import NotFound from './components/NotFound/NotFound';
+import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 
 
 export const ACCESS_TOKEN = 'access_token';
@@ -30,6 +31,8 @@ function App() {
   const dispatch = useAppDispatch();
   
   const { message, severity } = useAppSelector((state) => state.notificationReducer);
+
+  const { isValid } = useAppSelector((state) => state.loginReducer);
 
   const renderElement = (element: React.ReactNode) => <AuthVerifComponent>{element}</AuthVerifComponent>
 
@@ -45,7 +48,8 @@ function App() {
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
         dispatch(loginActions.loginSuccess({
           access_token: accessToken,
-          refresh_token: refreshToken
+          refresh_token: refreshToken,
+          isValid: isValid
         }));
       } else {
         

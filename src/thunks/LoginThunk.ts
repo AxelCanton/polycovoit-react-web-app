@@ -19,7 +19,8 @@ interface ILoginBody {
 
 export interface ILoginSuccessResponse {
     access_token: string,
-    refresh_token: string
+    refresh_token: string,
+    isValid: boolean
 };
 
 interface ILoginFailureResponse {

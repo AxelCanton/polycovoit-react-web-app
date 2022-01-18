@@ -15,6 +15,7 @@ import ScrollableComponent from '../../components/Layout/ScrollableComponent/Scr
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '../../components/Transitions/Collapse/Collapse';
+import RegistrationPage from '../RegistrationPage/RegistrationPage';
 
 const INITIAL_POSITION: ILatLng = {
     latitude: 46,
@@ -25,6 +26,8 @@ const INITIAL_ZOOM = 6;
 const MapPage = () => {
     const dispatch = useAppDispatch();
     const { locations } = useAppSelector((state) => state.locationsReducer);
+
+    const isValid = useAppSelector((state) => state.loginReducer.isValid);
 
     const { retrieveColor, retrieveList } = usePolytechSpecialities();
 
@@ -133,6 +136,9 @@ const MapPage = () => {
         </Box>
         <Modal isVisible={popupData? true:false} close={() => closeReservationModal()} >
             <CreateReservation location={popupData} closeModal={() => closeReservationModal()}></CreateReservation>
+        </Modal>
+        <Modal isVisible={(typeof(isValid) === 'boolean') && !isValid} close={() => {}}>
+            <RegistrationPage></RegistrationPage>
         </Modal>
         </>
     );

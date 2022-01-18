@@ -13,7 +13,7 @@ const LoginPage = () => {
     
     useEffect(() => {
         if(isAuth) {
-            navigate('/map');
+            navigate('/map')
         }
     }, [isAuth, navigate]);
 
