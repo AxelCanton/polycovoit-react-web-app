@@ -75,7 +75,7 @@ const RegistrationPage = () => {
                 <CustomDivider spacing={4}/>
                 <Grid container spacing={1} sx={{marginBottom: 4, marginTop:4}}>
                     <Grid item xs={3}>
-                        <Typography variant={TypographyVariantEnum.h6}>Votre genre : </Typography>
+                        <Typography variant={TypographyVariantEnum.h6}>Votre genre </Typography>
                     </Grid>
                     <Grid item xs={7}>
                         <FormControl >    

@@ -1,10 +1,18 @@
-import { Grid } from "@mui/material";
+import { Box } from "@mui/material";
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import LoginForm from "../../components/Login/LoginForm";
-import Fade from "../../components/Transitions/Fade/Fade";
+import MapComponent from "../../components/MapComponent/MapComponent";
+import Modal from "../../components/Modal/Modal";
+import { ILatLng } from "../../interfaces/location.interface";
 import { loginThunk } from "../../thunks/LoginThunk";
+
+const INITIAL_POSITION: ILatLng = {
+    latitude: 46,
+    longitude: 3
+}
+const INITIAL_ZOOM = 6;
 
 const LoginPage = () => {
     const dispatch = useAppDispatch()
@@ -25,18 +33,19 @@ const LoginPage = () => {
     }
 
     return (
-        <Fade>
-            <Grid
-                container
-                direction="column"
-                alignItems="center"
-                sx={{ marginTop: 20, minHeight: '100vh' }}
-                >
-                <Grid item xs={3}>
-                    <LoginForm isLoading={isLoading} onLoginClick={onLoginClick} />
-                </Grid>
-            </Grid>
-        </Fade>
+        <>
+            <Box sx={{position: 'relative'}}>
+                <MapComponent
+                initialPosition={INITIAL_POSITION}
+                initialZoom={INITIAL_ZOOM}
+                markersData={[]}
+                height='93vh'
+                />
+            </Box>
+            <Modal isVisible={true} close={() => {}}>
+                <LoginForm isLoading={isLoading} onLoginClick={onLoginClick} />
+            </Modal>
+        </>
     );
 }
 

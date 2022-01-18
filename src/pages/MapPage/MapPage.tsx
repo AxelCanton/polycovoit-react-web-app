@@ -8,7 +8,7 @@ import Modal from '../../components/Modal/Modal'
 import CreateReservation from '../../components/Reservation/CreateReservation';
 import PopupMarker from './PopupMarker/PopupMarker';
 import usePolytechSpecialities from '../../hooks/usePolytechSpecilities';
-import { Paper, Box, Fab, Stack } from '@mui/material';
+import { Paper, Box, Fab, Stack, Fade } from '@mui/material';
 import Panel from './Panel/Panel';
 import { Speciality } from '../../utils/enum/speciality.enum';
 import ScrollableComponent from '../../components/Layout/ScrollableComponent/ScrollableComponent';
