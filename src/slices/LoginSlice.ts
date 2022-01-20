@@ -10,8 +10,7 @@ interface LoginState {
     decodedToken: IDecodedToken
     refreshToken: string,
     isAuth: boolean,
-    error?: string,
-    isValid: boolean
+    error?: string
 }
 
 const initialState = {
@@ -31,7 +30,6 @@ const loginSlice = createSlice({
             state.isAuth = true;
             state.accessToken = action.payload.access_token;
             state.refreshToken = action.payload.refresh_token;
-            state.isValid = action.payload.isValid;
             state.decodedToken = jwt_decode(action.payload.access_token);
 
         },
@@ -56,9 +54,6 @@ const loginSlice = createSlice({
         },
         reset() {
             return initialState;
-        },
-        validatedAccount(state, action: PayloadAction<boolean>) {
-            state.isValid = action.payload;
         }
         
     },

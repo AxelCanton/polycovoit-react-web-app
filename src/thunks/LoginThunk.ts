@@ -20,7 +20,6 @@ interface ILoginBody {
 export interface ILoginSuccessResponse {
     access_token: string,
     refresh_token: string,
-    isValid: boolean
 };
 
 interface ILoginFailureResponse {
@@ -34,12 +33,14 @@ export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unkno
     dispatch(loginActions.loginStart());
 
     axiosInstance.post(LOGIN_URL, data).then(
-        (response: AxiosResponse<ILoginSuccessResponse>) => {
+        (response) => {
         if(response.status === 200) {
             const tokens = response.data;
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${tokens.access_token}`;
             localStorage.setItem('access_token', tokens.access_token);
             localStorage.setItem('refresh_token', tokens.refresh_token);
+            localStorage.setItem('isAdmin', tokens.isAdmin? 'true':'false');
+            localStorage.setItem('isValid', tokens.isValid? 'true':'false');
             dispatch(loginActions.loginSuccess(tokens));
         }
     })
