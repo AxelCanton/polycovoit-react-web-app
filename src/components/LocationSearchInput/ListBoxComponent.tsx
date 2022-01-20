@@ -1,6 +1,6 @@
 import { ListSubheader, Typography } from "@mui/material";
 import React from "react";
-import { VariableSizeList, ListChildComponentProps } from 'react-window';
+import { FixedSizeList, ListChildComponentProps } from 'react-window';
 
 const LISTBOX_PADDING = 8; // px
 
@@ -34,18 +34,6 @@ const OuterElementType = React.forwardRef<HTMLDivElement>((props, ref) => {
   return <div ref={ref} {...props} {...outerProps} />;
 });
 
-function useResetCache(data: any) {
-  const ref = React.useRef<VariableSizeList>(null);
-  React.useEffect(() => {
-    if (ref.current != null) {
-      ref.current.resetAfterIndex(0, true);
-    }
-  }, [data]);
-  return ref;
-}
-
-
-
 const ListboxComponent = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLElement>
@@ -62,39 +50,21 @@ const ListboxComponent = React.forwardRef<
   const itemCount = itemData.length;
   const itemSize = 48;
 
-  const getChildSize = (child: React.ReactChild) => {
-    if (child.hasOwnProperty('group')) {
-      return 48;
-    }
-
-    return itemSize;
-  };
-
-  const getHeight = () => {
-    if (itemCount > 8) {
-      return 8 * itemSize;
-    }
-    return itemData.map(getChildSize).reduce((a, b) => a + b, 0);
-  };
-
-  const gridRef = useResetCache(itemCount);
-
   return (
     <div ref={ref}>
       <OuterElementContext.Provider value={other}>
-        <VariableSizeList
+        <FixedSizeList
           itemData={itemData}
-          height={getHeight() + 2 * LISTBOX_PADDING}
+          height={100 + 2 * LISTBOX_PADDING}
           width="100%"
-          ref={gridRef}
           outerElementType={OuterElementType}
           innerElementType="ul"
-          itemSize={(index) => getChildSize(itemData[index])}
+          itemSize={itemSize}
           overscanCount={5}
           itemCount={itemCount}
         >
           {renderRow}
-        </VariableSizeList>
+        </FixedSizeList>
       </OuterElementContext.Provider>
     </div>
   );
