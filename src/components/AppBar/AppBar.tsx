@@ -14,6 +14,8 @@ const AppBar = () => {
 
     const {isAuth} = useAppSelector((state) => state.loginReducer)
 
+    const isAdmin = localStorage.getItem('isAdmin') === 'true'? true : false;
+
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -42,6 +44,10 @@ const AppBar = () => {
       handleCloseUserMenu();
     }
 
+    const onStatistiquesClick = () => {
+      navigate('/statistiques');
+    }
+
     const onDisconnect = () => {
       handleCloseUserMenu();
       dispatch(disconnectThunk());
@@ -65,6 +71,9 @@ const AppBar = () => {
               <MenuButton text="Carte" onClick={onMapClick}/>
               <MenuButton text="Reservations envoyées" onClick={onAskedResClick}/>
               <MenuButton text="Reservations reçues" onClick={onWaitingResClick}/>
+              {isAdmin && (
+                <MenuButton text="Statistiques" onClick={onStatistiquesClick}/>
+              )}
             </Box>
 
             <Box sx={{ flexGrow: 0 }}>
