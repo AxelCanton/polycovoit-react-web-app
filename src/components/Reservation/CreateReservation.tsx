@@ -3,33 +3,27 @@ import {Grid, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import FormLayout from "../Layout/FormLayout/FormLayout";
-import { ICreateReservationProps } from "./reservation.type";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { ICreateReservationOptionalProps, ICreateReservationProps } from "./reservation.type";
 import Button from "../Button/Button";
-import { createReservationThunk } from "../../thunks/ReservationThunk";
-import { notificationActions } from "../../slices/NotificationSlice";
-import { SeverityEnum } from "../../utils/enum/severity.enum";
 
-const CreateReservation = ({location, closeModal}: ICreateReservationProps) => {
+const defaultProps: ICreateReservationOptionalProps = {
+    isLoading: false
+}
 
-    const [date, setDate] = useState<Date | null>(new Date())
-    const [message, setMessage] = useState<string>("")
+const CreateReservation = ({
+    isLoading,
+    location,
+    onValidate
+}: ICreateReservationProps) => {
 
-    const dispatch = useAppDispatch();
-    const { isLoading } = useAppSelector((state) => state.reservationReducer);
+    const [date, setDate] = useState<Date | null>(new Date());
+    const [message, setMessage] = useState<string>("");
     
     const formTitle:string = "Demande de reservation pour le code postal " + location!.postalCode;
 
+    const disableValidate = message === "" || date === null;
 
-    const validate = () => {
-        if(date && date.toString() !== "Invalid Date" && message !== "" && location){
-            dispatch(createReservationThunk(location.id, message, date))
-            closeModal()
-        } else {
-            dispatch(notificationActions.showNotification({message: "Les informations rentrées ne sont pas correctes, verifiez les et réessayez.", severity: SeverityEnum.warning}))
-        }
-        
-    }
+    const validate = () => onValidate(location.id, message, date as Date);
 
     function formContent():JSX.Element{
         return(
@@ -66,8 +60,10 @@ const CreateReservation = ({location, closeModal}: ICreateReservationProps) => {
         )
     }
     return (
-        <FormLayout title={formTitle} children={formContent()} footer={<Button isLoading={isLoading} onClick={validate} disabled={message===""?true:false}>Valider la demande</Button>} />
+        <FormLayout title={formTitle} children={formContent()} footer={<Button isLoading={isLoading} onClick={validate} disabled={disableValidate}>Valider la demande</Button>} />
     )
 }
+
+CreateReservation.defaultProps = defaultProps;
 
 export default CreateReservation;

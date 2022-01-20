@@ -32,10 +32,12 @@ export interface IReservation {
 }
 
 export interface ICreateReservationRequiredProps {
-    location: ILocation | null,
-    closeModal: () => void
+    location: ILocation,
+    onValidate: (id: number, message: string, date: Date) => void
 }
 
-export interface ICreateReservationOptionalProps {}
+export interface ICreateReservationOptionalProps {
+    isLoading: boolean
+}
 
 export interface ICreateReservationProps extends ICreateReservationRequiredProps, ICreateReservationOptionalProps {}

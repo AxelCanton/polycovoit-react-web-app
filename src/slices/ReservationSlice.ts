@@ -6,11 +6,13 @@ interface reservationState {
     askedReservations: IReservation[],
     waitingReservations: IReservation[],
     resultMessage: string,
+    successCreate: boolean,
     error: string
 }
 
 const initialState = {
     isLoading: false,
+    successCreate: false,
     askedReservations: [] as IReservation[],
     waitingReservations: [] as IReservation[]
 } as reservationState
@@ -48,6 +50,7 @@ const reservationSlice = createSlice({
         createReservationSuccess(state, action: PayloadAction<string>){
             state.resultMessage = action.payload;
             state.isLoading = false;
+            state.successCreate = true;
         },
         createReservationFailure(state, action: PayloadAction<string>){
             state.isLoading = false;
@@ -61,6 +64,9 @@ const reservationSlice = createSlice({
         },
         answerReservationFailure(state, action: PayloadAction<string>){
             state.resultMessage = action.payload;
+        },
+        reset(state) {
+            state = initialState;
         }
     }
 })

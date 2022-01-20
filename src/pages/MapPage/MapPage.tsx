@@ -5,10 +5,9 @@ import MapComponent from '../../components/MapComponent/MapComponent';
 import { IJsonLocation, ILatLng, ILocation } from '../../interfaces/location.interface';
 import { locationFetchThunk } from '../../thunks/LocationsThunk';
 import Modal from '../../components/Modal/Modal'
-import CreateReservation from '../../components/Reservation/CreateReservation';
 import PopupMarker from './PopupMarker/PopupMarker';
 import usePolytechSpecialities from '../../hooks/usePolytechSpecilities';
-import { Paper, Box, Fab, Stack, Fade } from '@mui/material';
+import { Paper, Box, Fab, Stack } from '@mui/material';
 import Panel from './Panel/Panel';
 import { Speciality } from '../../utils/enum/speciality.enum';
 import ScrollableComponent from '../../components/Layout/ScrollableComponent/ScrollableComponent';
@@ -16,6 +15,7 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '../../components/Transitions/Collapse/Collapse';
 import RegistrationPage from '../RegistrationPage/RegistrationPage';
+import ReservationCreation from './ReservationCreation/ReservationCreation';
 
 const INITIAL_POSITION: ILatLng = {
     latitude: 46,
@@ -32,7 +32,7 @@ const MapPage = () => {
     const { retrieveColor, retrieveList } = usePolytechSpecialities();
 
     const [map, setMap] = useState<Map |null>(null);
-    const [popupData, setPopupData] = useState<ILocation| null>(null);
+    const [selectedMarker, setSelectedMarker] = useState<ILocation | null>(null);
     const [selectedSpecialities, setSelectedSpecialities] = useState<Speciality[]>(retrieveList());
     const [selectedLocation, setSelectedLocation] = useState<IJsonLocation | null>(null);
     const [showPanel, setShowPanel] = useState(false);
@@ -66,15 +66,11 @@ const MapPage = () => {
     const renderMarkerPopup = (data: ILocation): React.ReactNode => {
         const locationsRefactored = locations.find(loc => loc.postalCode === data.postalCode);
         return locationsRefactored 
-        ? <PopupMarker data={locationsRefactored} setSelectedPopupData={setPopupData} />
+        ? <PopupMarker data={locationsRefactored} setSelectedPopupData={setSelectedMarker} />
         : <></>
     };
 
     const renderMarkerColor = (data: ILocation): string => retrieveColor(data.userSpeciality);
-
-    function closeReservationModal(){
-        setPopupData(null);
-    }
 
     const addToSelectedSpecialities = (speciality: Speciality) => {
         setSelectedSpecialities([...selectedSpecialities, speciality]);
@@ -134,11 +130,9 @@ const MapPage = () => {
                 height='93vh'
                 />
         </Box>
-        <Modal isVisible={popupData? true:false} close={() => closeReservationModal()} >
-            <CreateReservation location={popupData} closeModal={() => closeReservationModal()}></CreateReservation>
-        </Modal>
+        <ReservationCreation selectedMarker={selectedMarker} setSelectedMarkertoNull={() => setSelectedMarker(null)}/>
         <Modal isVisible={(typeof(isValid) === 'boolean') && !isValid} close={() => {}}>
-            <RegistrationPage></RegistrationPage>
+            <RegistrationPage />
         </Modal>
         </>
     );
