@@ -17,7 +17,7 @@ const LocationList = ({
     return (
         <List subheader={title && <ListSubheader>{title}</ListSubheader>}>
             {locations.map((loc) => (
-                <ListItem secondaryAction={
+                <ListItem key={loc.id} secondaryAction={
                     <IconButton onClick={() => onLocationClick(loc)} edge="end" aria-label="delete">
                     <DeleteIcon color="error"/>
                     </IconButton>
