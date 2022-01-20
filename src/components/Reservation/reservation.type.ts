@@ -24,6 +24,7 @@ export interface IReservation {
     id: number,
     message: string,
     postalCode: number,
+    city: string,
     date: Date,
     askingUser?: IPrivateUser,
     receivingUser?: IPrivateUser,

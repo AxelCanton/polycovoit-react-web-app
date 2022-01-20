@@ -58,7 +58,7 @@ const AskedReservationsPage = () => {
                         </Grid>
                         <Grid container justifyContent="flex-start">
                         <Grid item xs={5}> 
-                            <LocationSearchInput label="Code postal" postalCodeOnly onInputChange={handlePostCodeChange}/>
+                            <LocationSearchInput label="Ville" postalCodeOnly onInputChange={handlePostCodeChange}/>
                         </Grid>
                         <Grid xs={3}></Grid>
                         <Grid item xs={4}>

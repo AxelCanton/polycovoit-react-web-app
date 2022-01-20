@@ -14,6 +14,7 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
 import PolytechIcon from "../PolytechIcon/PolytechIcon";
 import { retrieveFrenchGender } from "../../utils/retrieveFrenchGender";
+import GenderIcon from "../PolytechIcon/GenderIcon";
 
 const defaultProps : IAskedReservationOptionalProps = {
     disabled: false
@@ -49,7 +50,7 @@ const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
                                 </Grid>
                                 <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                     <Typography>
-                                        Code postal : {reservation.postalCode}
+                                        Ville : {reservation.city + ", "+reservation.postalCode}
                                     </Typography>
                                 </Grid>
                                 <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
@@ -90,7 +91,7 @@ const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
                             <Grid item xs={10.5}>
                                 <Grid container spacing={1}>
                                     <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
-                                        <LocationCityIcon color="secondary"/> 
+                                    <GenderIcon gender={reservation.receivingUser!.gender}/> 
                                     </Grid>
                                     <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                         <Typography>

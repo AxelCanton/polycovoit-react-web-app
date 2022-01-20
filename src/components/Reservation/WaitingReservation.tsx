@@ -8,6 +8,8 @@ import LocationCityIcon from '@mui/icons-material/LocationCity';
 import EventIcon from '@mui/icons-material/Event';
 import MessageOutlinedIcon from '@mui/icons-material/MessageOutlined';
 import PolytechIcon from "../PolytechIcon/PolytechIcon";
+import { retrieveFrenchGender } from "../../utils/retrieveFrenchGender";
+import GenderIcon from "../PolytechIcon/GenderIcon";
 
 const WaitingReservation = (
     {reservation}: IWaitingReservationProps
@@ -30,11 +32,19 @@ const WaitingReservation = (
                     <Grid item xs={10.5}>
                         <Grid container spacing={1}>
                             <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
-                                <LocationCityIcon color="secondary"/> 
+                                    <AlternateEmailIcon color="secondary"/>
                             </Grid>
                             <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                 <Typography>
-                                    Code postal : {reservation.postalCode}
+                                    Mail : {reservation.askingUser!.email}
+                                </Typography>
+                            </Grid>
+                            <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
+                                <GenderIcon gender={reservation.askingUser!.gender}/> 
+                            </Grid>
+                            <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
+                                <Typography>
+                                    Genre : {retrieveFrenchGender(reservation.askingUser!.gender)}
                                 </Typography>
                             </Grid>
                             <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
@@ -45,18 +55,18 @@ const WaitingReservation = (
                                     Spécialité : {reservation.askingUser!.speciality}
                                 </Typography>
                             </Grid>
-                            <Grid container xs={1} direction="column" justifyContent="center" alignItems="center">
-                                    <AlternateEmailIcon color="secondary"/>
-                            </Grid>
-                            <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start">
-                                <Typography>
-                                    Mail : {reservation.askingUser!.email}
-                                </Typography>
-                            </Grid>
                         </Grid>
                     </Grid>
                     <Grid item xs={10.5}>
                         <Grid container spacing={1}>
+                            <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
+                                <LocationCityIcon color="secondary"/> 
+                            </Grid>
+                            <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
+                                <Typography>
+                                    Ville : {reservation.city + ", "+reservation.postalCode}
+                                </Typography>
+                            </Grid>
                             <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>
                                 <EventIcon color="secondary"/> 
                             </Grid>

@@ -7,6 +7,7 @@ import { ILocationUserOptionalProps, ILocationUserProps } from "./locationUser.t
 import { Gender } from "../../../../utils/enum/gender.enum";
 import { retrieveFrenchGender } from "../../../../utils/retrieveFrenchGender";
 import PolytechIcon from "../../../../components/PolytechIcon/PolytechIcon";
+import GenderIcon from "../../../../components/PolytechIcon/GenderIcon";
 
 const defaultProps: ILocationUserOptionalProps = {
     setSelectedPopupData: () => {}
@@ -17,19 +18,6 @@ const LocationUser = ({
     setSelectedPopupData
 }: ILocationUserProps) => {
     
-    const GenderIcon = () => {
-        switch(data.userGender){
-            case Gender.Male:
-                return <MaleIcon color="secondary" />
-            case Gender.Female:
-                return <FemaleIcon color="secondary" />
-            case Gender.Other:
-                return <TransgenderIcon color="secondary" />
-            default:
-                <></>
-        }
-        return <></>;
-    }
     return (
         <Tooltip title="Envoyer une demande">
             <ListItemButton disableGutters onClick={() => setSelectedPopupData(data)}>
@@ -38,7 +26,7 @@ const LocationUser = ({
                         <List dense disablePadding>
                             <ListItem>
                                 <ListItemIcon>
-                                    <GenderIcon/>
+                                    <GenderIcon gender={data.userGender}/>
                                 </ListItemIcon>
                                 <ListItemText primary={retrieveFrenchGender(data.userGender)} />
                             </ListItem>

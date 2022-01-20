@@ -40,7 +40,7 @@ const Panel = ({
                     </Grid>
             ))}
             </Grid>
-            <Typography variant="h5">Filtrer par code postal</Typography>
+            <Typography variant="h5">Filtrer par ville</Typography>
             <CustomDivider spacing={2}></CustomDivider>
             <LocationSearchInput setLocation={setSelectedLocation} />
         </Stack>
