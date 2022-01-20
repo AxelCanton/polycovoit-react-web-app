@@ -24,11 +24,11 @@ const Panel = ({
 
     return (
         <Stack direction="column" justifyContent="space-around" sx={{ width: '20vw', padding: '20px'}}>
-            <Typography variant="h5">Filtrer par spécialité : </Typography>
+            <Typography variant="h5">Filtrer par spécialité</Typography>
             <CustomDivider spacing={2}></CustomDivider>
             <Grid container spacing={2} sx={{marginBottom:'20px'}}>
             {retrieveList().map((speciality) => (
-                    <Grid item xs={4}>
+                    <Grid key={speciality} item xs={4}>
                         <Tooltip placement="right" key={speciality} title={speciality}>
                         <FormControlLabel
                         labelPlacement="start"
@@ -40,7 +40,7 @@ const Panel = ({
                     </Grid>
             ))}
             </Grid>
-            <Typography variant="h5">Filtrer par code postal : </Typography>
+            <Typography variant="h5">Filtrer par code postal</Typography>
             <CustomDivider spacing={2}></CustomDivider>
             <LocationSearchInput setLocation={setSelectedLocation} />
         </Stack>

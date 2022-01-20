@@ -13,6 +13,7 @@ import CheckCircleOutlineOutlinedIcon from '@mui/icons-material/CheckCircleOutli
 import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import HourglassBottomOutlinedIcon from '@mui/icons-material/HourglassBottomOutlined';
 import PolytechIcon from "../PolytechIcon/PolytechIcon";
+import { retrieveFrenchGender } from "../../utils/retrieveFrenchGender";
 
 const defaultProps : IAskedReservationOptionalProps = {
     disabled: false
@@ -93,7 +94,7 @@ const AskedReservation = ({reservation, disabled}: IAskedReservationProps) => {
                                     </Grid>
                                     <Grid container xs={11} direction="column" justifyContent="center" alignItems="flex-start" sx={{marginBottom:1}}>
                                         <Typography>
-                                            Genre : {reservation.receivingUser!.gender}
+                                            Genre : {retrieveFrenchGender(reservation.receivingUser!.gender)}
                                         </Typography>
                                     </Grid>
                                     <Grid container xs={1} direction="column" justifyContent="center" alignItems="center" sx={{marginBottom:1}}>

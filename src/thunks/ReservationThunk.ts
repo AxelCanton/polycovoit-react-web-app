@@ -16,10 +16,8 @@ const FAILURE_ANSWER_MESSAGE = 'Réponse échouée, veuillez réessayer plus tar
 
 export const askedReservationFetch = () : ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch,getState) => {
     dispatch(reservationActions.askedReservationFetchStart());
-    console.log("func")
     axiosInstance.get(GET_ASKED_RESERVATIONS_URL)
     .then((response) => {
-        console.log(response)
         if (response.status === 200) {
             dispatch(reservationActions.askedReservationFetchSuccess(response.data))
         } else {

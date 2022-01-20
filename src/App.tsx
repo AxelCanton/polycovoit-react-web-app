@@ -55,8 +55,6 @@ function App() {
         
         const decodedRefreshToken: IDecodedRefreshToken = jwt_decode(refreshToken);
         // Check for refresh token expiracy
-        console.log(now)
-        console.log(decodedRefreshToken)
         if (now < decodedRefreshToken.exp) {
           const refresh = async () => {
             await dispatch(refreshThunk());

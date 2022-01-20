@@ -1,4 +1,4 @@
-import { Fade, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import CustomDivider from "../../components/CustomDivider/CustomDivider";
@@ -6,6 +6,7 @@ import CenteredLayout from "../../components/Layout/CenteredLayout/CenteredLayou
 import WaitingReservation from "../../components/Reservation/WaitingReservation";
 import { waitingReservationFetch } from "../../thunks/ReservationThunk";
 import { TypographyVariantEnum } from "../../utils/enum/typography.variant.enum";
+import Fade from "../../components/Transitions/Fade/Fade";
 
 const WaitingReservationsPage = () => {
 

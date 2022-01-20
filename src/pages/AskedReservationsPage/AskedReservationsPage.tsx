@@ -2,15 +2,16 @@ import { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import AskedReservation from "../../components/Reservation/AskedReservation";
 import { askedReservationFetch } from "../../thunks/ReservationThunk";
-import Fade from "../../components/Transitions/Fade/Fade";
 import CenteredLayout from "../../components/Layout/CenteredLayout/CenteredLayout";
-import { Box, Button, Checkbox, Grid, TextField, Typography } from "@mui/material";
+import { Button, Checkbox, Grid, Stack, TextField, Typography } from "@mui/material";
 import CustomDivider from "../../components/CustomDivider/CustomDivider";
 import { TypographyVariantEnum } from "../../utils/enum/typography.variant.enum";
-import LocationCityIcon from '@mui/icons-material/LocationCity';
 import { DesktopDatePicker, LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import LocationSearchInput from "../../components/LocationSearchInput/LocationSearchInput";
+import Collapse from "../../components/Transitions/Collapse/Collapse";
 import { IReservation } from "../../components/Reservation/reservation.type";
+import Fade from "../../components/Transitions/Fade/Fade";
 
 const AskedReservationsPage = () => {
 
@@ -41,59 +42,52 @@ const AskedReservationsPage = () => {
     };
 
     const filterComponent = () => {
-        if(filters){
             return(
                 <>
-                    <Grid container justifyContent="flex-start" spacing={2}>
-                        <Grid item xs={3}>
-                             Acceptées <Checkbox color="success" checked={acceptedChecked} onChange={handleAcceptChange}></Checkbox>
+                    <Stack justifyContent="flex-start" spacing={4}>
+                        <Grid container justifyContent="space-evenly">
+                            <Grid item xs={4}>
+                                Acceptées <Checkbox color="success" checked={acceptedChecked} onChange={handleAcceptChange}></Checkbox>
+                            </Grid>
+                            <Grid item xs={4}>
+                                En attente <Checkbox color="primary" checked={waitingChecked} onChange={handleWaitingChange}></Checkbox>
+                            </Grid>
+                            <Grid item xs={4}>
+                                Refusées <Checkbox color="error" checked={refusedChecked} onChange={handleRefusedChange}></Checkbox>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={3}>
-                            En attente <Checkbox color="primary" checked={waitingChecked} onChange={handleWaitingChange}></Checkbox>
+                        <Grid container justifyContent="flex-start">
+                        <Grid item xs={5}> 
+                            <LocationSearchInput label="Code postal" postalCodeOnly onInputChange={handlePostCodeChange}/>
                         </Grid>
-                        <Grid item xs={3}>
-                            Refusées <Checkbox color="error" checked={refusedChecked} onChange={handleRefusedChange}></Checkbox>
-                        </Grid>
-                        <Grid item xs={3}></Grid>
-                        <Grid item xs={12}> 
-                            <Box sx={{ display: 'flex', alignItems: 'flex-end' }}>
-                                <LocationCityIcon color="secondary" sx={{ mr: 1, my: 0.5 }} />
-                                <TextField id="postCodeFilter" label="Rechercher par code postal" variant="standard" value={postCodeFilter} onChange={handlePostCodeChange}/>
-                            </Box>
-                        </Grid>
-                        <Grid item xs={12} sx={{marginTop: 3}}>
+                        <Grid xs={3}></Grid>
+                        <Grid item xs={4}>
                             <LocalizationProvider dateAdapter={AdapterDateFns}>
                             <DesktopDatePicker
                             label="Rechercher par date"
                             inputFormat="dd/MM/yyyy"
                             value={dateFilter}
                             onChange={handleDateChange}
-                            renderInput={(params) => <TextField {...params} />}
+                            renderInput={(params) => <TextField {...params} sx={{ width: 'auto' }} />}
                             />
                             </LocalizationProvider>
                         </Grid>
-                    </Grid>
+                        </Grid>
+                    </Stack>
                     <CustomDivider spacing={5} />
                 </>
             );
-        } else {
-            return(<></>)
-        }
     }
 
     const [dateFilter, setDateFilter] = useState<Date | null>(null);
-    const [postCodeFilter, setPostCodeFilter] = useState<string | null>(null);
+    const [postCodeFilter, setPostCodeFilter] = useState<string>("");
 
     const handleDateChange = (newValue: Date | null) => {
         setDateFilter(newValue);
     };
 
-    const handlePostCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if(event.target.value === "" || event.target.value.match(/[a-zA-Z*]/)){
-            setPostCodeFilter(null)
-        } else {
-            setPostCodeFilter(event.target.value)
-        }
+    const handlePostCodeChange = (value: string) => {
+        setPostCodeFilter(value);
     }
 
 
@@ -111,53 +105,19 @@ const AskedReservationsPage = () => {
     }
 
     const reservationsToDisplay = ():(JSX.Element | null | undefined)[] => {
-        return (
-            reservations.map((reservation) => {
-                if(new Date(reservation.date) >= new Date(today.getFullYear(), today.getMonth(),today.getDate()-1)){
-                    if(filters){
-                        if(dateFilter&& postCodeFilter){
-                            if((reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter) && new Date(reservation.date) === dateFilter){
-                                if((reservation.accepted === 1 && acceptedChecked) || (reservation.accepted === 0 && waitingChecked) || (reservation.accepted === -1 && refusedChecked)){
-                                    return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
-                                }
-                                else {
-                                    return null
-                                }
-                            }
-                        } else if (dateFilter){
-                            if(new Date(reservation.date) === dateFilter){
-                                if((reservation.accepted === 1 && acceptedChecked) || (reservation.accepted === 0 && waitingChecked) || (reservation.accepted === -1 && refusedChecked)){
-                                    return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
-                                }
-                                else {
-                                    return null
-                                }
-                            }
-                        } else if (postCodeFilter){
-                            if(reservation.postalCode.toString().match(new RegExp(postCodeFilter+".[0-9]*"))?.toString().length === 5 || reservation.postalCode.toString() === postCodeFilter){
-                                if((reservation.accepted === 1 && acceptedChecked) || (reservation.accepted === 0 && waitingChecked) || (reservation.accepted === -1 && refusedChecked)){
-                                    return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
-                                }
-                                else {
-                                    return null
-                                }
-                            }
-                        } else {
-                            if((reservation.accepted === 1 && acceptedChecked) || (reservation.accepted === 0 && waitingChecked) || (reservation.accepted === -1 && refusedChecked)){
-                                return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
-                            }
-                            else {
-                                return null
-                            }
-                        }
-                    } else {
-                        return <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation>
-                    }
-                } else {
-                    return null;
-                }
-            })
-        )
+        const dateCond = (reservation: IReservation) => {
+            const date = new Date(reservation.date);
+            return dateFilter !== null && date.getDate() === dateFilter.getDate() && date.getMonth() === dateFilter.getMonth() && date.getFullYear() === dateFilter.getFullYear();
+        }
+        const postalCodeCond = (reservation: IReservation) => postCodeFilter !== "" && (reservation.postalCode.toString().match(new RegExp(`${postCodeFilter}[0-9]*`, 'g')) !== null);
+        const statusCond = (reservation: IReservation) => (reservation.accepted === 1 && acceptedChecked) || (reservation.accepted === 0 && waitingChecked) || (reservation.accepted === -1 && refusedChecked)
+        const mainCond = (reservation: IReservation) =>
+            new Date(reservation.date) >= new Date(today.getFullYear(), today.getMonth(),today.getDate()-1) && (!filters || (
+                (!dateFilter || dateCond(reservation)) &&
+                (!postCodeFilter || postalCodeCond(reservation)) &&
+                statusCond(reservation)));
+        return reservations.map((reservation) => mainCond(reservation) ? <AskedReservation reservation={reservation} key={reservation.id}></AskedReservation> : null);
+            
     }
 
     const reservationsPassed = ():(JSX.Element | null | undefined)[] => {
@@ -195,7 +155,7 @@ const AskedReservationsPage = () => {
     }
 
     return(
-        <>
+        <Fade>
                 <CenteredLayout>
                     <Typography variant={TypographyVariantEnum.h3}> Vos demandes de reservations </Typography>
                     <Grid container justifyContent="flex-end">
@@ -204,7 +164,9 @@ const AskedReservationsPage = () => {
                         </Grid>
                     </Grid>
                     <CustomDivider spacingDown={5} />
-                    <Fade show={filters} children={filterComponent()}/>
+                    <Collapse show={filters}>
+                        {filterComponent()}
+                    </Collapse>
                     <>
                         {isNull(reservationsToDisplay())? <Typography variant="h5" sx={{margin:5}}>Aucune reservation en cours !</Typography>:reservationsToDisplay()}
                     </>
@@ -214,7 +176,7 @@ const AskedReservationsPage = () => {
                         {isNull(reservationsPassed())? <Typography variant="h5" sx={{margin:5}}>Aucune reservation passée !</Typography>:reservationsPassed()}
                     </>
                 </CenteredLayout>
-        </>
+        </Fade>
     )
 }
 

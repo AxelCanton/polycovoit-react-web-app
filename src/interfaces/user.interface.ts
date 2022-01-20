@@ -21,7 +21,7 @@ export interface IPrivateUser {
     firstName: string;
     lastName: string;
     email: string | undefined;
-    gender: string  
+    gender: Gender  
     speciality: Speciality;
     isValid: boolean;
 }
