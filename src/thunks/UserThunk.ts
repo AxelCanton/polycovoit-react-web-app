@@ -17,7 +17,6 @@ export const fetchUserThunk = (id: number): ThunkAction<void, RootState, unknown
     axiosInstance.get(USER_FETCH_URL(id))
     .then((response: AxiosResponse<IUser>) => {
         dispatch(userActions.userFetchSuccess(response.data));
-        dispatch(loginActions.validatedAccount(response.data.isValid))
     })
     .catch((error: AxiosError) => {
         dispatch(userActions.userFetchError('error'));
@@ -56,7 +55,7 @@ export const validateUser = (id: number, gender: string):ThunkAction<void, RootS
     .then((response: AxiosResponse) =>{
         dispatch(userActions.userValidateSuccess(response.data));
         dispatch(notificationActions.showNotification({message: SUCCESS_VALIDATE_MESSAGE, severity: SeverityEnum.info}))
-        dispatch(loginActions.validatedAccount(true))
+        localStorage.setItem('isValid', 'true')
     }).catch((error: AxiosError) => {
         dispatch(userActions.userValidateError('error'));
         dispatch(notificationActions.showNotification({

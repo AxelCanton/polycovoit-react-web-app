@@ -32,8 +32,6 @@ function App() {
   
   const { message, severity } = useAppSelector((state) => state.notificationReducer);
 
-  const { isValid } = useAppSelector((state) => state.loginReducer);
-
   const renderElement = (element: React.ReactNode) => <AuthVerifComponent>{element}</AuthVerifComponent>
 
   useEffect(() => {
@@ -49,7 +47,6 @@ function App() {
         dispatch(loginActions.loginSuccess({
           access_token: accessToken,
           refresh_token: refreshToken,
-          isValid: isValid
         }));
       } else {
         

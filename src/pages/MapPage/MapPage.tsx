@@ -27,7 +27,7 @@ const MapPage = () => {
     const dispatch = useAppDispatch();
     const { locations } = useAppSelector((state) => state.locationsReducer);
 
-    const isValid = useAppSelector((state) => state.loginReducer.isValid);
+    const isValid = localStorage.getItem('isValid') === 'true'? true:false;
 
     const { retrieveColor, retrieveList } = usePolytechSpecialities();
 

@@ -6,13 +6,16 @@ import { IAuthVerifComponentProps } from "./authVerifComponent.type";
 const AuthVerifComponent = ({
     children
 }: IAuthVerifComponentProps) => {
-    const {isAuth, isValid} = useAppSelector((state) => state.loginReducer);
+    const {isAuth} = useAppSelector((state) => state.loginReducer);
+
+    const isValid = localStorage.getItem('isValid') === 'true'? true : false;
     const navigate = useNavigate();
 
     useEffect(() => {
         if(!isAuth) {
             navigate('/');
         } else {
+            console.log(isValid);
             if(!isValid){
                 navigate('/map')
             }
