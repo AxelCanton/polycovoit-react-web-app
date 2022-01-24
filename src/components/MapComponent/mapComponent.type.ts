@@ -3,12 +3,12 @@ import React from "react";
 import { ILatLng } from "../../interfaces/location.interface";
 
 export interface IMapComponentRequiredProps {
-    initialPosition: ILatLng,
-    initialZoom: number,
     markersData: ILatLng[]
 }
 
 export interface IMapComponentOptionalProps {
+    initialPosition: ILatLng,
+    initialZoom: number,
     minZoom: number,
     maxZoom: number,
     placeholder: string,

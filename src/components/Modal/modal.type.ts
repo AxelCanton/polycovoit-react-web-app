@@ -4,6 +4,8 @@ export interface IModalRequiredProps {
     children: React.ReactNode
 }
 
-export interface IModalOptionalProps {}
+export interface IModalOptionalProps {
+    width: number | string
+}
 
 export interface IModalProps extends IModalOptionalProps, IModalRequiredProps {}

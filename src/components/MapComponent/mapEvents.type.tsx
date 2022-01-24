@@ -1,4 +1,4 @@
-import { LatLngExpression, LeafletEventHandlerFn, Map } from "leaflet";
+import { LeafletEventHandlerFn } from "leaflet";
 
 export interface IMapEventsRequiredProps {
 }

@@ -1,9 +1,10 @@
 // @ts-nocheck
 // Some issues with the position property of the style object which is not recognized even though it works
 
-import { Box, Modal as MuiModal } from "@mui/material";
+import { Box, IconButton, Modal as MuiModal } from "@mui/material";
 import React from "react";
-import { IModalProps } from "./modal.type";
+import { IModalOptionalProps, IModalProps } from "./modal.type";
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 
 const style = {
     position: 'absolute',
@@ -13,21 +14,35 @@ const style = {
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,
-  };
+    minWidth: '30%'
+};
+
+const defaultProps: IModalOptionalProps = {
+    width: 'auto'
+}
 
 const Modal = ({
     isVisible,
     close,
+    width,
     children
 }: IModalProps)=> {
 
     return (
         <MuiModal open={isVisible} onClose={close}>
-            <Box sx={style}>
+            <Box sx={{
+                ...style,
+                width
+                }}>
+            <IconButton onClick={close}>
+                <KeyboardBackspaceIcon />
+            </IconButton>
                 {children}
             </Box>
         </MuiModal>
     );
 }
+
+Modal.defaultProps = defaultProps;
 
 export default Modal;

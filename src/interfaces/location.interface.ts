@@ -40,7 +40,10 @@ export interface ILocationCreateBody {
     latitude: number,
     longitude: number,
     postalCode: number,
-    city: string
+    city: string,
+    department?: string,
+    region?: string,
+    country: string
 }
 
 export interface ILocationSuccessFetchResponse {

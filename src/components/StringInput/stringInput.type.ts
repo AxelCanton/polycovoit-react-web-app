@@ -1,8 +1,6 @@
-import { EventChangeType } from "../../utils/types/event.type";
-
 export interface IStringInputRequiredProps {
     value: string,
-    onChange: (event: EventChangeType) => void
+    onChange: (value: string) => void
 }
 
 export interface IStringInputOptionalProps {

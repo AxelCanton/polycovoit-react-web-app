@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import LocationForm from "../../../components/LocationForm/LocationForm";
 import Modal from "../../../components/Modal/Modal";
-import { IJsonLocation } from "../../../interfaces/location.interface";
+import { ILatLng, ILocationCreateBody } from "../../../interfaces/location.interface";
 import { locationCreateThunk, SUCCESS_CREATE_MESSAGE } from "../../../thunks/LocationsThunk";
 import { IModalAddLocationProps } from "./modalAddLocation.types";
 
@@ -10,24 +10,13 @@ const ModalAddLocation = ({
     isVisible,
     setIsVisible
 }: IModalAddLocationProps) => {
-    const [location, setLocation] = useState<IJsonLocation | null>(null);
+    const [location, setLocation] = useState<ILocationCreateBody | null>(null);
 
     const dispatch = useAppDispatch();
     const { isLoading, message } = useAppSelector((state) => state.locationsReducer);
 
-    const submitForm = () => {
-      if (location) {
-        const latitude = location.latitude;
-        const longitude = location.longitude;
-        if (latitude === "" || longitude === "") {
-          // Some data of the json do not have coordinates
-
-          // TODO: specify the place with a marker
-        } else {
-          dispatch(locationCreateThunk(location.nom_commune ,location.code_postal, latitude as number, longitude as number));
-        }
-      }
-    }
+    const submitForm = (city: string, department: string, region: string, country: string, postalCode: number, coordinate: ILatLng) => 
+        dispatch(locationCreateThunk(country, city ,postalCode, coordinate.latitude, coordinate.longitude));
 
     const onClose = useCallback(() => {
       setIsVisible(false);
@@ -41,7 +30,7 @@ const ModalAddLocation = ({
     }, [message, onClose]);
 
     return (
-      <Modal isVisible={isVisible} close={onClose}>
+      <Modal width='30%' isVisible={isVisible} close={onClose}>
               <LocationForm
               location={location}
               isLoading={isLoading}

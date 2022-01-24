@@ -1,8 +1,8 @@
 import { Stack, Checkbox, Tooltip, FormControlLabel, Grid, Typography } from "@mui/material";
 import CustomDivider from "../../../components/CustomDivider/CustomDivider";
-import LocationSearchInput from "../../../components/LocationSearchInput/LocationSearchInput";
+import LocationSearchInput from "../../../components/SearchInput/LocationSearchInput/LocationSearchInput";
 import PolytechIcon from "../../../components/PolytechIcon/PolytechIcon";
-import usePolytechSpecialities from "../../../hooks/usePolytechSpecilities";
+import usePolytechSpecialities from "../../../hooks/usePolytechSpecialities";
 import { Speciality } from "../../../utils/enum/speciality.enum";
 import { IPanelProps } from "./panel.type";
 

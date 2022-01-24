@@ -1,6 +1,7 @@
 import { TextField } from '@mui/material';
 import { IStringInputOptionalProps, IStringInputProps } from './stringInput.type';
 import "./StringInput.css"
+import { EventChangeType } from '../../utils/types/event.type';
 
 const defaultProps: IStringInputOptionalProps = {
     disabled: false,
@@ -21,9 +22,14 @@ const StringInput = ({
     type,
     className
 }: IStringInputProps) => {
+
+    const onInputChange = (event: EventChangeType) => {
+        onChange(event.target.value);
+    }
+
     return <TextField
     value={value}
-    onChange={onChange}
+    onChange={onInputChange}
     disabled={disabled} 
     label={label}
     required={required}

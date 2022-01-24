@@ -4,8 +4,19 @@ import { IMapComponentOptionalProps, IMapComponentProps } from "./mapComponent.t
 import 'leaflet/dist/leaflet.css';
 import MapEvents from "./MapEvents";
 import Markers from "./Markers/Markers";
+import { ILatLng } from "../../interfaces/location.interface";
+
+const INITIAL_POSITION: ILatLng = {
+    latitude: 46,
+    longitude: 3
+};
+
+const INITIAL_ZOOM = 6;
+
 
 const defaultProps: IMapComponentOptionalProps = {
+    initialPosition: INITIAL_POSITION,
+    initialZoom: INITIAL_ZOOM,
     minZoom: 3,
     maxZoom: 20,
     placeholder: 'Carte de France',

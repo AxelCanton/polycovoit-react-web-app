@@ -2,11 +2,11 @@ import { LatLngBounds, Map } from 'leaflet';
 import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import MapComponent from '../../components/MapComponent/MapComponent';
-import { IJsonLocation, ILatLng, ILocation } from '../../interfaces/location.interface';
+import { IJsonLocation, ILocation } from '../../interfaces/location.interface';
 import { locationFetchThunk } from '../../thunks/LocationsThunk';
 import Modal from '../../components/Modal/Modal'
 import PopupMarker from './PopupMarker/PopupMarker';
-import usePolytechSpecialities from '../../hooks/usePolytechSpecilities';
+import usePolytechSpecialities from '../../hooks/usePolytechSpecialities';
 import { Paper, Box, Fab, Stack } from '@mui/material';
 import Panel from './Panel/Panel';
 import { Speciality } from '../../utils/enum/speciality.enum';
@@ -16,12 +16,6 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '../../components/Transitions/Collapse/Collapse';
 import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import ReservationCreation from './ReservationCreation/ReservationCreation';
-
-const INITIAL_POSITION: ILatLng = {
-    latitude: 46,
-    longitude: 3
-}
-const INITIAL_ZOOM = 6;
 
 const MapPage = () => {
     const dispatch = useAppDispatch();
@@ -120,8 +114,6 @@ const MapPage = () => {
                      </Stack>
             </Box>
                 <MapComponent
-                initialPosition={INITIAL_POSITION}
-                initialZoom={INITIAL_ZOOM}
                 markersData={locations.map(locRefactored => locRefactored.locations[0])}
                 renderMarkerColor={renderMarkerColor}
                 renderMarkerPopup={renderMarkerPopup}

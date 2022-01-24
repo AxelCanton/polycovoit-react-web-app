@@ -33,10 +33,10 @@ export const locationFetchThunk = (bounds: LatLngBounds, specialities: Specialit
 
     axiosInstance.get(url)
     .then((response: AxiosResponse<ILocationSuccessFetchResponse[]>) => {
-
         dispatch(locationsActions.locationFetchSuccess(refactorLocations(response.data)));
     })
     .catch((error: AxiosError) => {
+        dispatch(locationsActions.locationFetchFailure('error'));
         dispatch(notificationActions.showNotification({
             message: FAILURE_FETCH_MESSAGE,
             severity: SeverityEnum.error
@@ -44,14 +44,15 @@ export const locationFetchThunk = (bounds: LatLngBounds, specialities: Specialit
     });
 }
 
-export const locationCreateThunk = (city: string, postalCode: number, latitude: number, longitude: number): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
+export const locationCreateThunk = (country: string, city: string, postalCode: number, latitude: number, longitude: number): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(locationsActions.locationCreateStart());
     
     const body: ILocationCreateBody = {
         latitude,
         longitude,
         postalCode,
-        city
+        city,
+        country
     }
     axiosInstance.post(LOCATIONS_CREATE_URL, body)
     .then(

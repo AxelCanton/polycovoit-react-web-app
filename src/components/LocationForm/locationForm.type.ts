@@ -1,9 +1,9 @@
-import { IJsonLocation } from "../../interfaces/location.interface";
+import { ILatLng, ILocationCreateBody } from "../../interfaces/location.interface";
 
 export interface ILocationFormRequiredProps {
-    location: IJsonLocation | null,
-    setLocation: (newLocation: IJsonLocation | null) => void,
-    validate: () => void
+    location: ILocationCreateBody | null,
+    setLocation: (newLocation: ILocationCreateBody | null) => void,
+    validate: (city: string, department: string, region: string, country: string, postalCode: number, coordinate: ILatLng) => void
 }
 
 export interface ILocationFormOptionalProps {

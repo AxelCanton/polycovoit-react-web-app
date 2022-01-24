@@ -8,7 +8,7 @@ import CustomDivider from "../../components/CustomDivider/CustomDivider";
 import { TypographyVariantEnum } from "../../utils/enum/typography.variant.enum";
 import { DesktopDatePicker, LocalizationProvider } from "@mui/lab";
 import AdapterDateFns from "@mui/lab/AdapterDateFns";
-import LocationSearchInput from "../../components/LocationSearchInput/LocationSearchInput";
+import LocationSearchInput from "../../components/SearchInput/LocationSearchInput/LocationSearchInput";
 import Collapse from "../../components/Transitions/Collapse/Collapse";
 import { IReservation } from "../../components/Reservation/reservation.type";
 import Fade from "../../components/Transitions/Fade/Fade";
