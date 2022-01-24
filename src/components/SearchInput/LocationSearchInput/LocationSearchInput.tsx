@@ -1,26 +1,13 @@
-import { Autocomplete, autocompleteClasses, InputAdornment, Popper, styled, TextField } from "@mui/material";
-import { useCityDataRetriever } from "../../hooks/useCityDataRetriever";
-import { IJsonLocation } from "../../interfaces/location.interface";
-import ListboxComponent from "./ListBoxComponent";
+import { Autocomplete, InputAdornment, TextField } from "@mui/material";
+import { useCityDataRetriever } from "../../../hooks/useCityDataRetriever";
+import { IJsonLocation } from "../../../interfaces/location.interface";
+import ListboxComponent from "../common/ListBoxComponent";
 import { ILocationSearchInputOptionalProps, ILocationSearchInputProps } from "./locationSearchInput.type";
 import { matchSorter } from 'match-sorter';
 import { useState } from "react";
 import LocationCityIcon from '@mui/icons-material/LocationCity';
-
-
-const StyledPopper = styled(Popper)({
-    [`& .${autocompleteClasses.listbox}`]: {
-      boxSizing: 'border-box',
-      '& ul': {
-        padding: 0,
-        margin: 0,
-      },
-    },
-  });
-
-interface IAutocompleteState {
-  inputValue: string
-}
+import { StyledPopper } from "../common/SearchPopper";
+import { IAutocompleteState } from "../common/interface";
 
 const filterOptions = (options: IJsonLocation[], { inputValue }: IAutocompleteState) => matchSorter(
   options,
@@ -54,7 +41,7 @@ const LocationSearchInput = ({
 
     const onLocationChange = (event: any, newValue: IJsonLocation | string | null) => {
       if(!(typeof newValue === "string")) {
-        setLocation(newValue)
+        setLocation(newValue);
       }
     };
 

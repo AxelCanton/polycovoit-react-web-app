@@ -1,4 +1,4 @@
-import { IJsonLocation } from "../../interfaces/location.interface";
+import { IJsonLocation } from "../../../interfaces/location.interface";
 
 export interface ILocationSearchInputRequiredProps {
 }
