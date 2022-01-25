@@ -19,6 +19,7 @@ import { useSnackbar } from 'notistack';
 import MuiAppBar from './components/AppBar/AppBar';
 import NotFound from './components/NotFound/NotFound';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
+import AdminPage from './pages/AdminPage/AdminPage';
 
 
 export const ACCESS_TOKEN = 'access_token';
@@ -86,6 +87,7 @@ function App() {
       <Route path="/waiting-reservations" element={renderElement(<WaitingReservationsPage/>)}/>
       <Route path="/map" element={renderElement(<MapPage/>)} />
       <Route path="/settings" element={renderElement(<SettingsPage/>)} />
+      <Route path="/admin" element={renderElement(<AdminPage/>)} />
       <Route path="*" element={<NotFound />} />
     </Routes>
     </>

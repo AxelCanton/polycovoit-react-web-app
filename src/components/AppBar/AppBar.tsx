@@ -45,7 +45,7 @@ const AppBar = () => {
     }
 
     const onStatistiquesClick = () => {
-      navigate('/statistiques');
+      navigate('/admin');
     }
 
     const onDisconnect = () => {

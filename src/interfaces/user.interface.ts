@@ -14,6 +14,7 @@ export interface IUser {
     locations: ILocationWithoutUserData[],
     speciality: Speciality;
     isValid: boolean;
+    creationDate: Date;
 };
 
 export interface IPrivateUser {

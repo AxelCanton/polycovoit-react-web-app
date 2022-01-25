@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import CustomDivider from "../../components/CustomDivider/CustomDivider";
@@ -9,12 +9,15 @@ import { fetchUserThunk } from "../../thunks/UserThunk";
 import { TypographyVariantEnum } from "../../utils/enum/typography.variant.enum";
 import AccountDeletion from "./AccountDeletion/AccountDeletion";
 import AddLocation from "./AddLocation/AddLocation";
+import AddUser from "./AddUser/AddUser";
 import Locations from "./Locations/Locations";
+import MakeAdmin from "./MakeAdmin/MakeAdmin";
 
 const SettingsPage = () => {
     const dispatch = useAppDispatch();
     const { decodedToken, isAuth } = useAppSelector((state) => state.loginReducer);
     const { message } = useAppSelector((state) => state.locationsReducer);
+    const isAdmin = localStorage.getItem('isAdmin');
 
     const getUserData = useCallback(() => dispatch(fetchUserThunk(decodedToken.sub)), [decodedToken, dispatch]);
     
@@ -47,7 +50,15 @@ const SettingsPage = () => {
             </CenteredLayout>
             <CustomDivider/>
             <CenteredLayout>
-                <AccountDeletion id={decodedToken.sub}/>
+                <Grid container>
+                    <AccountDeletion id={decodedToken.sub}/>
+                    {isAdmin &&
+                    <>
+                        <MakeAdmin/>
+                        <AddUser/>
+                    </>
+                    }
+                </Grid>
             </CenteredLayout>
         </Fade>
         ) : <></>;
