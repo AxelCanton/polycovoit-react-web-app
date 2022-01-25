@@ -5,7 +5,8 @@ export interface IModalRequiredProps {
 }
 
 export interface IModalOptionalProps {
-    width: number | string
+    width: number | string,
+    iconButton: boolean
 }
 
 export interface IModalProps extends IModalOptionalProps, IModalRequiredProps {}

@@ -108,9 +108,6 @@ const AdminPage = () => {
                             <CirclePackingChartComponent users={users}/>
                         </Box>
                         }
-                        {!users && 
-                            <LoadingButton loading variant="outlined"/>
-                        } 
                     </Card>
                 </Grid> 
                 <Grid item sx={{marginBottom:5, marginTop:5}}>

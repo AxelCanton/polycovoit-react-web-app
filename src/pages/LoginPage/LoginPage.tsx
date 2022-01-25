@@ -42,7 +42,7 @@ const LoginPage = () => {
                 height='93vh'
                 />
             </Box>
-            <Modal isVisible={true} close={() => {}}>
+            <Modal isVisible={true} iconButton={false} close={() => {}}>
                 <LoginForm isLoading={isLoading} onLoginClick={onLoginClick} />
             </Modal>
         </>

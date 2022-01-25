@@ -31,9 +31,10 @@ export type LoginResponse = ILoginFailureResponse | ILoginSuccessResponse;
 
 export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(loginActions.loginStart());
-
+    console.log(data)
     axiosInstance.post(LOGIN_URL, data).then(
         (response) => {
+            console.log(response)
         if(response.status === 200) {
             const tokens = response.data;
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${tokens.access_token}`;

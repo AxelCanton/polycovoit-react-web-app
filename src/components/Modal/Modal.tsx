@@ -18,14 +18,16 @@ const style = {
 };
 
 const defaultProps: IModalOptionalProps = {
-    width: 'auto'
+    width: 'auto',
+    iconButton: true
 }
 
 const Modal = ({
     isVisible,
     close,
     width,
-    children
+    children,
+    iconButton
 }: IModalProps)=> {
 
     return (
@@ -34,9 +36,11 @@ const Modal = ({
                 ...style,
                 width
                 }}>
+            {iconButton && 
             <IconButton onClick={close}>
                 <KeyboardBackspaceIcon />
             </IconButton>
+            }
                 {children}
             </Box>
         </MuiModal>
