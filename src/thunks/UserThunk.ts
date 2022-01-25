@@ -19,7 +19,7 @@ export const fetchUserThunk = (id: number): ThunkAction<void, RootState, unknown
         dispatch(userActions.userFetchSuccess(response.data));
     })
     .catch((error: AxiosError) => {
-        dispatch(userActions.userFetchError('error'));
+        dispatch(userActions.userFetchError(error.message));
     });
 };
 

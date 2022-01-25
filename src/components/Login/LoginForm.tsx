@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import { EventChangeType, EventClickType } from '../../utils/types/event.type';
 import Button from '../Button/Button';
-import StringInput from '../StringInput/StringInput';
 import { ILoginFormOptionalProps, ILoginFormProps } from './loginForm.type';
-import LoginIcon from '@mui/icons-material/Login';
 import './LoginForm.css'
-import FormLayout from '../Layout/FormLayout/FormLayout';
 import { Box, FormControl, Grid, TextField, Typography } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import CustomDivider from '../CustomDivider/CustomDivider';
-import PasswordIcon from '@mui/icons-material/Password';
+import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import CustomIcon from '../CustomIcon/CustomIcon';
 
 const defaultProps: ILoginFormOptionalProps = {
@@ -51,7 +48,7 @@ const LoginForm = ({
           </Grid>
 
           <Grid item sx={{marginBottom:5,width:'80%'}}>
-            <PasswordIcon sx={{ color: 'action.active', mr: 1, my: 2.5 }} />
+            <VpnKeyIcon sx={{ color: 'action.active', mr: 1, my: 2.5 }} />
             <TextField id="password" label="Mot de passe" variant="standard" required type="password" value={password} onChange={onPasswordChange} sx={{width:"80%"}}/>
           </Grid>
           <Grid container sx={{width:'80%', height:50}} justifyContent="center">
