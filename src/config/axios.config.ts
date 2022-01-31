@@ -27,8 +27,8 @@ const onRequestError = async (error: AxiosError)  => {
     }
 }
 const url = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
-? 'http://localhost:5001/'
-: 'http://162.38.114.223:5001/';
+? 'http://localhost:5001/api/'
+: 'http://162.38.114.223:80/api/';
 
 
 const axiosInstance = axiosStatic.create({
