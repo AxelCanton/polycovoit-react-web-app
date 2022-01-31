@@ -12,4 +12,4 @@ RUN yarn global add serve
 
 COPY ./build ./build
 
-CMD [ "serve", "-l", "80", "-s", "build" ]
+CMD [ "serve", "-l", "3000", "-s", "build" ]
