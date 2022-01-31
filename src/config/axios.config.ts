@@ -26,9 +26,13 @@ const onRequestError = async (error: AxiosError)  => {
         
     }
 }
+const url = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
+? 'http://localhost:5001/'
+: 'http://162.38.114.223:5001/';
+
 
 const axiosInstance = axiosStatic.create({
-    baseURL: 'http://localhost:5001/',
+    baseURL: url,
 });
 
 axiosInstance.interceptors.response.use(onRequestSuccess, onRequestError);
