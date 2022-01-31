@@ -78,6 +78,18 @@ const AdminPage = () => {
         }
     }
 
+    const getNumberByGender = (gender: string) => {
+        let res = 0
+
+        for(let user of users!){
+            if(user.gender === gender){
+                res += 1;
+            }
+        }
+
+        return res;
+    }
+
     return (
         <>
             <CenteredLayout>
@@ -110,18 +122,51 @@ const AdminPage = () => {
                         }
                     </Card>
                 </Grid> 
-                <Grid item sx={{marginBottom:5, marginTop:5}}>
-                    <Card>
-                        {users && 
-                            <CardContent>
-                                <Typography variant={TypographyVariantEnum.h6}>Nombre total d'utilisateurs</Typography>
-                                <Grid container justifyContent="flex-end">
-                                    <Typography variant={TypographyVariantEnum.h3} sx={{marginRight:3}}>{users.length}</Typography>
-                                </Grid>
-                            </CardContent>
-                        }
-                    </Card>
+                
+                <Grid container xs={12} justifyContent="center" sx={{marginBottom:3, marginTop:3}}>
+                    <Grid item xs={3}>
+                        <Card>
+                            {users && 
+                                <CardContent sx={{marginTop:1}}>
+                                    <Typography variant={TypographyVariantEnum.h6}>Nombre total d'utilisateurs</Typography>
+                                    <Grid container justifyContent="flex-end">
+                                        <Typography variant={TypographyVariantEnum.h3} sx={{marginRight:3}}>{users.length}</Typography>
+                                    </Grid>
+                                </CardContent>
+                            }
+                        </Card>
+                    </Grid>
+                    <Grid item xs={5.35} sx={{marginLeft:2}}>
+                        <Card>
+                            {users && 
+                                <CardContent>
+                                    <Grid container spacing={2}>
+                                        <Grid item xs={4} sx={{borderRight: '1px solid rgba(0,0,0,0.5)', marginTop:1}}>
+                                            <Typography variant={TypographyVariantEnum.h6}>Hommes</Typography>
+                                            <Grid container justifyContent="flex-end">
+                                                <Typography variant={TypographyVariantEnum.h3} sx={{marginRight:3}}>{getNumberByGender('Male')}</Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item xs={4} sx={{borderRight: '1px solid rgba(0,0,0,0.5)', marginTop:1}}>
+                                            <Typography variant={TypographyVariantEnum.h6}>Femmes</Typography>
+                                            <Grid container justifyContent="flex-end">
+                                                <Typography variant={TypographyVariantEnum.h3} sx={{marginRight:3}}>{getNumberByGender('Female')}</Typography>
+                                            </Grid>
+                                        </Grid>
+                                        <Grid item xs={4} sx={{marginTop:1}}>
+                                            <Typography variant={TypographyVariantEnum.h6}>Autres</Typography>
+                                            <Grid container justifyContent="flex-end">
+                                                <Typography variant={TypographyVariantEnum.h3} sx={{marginRight:3}}>{getNumberByGender('Other')}</Typography>
+                                            </Grid>
+                                        </Grid>
+                                    </Grid>
+                                </CardContent>
+                            }
+                        </Card>
+                    </Grid>
                 </Grid>
+                    
+                
                 <Grid container xs={12} justifyContent="center">
                     <Card sx={{width: 1016}}>
                     <Grid container sx={{width:"100%", marginTop:3, marginLeft:5}} justifyContent="center">

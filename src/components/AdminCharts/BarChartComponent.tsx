@@ -502,7 +502,7 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
         const today = new Date();
         let dayList: Date[] = []
 
-        for(let i = 0; i < 7; i++){
+        for(let i = 1; i <= 7; i++){
             dayList.push(new Date(today.getTime() - (7-i) * 24 * 60 * 60 * 1000))
         }
 
