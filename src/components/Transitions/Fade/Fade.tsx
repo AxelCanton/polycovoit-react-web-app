@@ -1,16 +1,7 @@
 import { Fade as MuiFade } from '@mui/material';
 import React from 'react';
+import { WrapComponent } from '../WrapComponent';
 import { IFadeOptionalProps, IFadeProps } from './fade.type';
-
-type Props = { children: React.ReactNode };
-
-const WrapComponent = React.forwardRef<HTMLDivElement, Props>((props, ref) => {
-    return (
-      <div ref={ref} {...props}>
-        {props.children}
-      </div>
-    );
-});
 
 const defaultProps: IFadeOptionalProps = {
     show: true,
