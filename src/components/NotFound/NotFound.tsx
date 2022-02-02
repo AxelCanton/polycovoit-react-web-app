@@ -29,7 +29,7 @@ const NotFound = () => {
                 </Typography>
                 <Box sx={{ marginTop: 10}}>
                 <Button
-                onClick={() => navigate('/map')}
+                onClick={() => navigate('/')}
                 startIcon={<ArrowBackIosNewIcon/>}
                 variant={ButtonVariant.Text}
                 >

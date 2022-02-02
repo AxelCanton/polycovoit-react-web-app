@@ -1,7 +1,6 @@
-// @ts-nocheck
 // Some issues with the position property of the style object which is not recognized even though it works
 
-import { Box, IconButton, Modal as MuiModal } from "@mui/material";
+import { Box, Fade, IconButton, Modal as MuiModal } from "@mui/material";
 import React from "react";
 import { IModalOptionalProps, IModalProps } from "./modal.type";
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
@@ -19,30 +18,35 @@ const style = {
 
 const defaultProps: IModalOptionalProps = {
     width: 'auto',
-    iconButton: true
-}
+    iconButton: true,
+    timeout: 400
+};
 
 const Modal = ({
     isVisible,
     close,
     width,
     children,
+    timeout,
     iconButton
 }: IModalProps)=> {
 
     return (
-        <MuiModal open={isVisible} onClose={close}>
-            <Box sx={{
-                ...style,
-                width
-                }}>
-            {iconButton && 
-            <IconButton onClick={close}>
-                <KeyboardBackspaceIcon />
-            </IconButton>
-            }
-                {children}
-            </Box>
+        <MuiModal BackdropProps={{ timeout: timeout }} closeAfterTransition open={isVisible} onClose={close}>
+            <Fade timeout={timeout} in={isVisible}>
+                {/* @ts-ignore */}
+                <Box sx={{
+                    ...style,
+                    width
+                    }}>
+                {iconButton && 
+                <IconButton onClick={close}>
+                    <KeyboardBackspaceIcon />
+                </IconButton>
+                }
+                    {children}
+                </Box>
+            </Fade>
         </MuiModal>
     );
 }

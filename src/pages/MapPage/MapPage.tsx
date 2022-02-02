@@ -1,10 +1,9 @@
 import { LatLngBounds, Map } from 'leaflet';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import MapComponent from '../../components/MapComponent/MapComponent';
 import { IJsonLocation, ILocation } from '../../interfaces/location.interface';
 import { locationFetchThunk } from '../../thunks/LocationsThunk';
-import Modal from '../../components/Modal/Modal'
 import PopupMarker from './PopupMarker/PopupMarker';
 import usePolytechSpecialities from '../../hooks/usePolytechSpecialities';
 import { Paper, Box, Fab, Stack } from '@mui/material';
@@ -14,14 +13,13 @@ import ScrollableComponent from '../../components/Layout/ScrollableComponent/Scr
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import Collapse from '../../components/Transitions/Collapse/Collapse';
-import RegistrationPage from '../RegistrationPage/RegistrationPage';
 import ReservationCreation from './ReservationCreation/ReservationCreation';
+import Login from './Login/Login';
 
 const MapPage = () => {
     const dispatch = useAppDispatch();
     const { locations } = useAppSelector((state) => state.locationsReducer);
-
-    const isValid = localStorage.getItem('isValid') === 'true'? true:false;
+    const { isAuth, isValid } = useAppSelector((state) => state.loginReducer);
 
     const { retrieveColor, retrieveList } = usePolytechSpecialities();
 
@@ -31,19 +29,24 @@ const MapPage = () => {
     const [selectedLocation, setSelectedLocation] = useState<IJsonLocation | null>(null);
     const [showPanel, setShowPanel] = useState(false);
     
+    const canRetrieveLoc = useCallback(() => isAuth && isValid, [isAuth, isValid])
+
     const fetchLocations = () => {
+        if (!canRetrieveLoc()) {
+            return;
+        }
         const currentMapBounds = map?.getBounds();
         if(currentMapBounds){
             dispatch(locationFetchThunk(currentMapBounds as LatLngBounds, selectedSpecialities));
         }
     };
 
-    // Load the markers once when the map has loaded
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => fetchLocations(), [map]);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    useEffect(() => fetchLocations(), [selectedSpecialities]);
+    useEffect(() => {
+        if (canRetrieveLoc()) {
+            fetchLocations();
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [map, canRetrieveLoc, selectedSpecialities]);
 
     useEffect(() => {
         if (selectedLocation && map) {
@@ -123,9 +126,7 @@ const MapPage = () => {
                 />
         </Box>
         <ReservationCreation selectedMarker={selectedMarker} setSelectedMarkertoNull={() => setSelectedMarker(null)}/>
-        <Modal isVisible={(typeof(isValid) === 'boolean') && !isValid} close={() => {}}>
-            <RegistrationPage />
-        </Modal>
+        <Login/>
         </>
     );
 
