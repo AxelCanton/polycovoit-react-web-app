@@ -7,7 +7,8 @@ import axiosInstance from "../config/axios.config";
 import { LOGIN_URL } from "../config/routes";
 import { notificationActions } from "../slices/NotificationSlice";
 import { SeverityEnum } from "../utils/enum/severity.enum";
-import { ACCESS_TOKEN, REFRESH_TOKEN } from "../App";
+import { REFRESH_TOKEN } from "../App";
+import { locationsActions } from "../slices/LocationsSlice";
 import { errorHandler } from "../utils/errorHandling";
 
 export const USER = 'user';
@@ -21,6 +22,8 @@ interface ILoginBody {
 export interface ILoginSuccessResponse {
     access_token: string,
     refresh_token: string,
+    isAdmin: boolean,
+    isValid: boolean
 };
 
 interface ILoginFailureResponse {
@@ -33,14 +36,11 @@ export type LoginResponse = ILoginFailureResponse | ILoginSuccessResponse;
 export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(loginActions.loginStart());
     axiosInstance.post(LOGIN_URL, data).then(
-        (response) => {
+        (response: AxiosResponse<LoginResponse>) => {
         if(response.status === 200) {
-            const tokens = response.data;
+            const tokens = response.data as ILoginSuccessResponse;
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${tokens.access_token}`;
-            localStorage.setItem('access_token', tokens.access_token);
             localStorage.setItem('refresh_token', tokens.refresh_token);
-            localStorage.setItem('isAdmin', tokens.isAdmin? 'true':'false');
-            localStorage.setItem('isValid', tokens.isValid? 'true':'false');
             dispatch(loginActions.loginSuccess(tokens));
         }
     })
@@ -66,7 +66,6 @@ export const refreshThunk = (): ThunkAction<Promise<boolean>, RootState, unknown
         const accessToken = response.data.access_token;
         const refreshToken = response.data.refresh_token;
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-        localStorage.setItem(ACCESS_TOKEN, accessToken);
         localStorage.setItem(REFRESH_TOKEN, refreshToken);
         dispatch(loginActions.refreshTokenSuccess(response.data));
         return true;
@@ -77,9 +76,9 @@ export const refreshThunk = (): ThunkAction<Promise<boolean>, RootState, unknown
 };
 
 export const disconnectThunk = (): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
+    dispatch(locationsActions.reset());
     dispatch(loginActions.reset());
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
+    localStorage.removeItem(REFRESH_TOKEN);
     dispatch(notificationActions.showNotification({
       message: 'Déconnection réussie !',
       severity: SeverityEnum.success

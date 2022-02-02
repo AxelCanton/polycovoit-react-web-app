@@ -12,10 +12,8 @@ const AppBar = () => {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
-    const {isAuth} = useAppSelector((state) => state.loginReducer)
-
-    const isAdmin = localStorage.getItem('isAdmin') === 'true'? true : false;
-
+    const { isAuth, isAdmin } = useAppSelector((state) => state.loginReducer)
+  
     const [anchorElUser, setAnchorElUser] = useState<null | HTMLElement>(null);
 
     const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
@@ -28,7 +26,7 @@ const AppBar = () => {
     };
 
     const onMapClick = () => {
-      navigate('/map');
+      navigate('/');
     };
 
     const onAskedResClick = () => {

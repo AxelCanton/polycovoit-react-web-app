@@ -15,9 +15,8 @@ import MakeAdmin from "./MakeAdmin/MakeAdmin";
 
 const SettingsPage = () => {
     const dispatch = useAppDispatch();
-    const { decodedToken, isAuth } = useAppSelector((state) => state.loginReducer);
+    const { decodedToken, isAuth, isAdmin } = useAppSelector((state) => state.loginReducer);
     const { message } = useAppSelector((state) => state.locationsReducer);
-    const isAdmin = localStorage.getItem('isAdmin') === 'true'? true : false;
 
     const getUserData = useCallback(() => dispatch(fetchUserThunk(decodedToken.sub)), [decodedToken, dispatch]);
     

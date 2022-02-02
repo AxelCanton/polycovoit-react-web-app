@@ -52,8 +52,8 @@ export const validateUser = (id: number, gender: string):ThunkAction<void, RootS
     axiosInstance.patch(USER_VALIDATE_URL(id), body)
     .then((response: AxiosResponse) =>{
         dispatch(userActions.userValidateSuccess(response.data));
+        dispatch(loginActions.validate());
         dispatch(notificationActions.showNotification({message: SUCCESS_VALIDATE_MESSAGE, severity: SeverityEnum.info}))
-        localStorage.setItem('isValid', 'true')
     }).catch((error: AxiosError) => {
         dispatch(userActions.userValidateError('error'));
         errorHandler(error, dispatch)
