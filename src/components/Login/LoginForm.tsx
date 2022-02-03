@@ -3,7 +3,7 @@ import { EventChangeType } from '../../utils/types/event.type';
 import Button from '../Button/Button';
 import { ILoginFormOptionalProps, ILoginFormProps } from './loginForm.type';
 import './LoginForm.css'
-import { Grid, InputAdornment, TextField, Typography } from '@mui/material';
+import { Grid, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import CustomDivider from '../CustomDivider/CustomDivider';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
@@ -51,8 +51,8 @@ const LoginForm = ({
 
   return (
     <form onSubmit={onSubmit}>
-      <Grid spacing={4} container alignItems="center" direction="column">
-        <Grid item container sx={{ marginTop: 4 }}>
+      <Stack spacing={4} alignItems="center">
+        <Grid container sx={{ marginTop: 4 }}>
           <Grid item xs={2}>
             <CustomIcon path={`${POLY_ICON_PATH}/polytechIcon.png`} width={50} height={50} />
           </Grid>
@@ -61,54 +61,45 @@ const LoginForm = ({
           </Grid>
         </Grid>
         <CustomDivider spacing={4} />
-        <Grid container alignItems="center" direction="column" spacing={7}>
-          <Grid item sx={{ width: '80%' }}>
-            <TextField
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <AccountCircle sx={{ color: 'action.active' }} />
-                  </InputAdornment>
-                ),
-              }}
-              helperText={usernameErrorMessage}
-              error={usernameErrorMessage !== ''}
-              id="username"
-              label="Nom d'utilisateur polytech"
-              variant="standard"
-              required
-              value={username}
-              onChange={onUsernameChange}
-              sx={{ width: "80%" }}
-            />
-          </Grid>
-
-          <Grid item sx={{ width: '80%' }}>
-            <TextField
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <VpnKeyIcon sx={{ color: 'action.active' }} />
-                  </InputAdornment>
-                ),
-              }}
-              helperText={passwordErrorMessage}
-              error={passwordErrorMessage !== ''}
-              id="password"
-              label="Mot de passe"
-              variant="standard"
-              required
-              type="password"
-              value={password}
-              onChange={onPasswordChange}
-              sx={{ width: "80%" }}
-              />
-          </Grid>
-        </Grid>
-        <Grid item justifyContent="center">
+          <TextField
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <AccountCircle sx={{ color: 'action.active' }} />
+                </InputAdornment>
+              ),
+            }}
+            helperText={usernameErrorMessage}
+            error={usernameErrorMessage !== ''}
+            id="username"
+            label="Nom d'utilisateur polytech"
+            variant="standard"
+            required
+            value={username}
+            onChange={onUsernameChange}
+            sx={{ width: "80%" }}
+          />
+          <TextField
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <VpnKeyIcon sx={{ color: 'action.active' }} />
+                </InputAdornment>
+              ),
+            }}
+            helperText={passwordErrorMessage}
+            error={passwordErrorMessage !== ''}
+            id="password"
+            label="Mot de passe"
+            variant="standard"
+            required
+            type="password"
+            value={password}
+            onChange={onPasswordChange}
+            sx={{ width: "80%" }}
+          />
           <Button size={ButtonSize.Large} isLoading={isLoading} type={ButtonType.Submit}>Se connecter</Button>
-        </Grid>
-      </Grid>
+      </Stack>
     </form>
   );
 };
