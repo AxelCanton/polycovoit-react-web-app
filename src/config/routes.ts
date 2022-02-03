@@ -12,6 +12,7 @@ export const USER_DELETE_URL = (id: number) => `/user/${id}`;
 export const USER_VALIDATE_URL = (id: number) => `/user/validate/${id}`;
 export const CREATE_USER_URL = `/user`;
 export const MAKE_ADMIN_URL = (username: string) => `/user/make-admin/${username}`;
+export const VERIFY_ADMIN =`/user/verify-admin`;
 
 //Reservation routes
 export const GET_ASKED_RESERVATIONS_URL = 'reservation/by-user'

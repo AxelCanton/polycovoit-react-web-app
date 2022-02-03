@@ -8,6 +8,7 @@ import { LOGIN_URL } from "../config/routes";
 import { notificationActions } from "../slices/NotificationSlice";
 import { SeverityEnum } from "../utils/enum/severity.enum";
 import { ACCESS_TOKEN, REFRESH_TOKEN } from "../App";
+import { errorHandler } from "../utils/errorHandling";
 
 export const USER = 'user';
 export const INVALID_CRED_ERROR_MESSAGE: string = 'Email ou mot de passe incorrect'
@@ -31,10 +32,8 @@ export type LoginResponse = ILoginFailureResponse | ILoginSuccessResponse;
 
 export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(loginActions.loginStart());
-    console.log(data)
     axiosInstance.post(LOGIN_URL, data).then(
         (response) => {
-            console.log(response)
         if(response.status === 200) {
             const tokens = response.data;
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${tokens.access_token}`;
@@ -45,11 +44,15 @@ export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unkno
             dispatch(loginActions.loginSuccess(tokens));
         }
     })
-    .catch((error: AxiosError<number>) => {
-        dispatch(notificationActions.showNotification({
-            message: "Identifiants incorrects",
-            severity: SeverityEnum.error
-        }))
+    .catch((error: AxiosError) => {
+        if(error.response && error.response.status === 401) {
+            dispatch(notificationActions.showNotification({
+                message: "Identifiants incorrects",
+                severity: SeverityEnum.error
+            }))
+        } else {
+            errorHandler(error,dispatch)
+        }
         dispatch(loginActions.loginError("Failed"));
     });
 };

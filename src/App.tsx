@@ -20,6 +20,8 @@ import MuiAppBar from './components/AppBar/AppBar';
 import NotFound from './components/NotFound/NotFound';
 import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import AdminPage from './pages/AdminPage/AdminPage';
+import Forbidden from './components/Forbidden/Forbidden';
+import ServerError from './components/ServerError/ServerError';
 
 
 export const ACCESS_TOKEN = 'access_token';
@@ -88,6 +90,8 @@ function App() {
       <Route path="/map" element={renderElement(<MapPage/>)} />
       <Route path="/settings" element={renderElement(<SettingsPage/>)} />
       <Route path="/admin" element={renderElement(<AdminPage/>)} />
+      <Route path="/forbidden" element={<Forbidden/>} />
+      <Route path="/server-error" element={<ServerError/>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
     </>

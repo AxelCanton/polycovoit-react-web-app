@@ -7,7 +7,8 @@ interface AdminState {
     success: boolean;
     error?: string;
     usersBySpeciality?: PieChartData[],
-    reservationsAfterDate?: IReservationForChart[]
+    reservationsAfterDate?: IReservationForChart[],
+    isAdmin?: boolean
 }
 export interface PieChartData {
     id: string;
@@ -93,6 +94,9 @@ const adminSlice = createSlice({
             state.success = false;
             state.error = action.payload;
         },
+        verifyAdmin(state, action: PayloadAction<boolean>){
+            state.isAdmin = action.payload;
+        }
     }
 })
 

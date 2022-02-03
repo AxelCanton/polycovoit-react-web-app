@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { fetchUsersThunk, reservationsByDateThunk, usersBySpecialityThunk } from "../../thunks/AdminThunk";
+import { fetchUsersThunk, reservationsByDateThunk, usersBySpecialityThunk, verifyAdminThunk } from "../../thunks/AdminThunk";
 
 import { Box, Card, CardContent, FormControl, Grid, InputLabel, MenuItem, Select, SelectChangeEvent, Typography } from "@mui/material";
 import { TypographyVariantEnum } from "../../utils/enum/typography.variant.enum";
@@ -10,6 +10,7 @@ import CirclePackingChartComponent from "../../components/AdminCharts/CirclePack
 import CenteredLayout from "../../components/Layout/CenteredLayout/CenteredLayout";
 import CustomDivider from "../../components/CustomDivider/CustomDivider";
 import { LoadingButton } from "@mui/lab";
+import Forbidden from "../../components/Forbidden/Forbidden";
 
 
 const AdminPage = () => {
@@ -18,9 +19,12 @@ const AdminPage = () => {
 
     const today = new Date()
 
+    const isAdmin = useAppSelector((state) => state.adminReducer.isAdmin)
+
     const getUsers = useCallback(() => dispatch(fetchUsersThunk()), [dispatch]);
     const getUsersBySpeciality = useCallback(() => dispatch(usersBySpecialityThunk()), [dispatch]);
     const getReservationsAfter = useCallback((date) => dispatch(reservationsByDateThunk(date)), [dispatch])
+    const verifyAdmin = useCallback(() => dispatch(verifyAdminThunk()), [dispatch]) 
 
     const [period, setPeriod] = useState('days');
 
@@ -38,11 +42,12 @@ const AdminPage = () => {
     }
 
     useEffect(() => {
+        verifyAdmin()
         getUsers()
         getUsersBySpeciality()    
         const date = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000)
         getReservationsAfter(date.getFullYear()+"-"+date.getMonth()+"-"+date.getDate())
-    }, [getUsers,getUsersBySpeciality])
+    }, [getUsers,getUsersBySpeciality,verifyAdmin,getReservationsAfter])
 
     const users = useAppSelector((state) => state.adminReducer.users)
     const usersBySpeciality = useAppSelector((state) => state.adminReducer.usersBySpeciality)
@@ -91,6 +96,9 @@ const AdminPage = () => {
     }
 
     return (
+        <>
+        {
+            isAdmin && 
         <>
             <CenteredLayout>
                 <Typography variant={TypographyVariantEnum.h3}>Quleques statistiques</Typography>
@@ -200,6 +208,13 @@ const AdminPage = () => {
                     </Card>
                 </Grid>
             </Grid>
+            </>
+        }
+        {isAdmin === false && 
+            <>
+                <Forbidden/>
+            </>
+        }
         </>
     )
 }

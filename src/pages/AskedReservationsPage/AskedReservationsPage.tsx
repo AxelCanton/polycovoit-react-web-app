@@ -123,7 +123,7 @@ const AskedReservationsPage = () => {
     const reservationsPassed = ():(JSX.Element | null | undefined)[] => {
         return(
             reservations.map((reservation) => {
-            if(new Date(reservation.date) < new Date() && reservation.accepted === 1){
+            if(new Date(reservation.date) < new Date(today.getTime() - 24 * 60 * 60 * 1000) && reservation.accepted === 1){
                 if(filters){
                     if(acceptedChecked){
                         if(dateFilter && postCodeFilter){

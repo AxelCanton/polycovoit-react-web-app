@@ -8,6 +8,7 @@ import { loginActions } from "../slices/LoginSlice";
 import { notificationActions } from "../slices/NotificationSlice";
 import { userActions } from "../slices/UserSlice";
 import { SeverityEnum } from "../utils/enum/severity.enum";
+import { errorHandler } from "../utils/errorHandling";
 
 const SUCCESS_VALIDATE_MESSAGE = "Votre compte a bien été validé !"
 
@@ -37,10 +38,7 @@ export const deleteUserThunk = (id: number): ThunkAction<void, RootState, unknow
     })
     .catch((error: AxiosError) => {
         dispatch(userActions.userDeleteError('error'));
-        dispatch(notificationActions.showNotification({
-            message: 'Une erreur est survenue, veuillez réessayer ultérieurement.',
-            severity: SeverityEnum.error
-            }));
+        errorHandler(error, dispatch)
     });
 };
 
@@ -58,9 +56,6 @@ export const validateUser = (id: number, gender: string):ThunkAction<void, RootS
         localStorage.setItem('isValid', 'true')
     }).catch((error: AxiosError) => {
         dispatch(userActions.userValidateError('error'));
-        dispatch(notificationActions.showNotification({
-            message: 'Une erreur est survenue, veuillez réessayer ultérieurement.',
-            severity: SeverityEnum.error
-            }));
+        errorHandler(error, dispatch)
     })
 }

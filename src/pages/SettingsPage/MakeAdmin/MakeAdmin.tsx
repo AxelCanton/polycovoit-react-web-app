@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useAppDispatch } from "../../../app/hooks";
+import { useCallback, useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -7,7 +7,8 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { ButtonColor } from "../../../utils/enum/button.enum";
 import { Button, TextField } from "@mui/material";
-import { makeAdminThunk } from "../../../thunks/AdminThunk";
+import { makeAdminThunk, verifyAdminThunk } from "../../../thunks/AdminThunk";
+import { useNavigate } from "react-router-dom";
 
 const MakeAdmin = () => {
     const [makeAdminVisible, setMakeAdminVisible] = useState(false);
@@ -15,7 +16,18 @@ const MakeAdmin = () => {
 
     const dispatch = useAppDispatch();
 
-    const showValidationMessage = () => setMakeAdminVisible(true);
+    const navigate = useNavigate();
+
+    const showValidationMessage = () => {
+        verifyAdmin();
+
+        if(isAdmin) {
+            setMakeAdminVisible(true);
+        }
+        else {
+            navigate('/forbidden')
+        }
+    }
 
     const hideValidationMessage = () => setMakeAdminVisible(false);
 
@@ -23,6 +35,9 @@ const MakeAdmin = () => {
         dispatch(makeAdminThunk(username))
         setMakeAdminVisible(false)
     }
+
+    const verifyAdmin = useCallback(() => dispatch(verifyAdminThunk()), [dispatch])
+    const isAdmin = useAppSelector((state) => state.adminReducer.isAdmin)
 
     return (
         <>
