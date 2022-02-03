@@ -10,10 +10,7 @@ const Forbidden = () => {
     const navigate = useNavigate();
 
     const changePage = () => {
-        if(localStorage.getItem('isAdmin') === 'true') {
-            localStorage.setItem('isAdmin','false')
-        }
-        navigate('/map')
+        navigate('/')
     }
     return (
         <Grid

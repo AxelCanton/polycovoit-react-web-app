@@ -9,7 +9,6 @@ import PieChartComponent from "../../components/AdminCharts/PieChartComponent";
 import CirclePackingChartComponent from "../../components/AdminCharts/CirclePackingChartComponent";
 import CenteredLayout from "../../components/Layout/CenteredLayout/CenteredLayout";
 import CustomDivider from "../../components/CustomDivider/CustomDivider";
-import { LoadingButton } from "@mui/lab";
 import Forbidden from "../../components/Forbidden/Forbidden";
 
 
@@ -19,7 +18,7 @@ const AdminPage = () => {
 
     const today = new Date()
 
-    const isAdmin = useAppSelector((state) => state.adminReducer.isAdmin)
+    const isAdmin = useAppSelector((state) => state.loginReducer.isAdmin);
 
     const getUsers = useCallback(() => dispatch(fetchUsersThunk()), [dispatch]);
     const getUsersBySpeciality = useCallback(() => dispatch(usersBySpecialityThunk()), [dispatch]);
