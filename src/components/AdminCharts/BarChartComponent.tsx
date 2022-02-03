@@ -493,6 +493,30 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
             case "GBA": 
                 data["GBA"] += 1
                 return data
+            case "MAT":
+                data["MAT"] += 1
+                return data
+            case "MEA": 
+                data["MEA"] += 1
+                return data
+            case "MI":
+                data["MI"] += 1
+                return data
+            case "SE": 
+                data["SE"] += 1
+                return data
+            case "DO":
+                data["DO"] += 1
+                return data
+            case "MSI": 
+                data["MSI"] += 1
+                return data
+            case "STE":
+                data["STE"] += 1
+                return data
+            case "PeiP": 
+                data["PeiP"] += 1
+                return data
             default:
                 return data
         }
