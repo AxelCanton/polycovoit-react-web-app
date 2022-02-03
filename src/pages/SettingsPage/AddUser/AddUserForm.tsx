@@ -40,10 +40,10 @@ const AddUserForm = ({createUser, closeModal}:IAddUserProps) => {
                 <TextField id="lastName" label="Nom" variant="standard" value={lastName} onChange={(event) => {setLastName(event.target.value)}} />
             </Grid>
             <Grid item xs={12}>
-                <TextField id="username" label="Nom d'utilisateur" variant="standard" sx={{width:"75%", marginLeft:6}} value={username} onChange={(event) => {setUsername(event.target.value)}} />
+                <TextField id="username" label="Nom d'utilisateur - Doit être unique !" variant="standard" sx={{width:"75%", marginLeft:6}} value={username} onChange={(event) => {setUsername(event.target.value)}} />
             </Grid>
             <Grid item xs={12}>
-                <TextField id="email" label="Mail" variant="standard" value={email} sx={{width:"75%", marginLeft:6}} onChange={(event) => {setEmail(event.target.value)}} />
+                <TextField id="email" label="Mail - Doit être unique !" variant="standard" value={email} sx={{width:"75%", marginLeft:6}} onChange={(event) => {setEmail(event.target.value)}} />
             </Grid>
             <Grid item xs={5}>
                 <InputLabel id="gender">Genre</InputLabel>

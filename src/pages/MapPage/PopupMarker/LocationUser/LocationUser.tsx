@@ -8,6 +8,7 @@ import { Gender } from "../../../../utils/enum/gender.enum";
 import { retrieveFrenchGender } from "../../../../utils/retrieveFrenchGender";
 import PolytechIcon from "../../../../components/PolytechIcon/PolytechIcon";
 import GenderIcon from "../../../../components/PolytechIcon/GenderIcon";
+import { useEffect } from "react";
 
 const defaultProps: ILocationUserOptionalProps = {
     setSelectedPopupData: () => {}
@@ -17,6 +18,10 @@ const LocationUser = ({
     data,
     setSelectedPopupData
 }: ILocationUserProps) => {
+
+    useEffect(() =>{
+        console.log(data)
+    })
     
     return (
         <Tooltip title="Envoyer une demande">

@@ -9,6 +9,7 @@ import { locationsActions } from "../slices/LocationsSlice";
 import { notificationActions } from "../slices/NotificationSlice";
 import { SeverityEnum } from "../utils/enum/severity.enum";
 import { Speciality } from "../utils/enum/speciality.enum";
+import { errorHandler } from "../utils/errorHandling";
 import { makeUrl } from "../utils/makeUrl";
 import { refactorLocations } from "../utils/refactorLocations";
 
@@ -37,10 +38,7 @@ export const locationFetchThunk = (bounds: LatLngBounds, specialities: Specialit
     })
     .catch((error: AxiosError) => {
         dispatch(locationsActions.locationFetchFailure('error'));
-        dispatch(notificationActions.showNotification({
-            message: FAILURE_FETCH_MESSAGE,
-            severity: SeverityEnum.error
-        }))
+        errorHandler(error, dispatch)
     });
 }
 
@@ -67,10 +65,7 @@ export const locationCreateThunk = (country: string, city: string, postalCode: n
     })
     .catch((error: AxiosError) => {
         dispatch(locationsActions.locationCreateFailure(FAILURE_CREATE_MESSAGE));
-        dispatch(notificationActions.showNotification({
-            message: FAILURE_CREATE_MESSAGE,
-            severity: SeverityEnum.error
-        }));
+        errorHandler(error, dispatch)
     })
 }
 
@@ -89,9 +84,6 @@ export const deleteLocationThunk = (id: number): ThunkAction<void, RootState, un
     })
     .catch((error) => {
         dispatch(locationsActions.locationDeleteFailure(FAILURE_DELETE_MESSAGE));
-        dispatch(notificationActions.showNotification({
-            message: FAILURE_DELETE_MESSAGE,
-            severity: SeverityEnum.error
-        }));
+        errorHandler(error, dispatch)
     })
 }
