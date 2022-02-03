@@ -8,7 +8,8 @@ export interface ILatLng {
 
 export interface ILocation extends ILocationWithoutUserData {
     userGender: Gender,
-    userSpeciality: Speciality
+    userSpeciality: Speciality,
+    isUserLoc?: boolean,
 }
 
 export interface ILocationWithoutUserData {
@@ -54,7 +55,8 @@ export interface ILocationSuccessFetchResponse {
     userGender: Gender,
     userSpeciality: Speciality,
     address?: string,
-    city: string
+    city: string, 
+    isUserLoc: boolean
 }
 
 export interface ILocationMarkerData {
