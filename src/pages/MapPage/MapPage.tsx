@@ -85,7 +85,7 @@ const MapPage = () => {
     return (
         <>
         <Box sx={{ position: 'relative' }}>
-            <Box sx={{
+            {canRetrieveLoc() && <Box sx={{
                 position: 'absolute',
                 top: '10vh',
                 left: '5vh',
@@ -115,7 +115,7 @@ const MapPage = () => {
                             </Paper>
                         </Collapse>
                      </Stack>
-            </Box>
+            </Box>}
                 <MapComponent
                 markersData={locations.map(locRefactored => locRefactored.locations[0])}
                 renderMarkerColor={renderMarkerColor}
