@@ -13,3 +13,15 @@ export enum ButtonColor {
     secondary = "secondary",
     warning = "warning"
 }
+
+export enum ButtonType {
+    Submit = "submit",
+    Button = "button",
+    Reset = "reset"
+}
+
+export enum ButtonSize {
+    Small = "small",
+    Medium = "medium",
+    Large = "large"
+}

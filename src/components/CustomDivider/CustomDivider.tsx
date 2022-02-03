@@ -15,7 +15,7 @@ const CustomDivider = ({
     spacingDown,
 }: ICustomDividerProps) => {
     
-    return (<Divider sx={{
+    return (<Divider flexItem sx={{
         marginTop: spacing,
         marginBottom: spacingDown? spacingDown:spacing,
     }} orientation={orientation}>{content}</Divider>);

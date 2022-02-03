@@ -13,7 +13,8 @@ const style = {
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,
-    minWidth: '30%'
+    minWidth: '30%',
+    outline: 0
 };
 
 const defaultProps: IModalOptionalProps = {
