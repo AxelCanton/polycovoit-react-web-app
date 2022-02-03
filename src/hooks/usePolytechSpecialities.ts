@@ -67,7 +67,7 @@ const usePolytechSpecialities = () => {
             name: 'Parcours des écoles d\'ingénieurs Polytech',
             color: theme.palette.specialities.peip
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     //eslint-disable-next-line react-hooks/exhaustive-deps
     ], []);
 
     const retrieveFullName = (short: Speciality) => {
@@ -83,11 +83,39 @@ const usePolytechSpecialities = () => {
         const speciality = specialities.find(element => element.short === short);
         return speciality ? speciality.color : "";
     }
+
+    const getSpeFromString = (speciality: string) => {
+         switch (speciality) {
+             case "IG":
+                 return  Speciality.IG;
+             case "GBA":
+                 return  Speciality.GBA
+             case "MAT":
+                 return  Speciality.MAT
+             case "STE":
+                 return  Speciality.STE
+             case "MEA":
+                 return  Speciality.MEA
+             case "MI":
+                 return  Speciality.MI
+             case "EGC":
+                 return  Speciality.EGC
+             case "DO":
+                 return  Speciality.DO
+             case "SE":
+                 return  Speciality.SE
+             case "PeiP":
+                 return  Speciality.PEIP
+             case "MSI":
+                 return  Speciality.MSI
+         }
+    }
     
     return {
         retrieveFullName,
         retrieveList,
-        retrieveColor
+        retrieveColor,
+        getSpeFromString
     }
 };
 

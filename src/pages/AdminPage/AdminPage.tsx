@@ -10,6 +10,8 @@ import CirclePackingChartComponent from "../../components/AdminCharts/CirclePack
 import CenteredLayout from "../../components/Layout/CenteredLayout/CenteredLayout";
 import CustomDivider from "../../components/CustomDivider/CustomDivider";
 import Forbidden from "../../components/Forbidden/Forbidden";
+import usePolytechSpecialities from "../../hooks/usePolytechSpecialities";
+import { Speciality } from "../../utils/enum/speciality.enum";
 
 
 const AdminPage = () => {
@@ -24,6 +26,8 @@ const AdminPage = () => {
     const getUsersBySpeciality = useCallback(() => dispatch(usersBySpecialityThunk()), [dispatch]);
     const getReservationsAfter = useCallback((date) => dispatch(reservationsByDateThunk(date)), [dispatch])
     const verifyAdmin = useCallback(() => dispatch(verifyAdminThunk()), [dispatch]) 
+
+    const { retrieveColor, getSpeFromString } = usePolytechSpecialities();
 
     const [period, setPeriod] = useState('days');
 
@@ -54,32 +58,8 @@ const AdminPage = () => {
 
 
     const specialityColors = (speciality: string) => {
-        switch (speciality) {
-            case "IG":
-                return  "hsl(306, 92%, 79%)"
-            case "GBA":
-                return  "hsl(121, 42%, 66%)"
-            case "MAT":
-                return  "hsl(183, 70%, 56%)"
-            case "STE":
-                return  "hsl(242, 76%, 33%)"
-            case "MEA":
-                return  "hsl(286, 83%, 41%)"
-            case "MI":
-                return  "hsl(0, 48%, 51%)"
-            case "EGC":
-                return  "hsl(60, 48%, 54%)"
-            case "DO":
-                return  "hsl(293, 89%, 27%)"
-            case "SE":
-                return  "hsl(297, 99%, 58%)"
-            case "PeiP":
-                return  "hsl(255, 7%, 58%)"
-            case "MSI":
-                return  "hsl(1, 96%, 35%)"
-            default:
-                return  "hsl(285, 92%, 0%)"
-        }
+        const spe : Speciality = getSpeFromString(speciality)!
+        return retrieveColor(spe)
     }
 
     const getNumberByGender = (gender: string) => {
