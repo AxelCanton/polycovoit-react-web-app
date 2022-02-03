@@ -38,29 +38,23 @@ const SettingsPage = () => {
     return isAuth ? (
         <Fade>
             <CenteredLayout>
-                <Typography variant={TypographyVariantEnum.h3}>Paramètres</Typography>
-            </CenteredLayout>
-            <CenteredLayout>
+                <Typography sx={{ mb: 3 }} variant={TypographyVariantEnum.h3}>Paramètres</Typography>
                 <AddLocation />
-            </CenteredLayout>
-            <CustomDivider/>
-            <CenteredLayout>
+                <CustomDivider spacing={5} />
                 <Locations />
-            </CenteredLayout>
-            <CustomDivider/>
-            <CenteredLayout>
+                <CustomDivider spacing={5} />
                 <Grid container>
-                    <AccountDeletion id={decodedToken.sub}/>
+                    <AccountDeletion id={decodedToken.sub} />
                     {isAdmin &&
-                    <>
-                        <MakeAdmin/>
-                        <AddUser/>
-                    </>
+                        <>
+                            <MakeAdmin />
+                            <AddUser />
+                        </>
                     }
                 </Grid>
             </CenteredLayout>
         </Fade>
-        ) : <></>;
+    ) : <></>;
 }
 
 export default SettingsPage;
