@@ -66,7 +66,7 @@ const reservationSlice = createSlice({
             state.resultMessage = action.payload;
         },
         reset(state) {
-            state = initialState;
+            return initialState;
         }
     }
 })

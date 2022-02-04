@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import Modal from "../../../components/Modal/Modal";
 import CreateReservation from "../../../components/Reservation/CreateReservation";
+import { reservationActions } from "../../../slices/ReservationSlice";
 import { createReservationThunk } from "../../../thunks/ReservationThunk";
 import { IReservationCreationProps } from "./reservationCreation.type";
 
@@ -21,13 +22,14 @@ const ReservationCreation = ({
     useEffect(() => {
         if (successCreate) {
             setSelectedMarkertoNull();
+            dispatch(reservationActions.reset());
         }
-    }, [setSelectedMarkertoNull, successCreate]);
+    }, [dispatch, setSelectedMarkertoNull, successCreate]);
     
     return (
         <>
             {selectedMarker && (
-                <Modal isVisible={isModalVisible} close={setSelectedMarkertoNull} >
+                <Modal isVisible={isModalVisible} close={() => setSelectedMarkertoNull()}>
                     <CreateReservation isLoading={isLoading} location={selectedMarker} onValidate={onValidate}></CreateReservation>
                 </Modal>
             )}

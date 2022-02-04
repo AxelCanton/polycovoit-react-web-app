@@ -63,7 +63,7 @@ const MapPage = () => {
     const renderMarkerPopup = (data: ILocation): React.ReactNode => {
         const locationsRefactored = locations.find(loc => loc.postalCode === data.postalCode);
         return locationsRefactored 
-        ? <PopupMarker data={locationsRefactored} setSelectedPopupData={setSelectedMarker} />
+        ? <PopupMarker data={locationsRefactored} setSelectedPopupData={(a: ILocation | null) => setSelectedMarker(a)} />
         : <></>
     };
 
