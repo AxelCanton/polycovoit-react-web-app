@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { IDecodedToken } from "../interfaces/user.interface";
-import { ILoginSuccessResponse } from "../thunks/LoginThunk";
+import { ILoginSuccessPayload, ILoginSuccessResponse } from "../thunks/LoginThunk";
 import jwt_decode from "jwt-decode";
 
 
@@ -9,6 +9,7 @@ interface LoginState {
     accessToken: string,
     decodedToken: IDecodedToken
     refreshToken: string,
+    rememberUser: boolean,
     isAuth: boolean,
     isAdmin: boolean,
     isValid: boolean,
@@ -20,6 +21,7 @@ const initialState = {
     isAuth: false,
     isAdmin: false,
     isValid: false,
+    rememberUser: false,
 } as LoginState
 
 const loginSlice = createSlice({
@@ -29,13 +31,14 @@ const loginSlice = createSlice({
         loginStart(state) {
             state.isLoading = true;
         },
-        loginSuccess(state, action: PayloadAction<ILoginSuccessResponse>) {
+        loginSuccess(state, action: PayloadAction<ILoginSuccessPayload>) {
             state.isLoading = false;
             state.isAuth = true;
             state.accessToken = action.payload.access_token;
             state.refreshToken = action.payload.refresh_token;
             state.isAdmin = action.payload.isAdmin;
             state.isValid = action.payload.isValid;
+            state.rememberUser = action.payload.rememberUser;
             state.decodedToken = jwt_decode(action.payload.access_token);
         },
         loginError(state, action: PayloadAction<string>){
@@ -61,6 +64,9 @@ const loginSlice = createSlice({
         },
         validate(state) {
             state.isValid = true;
+        },
+        remember(state) {
+            state.rememberUser = true;
         },
         reset() {
             return initialState;

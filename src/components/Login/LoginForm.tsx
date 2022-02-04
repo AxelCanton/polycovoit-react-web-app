@@ -3,7 +3,7 @@ import { EventChangeType } from '../../utils/types/event.type';
 import Button from '../Button/Button';
 import { ILoginFormOptionalProps, ILoginFormProps } from './loginForm.type';
 import './LoginForm.css'
-import { Grid, InputAdornment, Stack, TextField, Typography } from '@mui/material';
+import { Checkbox, FormControlLabel, Grid, InputAdornment, Stack, TextField, Typography } from '@mui/material';
 import { AccountCircle } from '@mui/icons-material';
 import CustomDivider from '../CustomDivider/CustomDivider';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
@@ -25,6 +25,7 @@ const LoginForm = ({
 }: ILoginFormProps) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberChecked, setRememberChecked] = useState(false);
 
   const [usernameErrorMessage, setUsernameErrorMessage] = useState('');
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
@@ -45,7 +46,7 @@ const LoginForm = ({
       success = false;
     }
     if (success) {
-      onLoginClick(username, password);
+      onLoginClick(username, password, rememberChecked);
     }
   }
 
@@ -61,6 +62,7 @@ const LoginForm = ({
           </Grid>
         </Grid>
         <CustomDivider spacing={4} />
+        <Stack sx={{ width: '80%' }} spacing={5}>
           <TextField
             InputProps={{
               startAdornment: (
@@ -77,7 +79,6 @@ const LoginForm = ({
             required
             value={username}
             onChange={onUsernameChange}
-            sx={{ width: "80%" }}
           />
           <TextField
             InputProps={{
@@ -96,8 +97,9 @@ const LoginForm = ({
             type="password"
             value={password}
             onChange={onPasswordChange}
-            sx={{ width: "80%" }}
           />
+          <FormControlLabel checked={rememberChecked} onChange={() => setRememberChecked(!rememberChecked)} control={<Checkbox />} label="Se souvenir de moi" />
+        </Stack>
           <Button size={ButtonSize.Large} isLoading={isLoading} type={ButtonType.Submit}>Se connecter</Button>
       </Stack>
     </form>

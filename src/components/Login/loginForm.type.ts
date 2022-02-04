@@ -1,5 +1,5 @@
 export interface ILoginFormRequiredProps {
-    onLoginClick: (email: string, password: string) => void
+    onLoginClick: (email: string, password: string, rememberUser: boolean) => void
 }
 
 export interface ILoginFormOptionalProps {

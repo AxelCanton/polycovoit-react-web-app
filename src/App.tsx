@@ -18,6 +18,7 @@ import NotFound from './components/NotFound/NotFound';
 import AdminPage from './pages/AdminPage/AdminPage';
 import Forbidden from './components/Forbidden/Forbidden';
 import ServerError from './components/ServerError/ServerError';
+import { loginActions } from './slices/LoginSlice';
 
 export const REFRESH_TOKEN = 'refresh_token';
 
@@ -32,15 +33,23 @@ function App() {
   const renderElement = (element: React.ReactNode) => <AuthVerifComponent>{element}</AuthVerifComponent>
 
   useEffect(() => {
-    const refreshToken = localStorage.getItem(REFRESH_TOKEN);
+    let refreshToken = sessionStorage.getItem(REFRESH_TOKEN);
+    let remember = false;
+    if (refreshToken === null) {
+      refreshToken = localStorage.getItem(REFRESH_TOKEN);
+      remember = true;
+    }
     let isAsync = false;
-    if (refreshToken) {
+    if (refreshToken !== null) {
       const now = Math.floor(Date.now()/1000);
       const decodedRefreshToken: IDecodedRefreshToken = jwt_decode(refreshToken);
       // Check for refresh token expiracy
       if (now < decodedRefreshToken.exp) {
         const refresh = async () => {
-          await dispatch(refreshThunk());
+          if (remember) {
+            dispatch(loginActions.remember());
+          }
+          await dispatch(refreshThunk(refreshToken as string));
           setIsAppReady(true);
         }
         refresh();

@@ -13,7 +13,8 @@ const onRequestError = async (error: AxiosError)  => {
     const response = error.response;
     const config = error.config;
     if(response && response.status === 401 && response.data.message === EXPIRED_TOKEN_MESSAGE) {
-        const isSuccess = await dispatch(refreshThunk());
+        const refreshToken = getState().loginReducer.refreshToken;
+        const isSuccess = await dispatch(refreshThunk(refreshToken));
         if(isSuccess) {
             const accessToken = getState().loginReducer.accessToken;
             if(config.headers) {

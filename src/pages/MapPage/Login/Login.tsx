@@ -19,11 +19,11 @@ const Login = () => {
     
     const dispatch = useAppDispatch();
 
-    const onLoginClick = (email: string, password: string) => {
+    const onLoginClick = (email: string, password: string, rememberUser: boolean) => {
         dispatch(loginThunk({
             email,
             password
-        }))
+        }, rememberUser));
     };
 
     useEffect(() => {

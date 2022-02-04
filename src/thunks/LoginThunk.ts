@@ -26,6 +26,10 @@ export interface ILoginSuccessResponse {
     isValid: boolean
 };
 
+export interface ILoginSuccessPayload extends ILoginSuccessResponse {
+    rememberUser: boolean
+}
+
 interface ILoginFailureResponse {
     statusCode: number,
     message: string
@@ -33,15 +37,24 @@ interface ILoginFailureResponse {
 
 export type LoginResponse = ILoginFailureResponse | ILoginSuccessResponse;
 
-export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
+export const loginThunk = (data: ILoginBody, rememberUser: boolean): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(loginActions.loginStart());
     axiosInstance.post(LOGIN_URL, data).then(
         (response: AxiosResponse<LoginResponse>) => {
         if(response.status === 200) {
             const tokens = response.data as ILoginSuccessResponse;
             axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${tokens.access_token}`;
-            localStorage.setItem('refresh_token', tokens.refresh_token);
-            dispatch(loginActions.loginSuccess(tokens));
+            
+            const payload: ILoginSuccessPayload = {
+                ...tokens,
+                rememberUser
+            };
+            if (rememberUser) {
+                localStorage.setItem(REFRESH_TOKEN, tokens.refresh_token);
+            } else {
+                sessionStorage.setItem(REFRESH_TOKEN, tokens.refresh_token);
+            }
+            dispatch(loginActions.loginSuccess(payload));
         }
     })
     .catch((error: AxiosError) => {
@@ -57,20 +70,24 @@ export const loginThunk = (data: ILoginBody): ThunkAction<void, RootState, unkno
     });
 };
 
-export const refreshThunk = (): ThunkAction<Promise<boolean>, RootState, unknown, AnyAction> => async (dispatch, getState) => {
+export const refreshThunk = (refreshToken: string): ThunkAction<Promise<boolean>, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(loginActions.refreshTokenStart());
-    const refreshToken = localStorage.getItem(REFRESH_TOKEN);
     return await axiosInstance.post('/auth/refresh', {
         refresh_token: refreshToken
     }).then((response: AxiosResponse<ILoginSuccessResponse>) => {
         const accessToken = response.data.access_token;
         const refreshToken = response.data.refresh_token;
+        if (getState().loginReducer.rememberUser) {
+            localStorage.setItem(REFRESH_TOKEN, refreshToken);
+        } else {
+            sessionStorage.setItem(REFRESH_TOKEN, refreshToken);
+        }
         axiosInstance.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
-        localStorage.setItem(REFRESH_TOKEN, refreshToken);
         dispatch(loginActions.refreshTokenSuccess(response.data));
         return true;
     }).catch((error: AxiosError<number> | Error) => {
         dispatch(loginActions.reset());
+        localStorage.removeItem(REFRESH_TOKEN);
         return false;
     });
 };
@@ -79,6 +96,7 @@ export const disconnectThunk = (): ThunkAction<void, RootState, unknown, AnyActi
     dispatch(locationsActions.reset());
     dispatch(loginActions.reset());
     localStorage.removeItem(REFRESH_TOKEN);
+    sessionStorage.removeItem(REFRESH_TOKEN);
     dispatch(notificationActions.showNotification({
       message: 'Déconnection réussie !',
       severity: SeverityEnum.success
