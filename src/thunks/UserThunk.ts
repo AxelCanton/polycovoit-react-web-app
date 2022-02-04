@@ -44,7 +44,6 @@ export const deleteUserThunk = (id: number): ThunkAction<void, RootState, unknow
 
 export const validateUser = (id: number, gender: string):ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(userActions.userValidateStart());
-    console.log(gender)
     const body = {
         gender: gender
     }

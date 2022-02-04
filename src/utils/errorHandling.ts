@@ -32,7 +32,5 @@ const errorMessage = (error: AxiosError) => {
 export const errorHandler = (error:AxiosError, dispatch: any) => {
     let message = errorMessage(error)
 
-    console.log(message)
-
     dispatch(notificationActions.showNotification({message: message, severity: SeverityEnum.error}))
 }

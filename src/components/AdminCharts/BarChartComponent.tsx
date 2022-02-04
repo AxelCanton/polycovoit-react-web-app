@@ -432,37 +432,31 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
             dataToReturn = pushDays(dayList())
             for(let reservation of reservations){
                 const reservationDate = new Date(reservation.date)
-                console.log(reservationDate)
                 for(let day of dataToReturn){
                     if(day.date === reservationDate.getFullYear()+"-"+reservationDate.getMonth()+"-"+reservationDate.getDate()){
                         day = specialityAdd(reservation.speciality, day)
                     }
                 }
-                console.log(dataToReturn)
             }
         } else if (period === "weeks"){
             dataToReturn = pushWeeks(weekList())
             for (let reservation of reservations){
                 const reservationDate = new Date(reservation.date)
-                console.log(reservationDate)
                 for(let week of dataToReturn){
                     if(isInWeek(reservationDate,week)){
                         week = specialityAdd(reservation.speciality, week)
                     }
                 }
-                console.log(dataToReturn)
             }
         } else {
             dataToReturn = pushMonth(monthList())
             for(let reservation of reservations){
                 const reservationDate = new Date(reservation.date)
-                console.log(reservationDate)
                 for(let month of dataToReturn){
                     if(isInMonth(reservationDate,month)){
                         month = specialityAdd(reservation.speciality, month)
                     }
                 }
-                console.log(dataToReturn)
             }
         }
         return dataToReturn
