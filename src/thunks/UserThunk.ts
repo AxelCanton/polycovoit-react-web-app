@@ -9,6 +9,7 @@ import { notificationActions } from "../slices/NotificationSlice";
 import { userActions } from "../slices/UserSlice";
 import { SeverityEnum } from "../utils/enum/severity.enum";
 import { errorHandler } from "../utils/errorHandling";
+import { disconnectThunk } from "./LoginThunk";
 
 const SUCCESS_VALIDATE_MESSAGE = "Votre compte a bien été validé !"
 
@@ -30,7 +31,7 @@ export const deleteUserThunk = (id: number): ThunkAction<void, RootState, unknow
     axiosInstance.delete(USER_DELETE_URL(id))
     .then((response: AxiosResponse) => {
         dispatch(userActions.userDeleteSuccess());
-        dispatch(loginActions.reset());  
+        dispatch(disconnectThunk());  
         dispatch(notificationActions.showNotification({
             message: 'Compte supprimé',
             severity: SeverityEnum.success

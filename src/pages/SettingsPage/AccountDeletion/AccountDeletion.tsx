@@ -21,14 +21,14 @@ const AccountDeletion = ({ id }: IAccountDeletionProps) => {
 
     return (
         <>
-        <Button color={ButtonColor.error} onClick={showValidationMessage}>Se désinscrire</Button>
+        <Button color={ButtonColor.error} onClick={showValidationMessage}>Supprimer ses données</Button>
         <Dialog
         open={validateUnsubscribeVisible}
         onClose={hideValidationMessage}
         onAccept={deleteAccount}
         onDeny={hideValidationMessage}
-        message="Cette action est définitive, vous n'aurez plus accès à l'application."
-        title="Supprimer votre compte ?"
+        message="Cette action est définitive, toutes vos données liées à l'application seront supprimées. Si vous n'êtes plus étudiant à Polytech Montpellier, vous n'aurez plus accès à l'application."
+        title="Supprimer vos données ?"
         />
         </>
 

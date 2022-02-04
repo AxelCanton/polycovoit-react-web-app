@@ -10,6 +10,7 @@ import { SeverityEnum } from "../utils/enum/severity.enum";
 import { REFRESH_TOKEN } from "../App";
 import { locationsActions } from "../slices/LocationsSlice";
 import { errorHandler } from "../utils/errorHandling";
+import { userActions } from "../slices/UserSlice";
 
 export const USER = 'user';
 export const INVALID_CRED_ERROR_MESSAGE: string = 'Email ou mot de passe incorrect'
@@ -94,6 +95,7 @@ export const refreshThunk = (refreshToken: string): ThunkAction<Promise<boolean>
 
 export const disconnectThunk = (): ThunkAction<void, RootState, unknown, AnyAction> => async (dispatch, getState) => {
     dispatch(locationsActions.reset());
+    dispatch(userActions.reset());
     dispatch(loginActions.reset());
     localStorage.removeItem(REFRESH_TOKEN);
     sessionStorage.removeItem(REFRESH_TOKEN);
