@@ -17,6 +17,8 @@ import ReservationCreation from './ReservationCreation/ReservationCreation';
 import Login from './Login/Login';
 
 const MapPage = () => {
+    require('react-leaflet-markercluster/dist/styles.min.css');
+    
     const dispatch = useAppDispatch();
     const { locations } = useAppSelector((state) => state.locationsReducer);
     const { isAuth, isValid } = useAppSelector((state) => state.loginReducer);
