@@ -157,7 +157,7 @@ const AdminPage = () => {
                 <Grid container xs={12} justifyContent="center">
                     <Card sx={{width: 1016}}>
                     <Grid container sx={{width:"100%", marginTop:3, marginLeft:5}} justifyContent="center">
-                            <Typography variant={TypographyVariantEnum.h4}>Nombres de reservations par fillières</Typography>
+                            <Typography variant={TypographyVariantEnum.h4}>Nombres de demandes par fillières</Typography>
                         </Grid>
                         <Grid container justifyContent="flex-start">
                         <Box sx={{ width: 120, marginTop:15, marginLeft:2}}>

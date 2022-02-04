@@ -43,7 +43,7 @@ const WaitingReservationsPage = () => {
         return (
             <Fade>
                 <CenteredLayout>
-                    <Typography variant={TypographyVariantEnum.h3}> Demandes de reservations </Typography>
+                    <Typography variant={TypographyVariantEnum.h3}> Demandes de contact </Typography>
                     <CustomDivider spacing={5} />
                     <>
                         {isNull(reservationsToDisplay()) ? <Typography variant="h5" sx={{margin:5}}>Aucune demande en attente !</Typography>:reservationsToDisplay()}

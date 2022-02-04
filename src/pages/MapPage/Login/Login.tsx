@@ -16,7 +16,7 @@ const Login = () => {
     const initialStep = isAuth ? STEP2 : STEP1;
     const [step, setStep] = useState(initialStep);
 
-    const showModal = !isAuth || !isValid
+    const [showModal, setShowModal] = useState(!isAuth || !isValid)
     
     const dispatch = useAppDispatch();
 
@@ -38,7 +38,7 @@ const Login = () => {
     return (
         <Modal isVisible={showModal} iconButton={false} close={() => {}}>
             {step === STEP1 && <LoginForm isLoading={isLoading} onLoginClick={onLoginClick} />}
-            {step === STEP2 && <RegistrationPage />}
+            {step === STEP2 && <RegistrationPage onValidate={setShowModal(false)}/>}
         </Modal>
     );
 }

@@ -67,8 +67,8 @@ const AppBar = () => {
             <>
             <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
               <MenuButton text="Carte" onClick={onMapClick}/>
-              <MenuButton text="Reservations envoyées" onClick={onAskedResClick}/>
-              <MenuButton text="Reservations reçues" onClick={onWaitingResClick}/>
+              <MenuButton text="Demandes envoyées" onClick={onAskedResClick}/>
+              <MenuButton text="Demandes reçues" onClick={onWaitingResClick}/>
               {isAdmin && (
                 <MenuButton text="Statistiques" onClick={onStatistiquesClick}/>
               )}

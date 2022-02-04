@@ -11,7 +11,7 @@ import { TypographyVariantEnum } from "../../utils/enum/typography.variant.enum"
 import AddLocation from "../SettingsPage/AddLocation/AddLocation";
 import Locations from "../SettingsPage/Locations/Locations";
 
-const RegistrationPage = () => {
+const RegistrationPage = (onValidate: () => {}) => {
 
     const dispatch = useAppDispatch();
     const { decodedToken, isAuth } = useAppSelector((state) => state.loginReducer);
@@ -58,6 +58,7 @@ const RegistrationPage = () => {
                   'Male':gender.womanChecked? 'Female':'Other'; 
   
               dispatch(validateUser(decodedToken.sub,genderToReturn))
+              onValidate()
           } else {
               dispatch(notificationActions.showNotification({message: 'Le genre ne peut pas être vide', severity: SeverityEnum.error}))
           }

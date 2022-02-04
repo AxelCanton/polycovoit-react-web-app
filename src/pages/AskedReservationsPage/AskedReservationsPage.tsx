@@ -157,7 +157,7 @@ const AskedReservationsPage = () => {
     return(
         <Fade>
                 <CenteredLayout>
-                    <Typography variant={TypographyVariantEnum.h3}> Vos demandes de reservations </Typography>
+                    <Typography variant={TypographyVariantEnum.h3}> Vos demandes de contact </Typography>
                     <Grid container justifyContent="flex-end">
                         <Grid item xs={1}>
                             <Button onClick={() => {setFilters(!filters)}}>Filtres</Button>
@@ -168,12 +168,12 @@ const AskedReservationsPage = () => {
                         {filterComponent()}
                     </Collapse>
                     <>
-                        {isNull(reservationsToDisplay())? <Typography variant="h5" sx={{margin:5}}>Aucune reservation en cours !</Typography>:reservationsToDisplay()}
+                        {isNull(reservationsToDisplay())? <Typography variant="h5" sx={{margin:5}}>Aucune demande en cours !</Typography>:reservationsToDisplay()}
                     </>
                     <Typography variant={TypographyVariantEnum.h4}> Vos demandes passées </Typography>
                     <CustomDivider spacing={5} />
                     <>
-                        {isNull(reservationsPassed())? <Typography variant="h5" sx={{margin:5}}>Aucune reservation passée !</Typography>:reservationsPassed()}
+                        {isNull(reservationsPassed())? <Typography variant="h5" sx={{margin:5}}>Aucune demande passée !</Typography>:reservationsPassed()}
                     </>
                 </CenteredLayout>
         </Fade>

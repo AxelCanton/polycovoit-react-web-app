@@ -19,7 +19,7 @@ const CreateReservation = ({
     const [date, setDate] = useState<Date | null>(new Date());
     const [message, setMessage] = useState<string>("");
     
-    const formTitle:string = "Demande de reservation pour le code postal " + location!.postalCode;
+    const formTitle:string = "Demande de contact pour le code postal " + location!.postalCode;
 
     const disableValidate = message === "" || date === null;
 
@@ -29,7 +29,7 @@ const CreateReservation = ({
         return(
             <Grid container spacing={4}>
                 <Grid item xs={6}>
-                    <Typography>Entrez la date de reservation : </Typography> 
+                    <Typography>Entrez la date de votre sejour : </Typography> 
                 </Grid>
                 <Grid item xs={6}>
                     <LocalizationProvider dateAdapter={AdapterDateFns}>
