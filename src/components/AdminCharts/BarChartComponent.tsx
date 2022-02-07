@@ -3,17 +3,7 @@ import { IBarChartProps } from './adminCharts.types'
 
 export type BarChartData = {
         date: string;
-        "IG":number;
-        "GBA": number;
-        "STE":number;
-        "MAT":number;
-        "MEA":number;
-        "MI":number;
-        "DO":number;
-        "EGC":number;
-        "PeiP":number;
-        "SE":number;
-        "MSI":number;
+        value: number;
         label: string;
 }
 
@@ -22,101 +12,31 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
     const pushDays: (date:Date[]) => BarChartData[] = (date: Date[]) => {
         return [{
             "date": date[0].getFullYear()+"-"+date[0].getMonth()+"-"+date[0].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[0].getDate()+"/"+(date[0].getMonth()+1 < 10? "0"+(date[0].getMonth()+1):date[0].getMonth()+1)+"/"+date[0].getFullYear()
         },{
             "date": date[1].getFullYear()+"-"+date[1].getMonth()+"-"+date[1].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[1].getDate()+"/"+(date[1].getMonth()+1 < 10? "0"+(date[1].getMonth()+1):date[1].getMonth()+1)+"/"+date[1].getFullYear()
         },{
             "date": date[2].getFullYear()+"-"+date[2].getMonth()+"-"+date[2].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[2].getDate()+"/"+(date[2].getMonth()+1 < 10? "0"+(date[2].getMonth()+1):date[2].getMonth()+1)+"/"+date[2].getFullYear()
         },{
             "date": date[3].getFullYear()+"-"+date[3].getMonth()+"-"+date[3].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[3].getDate()+"/"+(date[3].getMonth()+1 < 10? "0"+(date[3].getMonth()+1):date[3].getMonth()+1)+"/"+date[3].getFullYear()
         },{
             "date": date[4].getFullYear()+"-"+date[4].getMonth()+"-"+date[4].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[4].getDate()+"/"+(date[4].getMonth()+1 < 10? "0"+(date[4].getMonth()+1):date[4].getMonth()+1)+"/"+date[4].getFullYear()
         },{
             "date": date[5].getFullYear()+"-"+date[5].getMonth()+"-"+date[5].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[5].getDate()+"/"+(date[5].getMonth()+1 < 10? "0"+(date[5].getMonth()+1):date[5].getMonth()+1)+"/"+date[5].getFullYear()
         },{
             "date": date[6].getFullYear()+"-"+date[6].getMonth()+"-"+date[6].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[6].getDate()+"/"+(date[6].getMonth()+1 < 10? "0"+(date[6].getMonth()+1):date[6].getMonth()+1)+"/"+date[6].getFullYear()
         }
     ]}
@@ -124,129 +44,39 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
     const pushWeeks: (date:Date[]) => BarChartData[] = (date:Date[]) => {
         return [{
             "date": date[0].getFullYear()+"-"+date[0].getMonth()+"-"+date[0].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[0].getDate()+"/"+(date[0].getMonth()+1 < 10? "0"+(date[0].getMonth()+1):date[0].getMonth()+1)+"/"+date[0].getFullYear()
         },{
             "date": date[1].getFullYear()+"-"+date[1].getMonth()+"-"+date[1].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[1].getDate()+"/"+(date[1].getMonth()+1 < 10? "0"+(date[1].getMonth()+1):date[1].getMonth()+1)+"/"+date[1].getFullYear()
         },{
             "date": date[2].getFullYear()+"-"+date[2].getMonth()+"-"+date[2].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[2].getDate()+"/"+(date[2].getMonth()+1 < 10? "0"+(date[2].getMonth()+1):date[2].getMonth()+1)+"/"+date[2].getFullYear()
         },{
             "date": date[3].getFullYear()+"-"+date[3].getMonth()+"-"+date[3].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[3].getDate()+"/"+(date[3].getMonth()+1 < 10? "0"+(date[3].getMonth()+1):date[3].getMonth()+1)+"/"+date[3].getFullYear()
         },{
             "date": date[4].getFullYear()+"-"+date[4].getMonth()+"-"+date[4].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[4].getDate()+"/"+(date[4].getMonth()+1 < 10? "0"+(date[4].getMonth()+1):date[4].getMonth()+1)+"/"+date[4].getFullYear()
         },{
             "date": date[5].getFullYear()+"-"+date[5].getMonth()+"-"+date[5].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[5].getDate()+"/"+(date[5].getMonth()+1 < 10? "0"+(date[5].getMonth()+1):date[5].getMonth()+1)+"/"+date[5].getFullYear()
         },{
             "date": date[6].getFullYear()+"-"+date[6].getMonth()+"-"+date[6].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[6].getDate()+"/"+(date[6].getMonth()+1 < 10? "0"+(date[6].getMonth()+1):date[6].getMonth()+1)+"/"+date[6].getFullYear()
         },{
             "date": date[7].getFullYear()+"-"+date[7].getMonth()+"-"+date[7].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[7].getDate()+"/"+(date[7].getMonth()+1 < 10? "0"+(date[7].getMonth()+1):date[7].getMonth()+1)+"/"+date[7].getFullYear()
         },{
             "date": date[8].getFullYear()+"-"+date[8].getMonth()+"-"+date[8].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
+            value: 0,
             "label": date[8].getDate()+"/"+(date[8].getMonth()+1 < 10? "0"+(date[8].getMonth()+1):date[8].getMonth()+1)+"/"+date[8].getFullYear()
         }
     ]
@@ -255,174 +85,71 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
     const pushMonth: (date:Date[]) => BarChartData[] = (date:Date[]) => {
         return [{
             "date": date[0].getFullYear()+"-"+date[0].getMonth()+"-"+date[0].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[0].getMonth()+1 < 10? "0"+(date[0].getMonth()+1):date[0].getMonth()+1)+"/"+date[0].getFullYear()
+            value: 0,
+            "label": month(date[0].getMonth())+" "+date[0].getFullYear()
         },{
             "date": date[1].getFullYear()+"-"+date[1].getMonth()+"-"+date[1].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[1].getMonth()+1 < 10? "0"+(date[1].getMonth()+1):date[1].getMonth()+1)+"/"+date[1].getFullYear()
+            value: 0,
+            "label": month(date[1].getMonth())+" "+date[1].getFullYear()
         },{
             "date": date[2].getFullYear()+"-"+date[2].getMonth()+"-"+date[2].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[2].getMonth()+1 < 10? "0"+(date[2].getMonth()+1):date[2].getMonth()+1)+"/"+date[2].getFullYear()
+            value: 0,
+            "label": month(date[2].getMonth())+" "+date[2].getFullYear()
         },{
             "date": date[3].getFullYear()+"-"+date[3].getMonth()+"-"+date[3].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[3].getMonth()+1 < 10? "0"+(date[3].getMonth()+1):date[3].getMonth()+1)+"/"+date[3].getFullYear()
+            value: 0,
+            "label": month(date[3].getMonth())+" "+date[3].getFullYear()
         },{
             "date": date[4].getFullYear()+"-"+date[4].getMonth()+"-"+date[4].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[4].getMonth()+1 < 10? "0"+(date[4].getMonth()+1):date[4].getMonth()+1)+"/"+date[4].getFullYear()
+            value: 0,
+            "label": month(date[4].getMonth())+" "+date[4].getFullYear()
         },{
             "date": date[5].getFullYear()+"-"+date[5].getMonth()+"-"+date[5].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[5].getMonth()+1 < 10? "0"+(date[5].getMonth()+1):date[5].getMonth()+1)+"/"+date[5].getFullYear()
+            value: 0,
+            "label": month(date[5].getMonth())+" "+date[5].getFullYear()
         },{
             "date": date[6].getFullYear()+"-"+date[6].getMonth()+"-"+date[6].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[6].getMonth()+1 < 10? "0"+(date[6].getMonth()+1):date[6].getMonth()+1)+"/"+date[6].getFullYear()
+            value: 0,
+            "label": month(date[6].getMonth())+" "+date[6].getFullYear()
         },{
             "date": date[7].getFullYear()+"-"+date[7].getMonth()+"-"+date[7].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[7].getMonth()+1 < 10? "0"+(date[7].getMonth()+1):date[7].getMonth()+1)+"/"+date[7].getFullYear()
+            value: 0,
+            "label": month(date[7].getMonth())+" "+date[7].getFullYear()
         },{
             "date": date[8].getFullYear()+"-"+date[8].getMonth()+"-"+date[8].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[8].getMonth()+1 < 10? "0"+(date[8].getMonth()+1):date[8].getMonth()+1)+"/"+date[8].getFullYear()
+            value: 0,
+            "label": month(date[8].getMonth())+" "+date[8].getFullYear()
         },{
             "date": date[9].getFullYear()+"-"+date[9].getMonth()+"-"+date[9].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[9].getMonth()+1 < 10? "0"+(date[9].getMonth()+1):date[9].getMonth()+1)+"/"+date[9].getFullYear()
+            value: 0,
+            "label": month(date[9].getMonth())+" "+date[9].getFullYear()
         },{
             "date": date[10].getFullYear()+"-"+date[10].getMonth()+"-"+date[10].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[10].getMonth()+1 < 10? "0"+(date[10].getMonth()+1):date[10].getMonth()+1)+"/"+date[10].getFullYear()
+            value: 0,
+            "label": month(date[10].getMonth())+" "+date[10].getFullYear()
         },{
             "date": date[11].getFullYear()+"-"+date[11].getMonth()+"-"+date[11].getDate(),
-            "IG": 0,
-            "GBA": 0,
-            "STE": 0,
-            "MAT": 0,
-            "MEA": 0,
-            "MI": 0,
-            "DO": 0,
-            "EGC": 0,
-            "PeiP": 0,
-            "SE": 0,
-            "MSI": 0,
-            "label": (date[11].getMonth()+1 < 10? "0"+(date[11].getMonth()+1):date[11].getMonth()+1)+"/"+date[11].getFullYear()
+            value: 0,
+            "label": month(date[11].getMonth())+" "+date[11].getFullYear()
         }
     ]
+    }
+
+    const month = (value: number) => {
+        switch (value) {
+            case 0: return "Janvier"
+            case 1: return "Février"
+            case 2: return "Mars"
+            case 3: return "Avril"
+            case 4: return "Mai"
+            case 5: return "Juin"
+            case 6: return "Juillet"
+            case 7: return "Aout"
+            case 8: return "Septembre"
+            case 9: return "Octobre"
+            case 10: return "Novembre"
+            case 11: return "Decemebre"
+        }
     }
 
     const barChartData = () => {
@@ -434,7 +161,7 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
                 const reservationDate = new Date(reservation.date)
                 for(let day of dataToReturn){
                     if(day.date === reservationDate.getFullYear()+"-"+reservationDate.getMonth()+"-"+reservationDate.getDate()){
-                        day = specialityAdd(reservation.speciality, day)
+                        day.value += 1
                     }
                 }
             }
@@ -444,7 +171,7 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
                 const reservationDate = new Date(reservation.date)
                 for(let week of dataToReturn){
                     if(isInWeek(reservationDate,week)){
-                        week = specialityAdd(reservation.speciality, week)
+                        week.value += 1
                     }
                 }
             }
@@ -454,7 +181,7 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
                 const reservationDate = new Date(reservation.date)
                 for(let month of dataToReturn){
                     if(isInMonth(reservationDate,month)){
-                        month = specialityAdd(reservation.speciality, month)
+                        month.value += 1
                     }
                 }
             }
@@ -476,44 +203,6 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
             return true
         }
         return false;
-    }
-
-
-    const specialityAdd = (speciality: string, data: BarChartData) =>{
-        switch(speciality){
-            case "IG":
-                data["IG"] += 1
-                return data
-            case "GBA": 
-                data["GBA"] += 1
-                return data
-            case "MAT":
-                data["MAT"] += 1
-                return data
-            case "MEA": 
-                data["MEA"] += 1
-                return data
-            case "MI":
-                data["MI"] += 1
-                return data
-            case "SE": 
-                data["SE"] += 1
-                return data
-            case "DO":
-                data["DO"] += 1
-                return data
-            case "MSI": 
-                data["MSI"] += 1
-                return data
-            case "STE":
-                data["STE"] += 1
-                return data
-            case "PeiP": 
-                data["PeiP"] += 1
-                return data
-            default:
-                return data
-        }
     }
 
     const dayList = () => {
@@ -564,25 +253,13 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
     return (
         <ResponsiveBar
                         data={barChartData()}
-                        keys={[
-                            "IG",
-                            "GBA",
-                            "STE",
-                            "MAT",
-                            "MEA",
-                            "MI",
-                            "DO",
-                            "EGC",
-                            "PeiP",
-                            "SE",
-                            "MSI",
-                        ]}
+                        keys={["value"]}
                         indexBy="label"
                         margin={{ top: 50, right: 130, bottom: 50, left: 60 }}
                         padding={0.3}
                         valueScale={{ type: 'linear' }}
                         indexScale={{ type: 'band', round: true }}
-                        colors={({data,id}) =>specialityColors(id.toString())}
+                        colors={{ scheme: 'nivo' }}
                         axisTop={null}
                         axisRight={null}
                         axisBottom={{
