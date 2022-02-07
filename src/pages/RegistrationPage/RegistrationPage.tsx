@@ -68,7 +68,7 @@ const RegistrationPage = () => {
         <>
             
                 <Typography variant={TypographyVariantEnum.h4} sx={{marginTop:5, marginBottom:5}}>
-                    Bienvenue sur le site PolyCovoit
+                    Bienvenue sur le site Polycontact
                 </Typography>
                 <Typography variant={TypographyVariantEnum.h6} sx={{marginTop:5, marginBottom:5}}>
                     Pour votre première connection veuillez rentrer les informations suivantes

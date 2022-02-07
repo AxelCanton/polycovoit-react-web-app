@@ -9,7 +9,7 @@ const AddLocation = () => {
 
     return (
         <>
-        <Button onClick={showLocationForm}>Ajouter une addresse</Button>
+        <Button onClick={showLocationForm}>Ajouter un code postal</Button>
         <ModalAddLocation isVisible={locationFormVisible} setIsVisible={setLocationFormVisible}/>
         </>
         );
