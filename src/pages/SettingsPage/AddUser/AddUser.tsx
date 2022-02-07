@@ -1,13 +1,11 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import { ButtonColor } from "../../../utils/enum/button.enum";
-import { Button, TextField, Typography } from "@mui/material";
-import { addUserThunk, makeAdminThunk, verifyAdminThunk } from "../../../thunks/AdminThunk";
+import { Button, Typography } from "@mui/material";
+import { addUserThunk } from "../../../thunks/AdminThunk";
 import AddUserForm from "./AddUserForm";
 import { TypographyVariantEnum } from "../../../utils/enum/typography.variant.enum";
 import CustomDivider from "../../../components/CustomDivider/CustomDivider";
@@ -16,14 +14,11 @@ import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
     const [addUserVisible, setAddUserVisible] = useState(false);
-
     const dispatch = useAppDispatch();
 
     const navigate = useNavigate();
 
     const showForm = () => {      
-        verifyAdmin();
-
         if(isAdmin) {
             setAddUserVisible(true);
         }
@@ -38,8 +33,7 @@ const AddUser = () => {
         setAddUserVisible(false)
     }
 
-    const verifyAdmin = useCallback(() => dispatch(verifyAdminThunk()), [dispatch])
-    const isAdmin = useAppSelector((state) => state.adminReducer.isAdmin)
+    const isAdmin = useAppSelector((state) => state.loginReducer.isAdmin)
 
     return (
         <>
