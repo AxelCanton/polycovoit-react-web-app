@@ -80,7 +80,7 @@ const AdminPage = () => {
             isAdmin && 
         <>
             <CenteredLayout>
-                <Typography variant={TypographyVariantEnum.h3}>Quleques statistiques</Typography>
+                <Typography variant={TypographyVariantEnum.h3}>Quelques statistiques</Typography>
                 <CustomDivider spacing={5}></CustomDivider>
             </CenteredLayout>
             <Grid container justifyContent="center">

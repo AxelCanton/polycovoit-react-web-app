@@ -86,51 +86,51 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
         return [{
             "date": date[0].getFullYear()+"-"+date[0].getMonth()+"-"+date[0].getDate(),
             value: 0,
-            "label": month(date[0].getMonth())+" "+date[0].getFullYear()
+            "label": month(date[0].getMonth())
         },{
             "date": date[1].getFullYear()+"-"+date[1].getMonth()+"-"+date[1].getDate(),
             value: 0,
-            "label": month(date[1].getMonth())+" "+date[1].getFullYear()
+            "label": month(date[1].getMonth())
         },{
             "date": date[2].getFullYear()+"-"+date[2].getMonth()+"-"+date[2].getDate(),
             value: 0,
-            "label": month(date[2].getMonth())+" "+date[2].getFullYear()
+            "label": month(date[2].getMonth())
         },{
             "date": date[3].getFullYear()+"-"+date[3].getMonth()+"-"+date[3].getDate(),
             value: 0,
-            "label": month(date[3].getMonth())+" "+date[3].getFullYear()
+            "label": month(date[3].getMonth())
         },{
             "date": date[4].getFullYear()+"-"+date[4].getMonth()+"-"+date[4].getDate(),
             value: 0,
-            "label": month(date[4].getMonth())+" "+date[4].getFullYear()
+            "label": month(date[4].getMonth())
         },{
             "date": date[5].getFullYear()+"-"+date[5].getMonth()+"-"+date[5].getDate(),
             value: 0,
-            "label": month(date[5].getMonth())+" "+date[5].getFullYear()
+            "label": month(date[5].getMonth())
         },{
             "date": date[6].getFullYear()+"-"+date[6].getMonth()+"-"+date[6].getDate(),
             value: 0,
-            "label": month(date[6].getMonth())+" "+date[6].getFullYear()
+            "label": month(date[6].getMonth())
         },{
             "date": date[7].getFullYear()+"-"+date[7].getMonth()+"-"+date[7].getDate(),
             value: 0,
-            "label": month(date[7].getMonth())+" "+date[7].getFullYear()
+            "label": month(date[7].getMonth())
         },{
             "date": date[8].getFullYear()+"-"+date[8].getMonth()+"-"+date[8].getDate(),
             value: 0,
-            "label": month(date[8].getMonth())+" "+date[8].getFullYear()
+            "label": month(date[8].getMonth())
         },{
             "date": date[9].getFullYear()+"-"+date[9].getMonth()+"-"+date[9].getDate(),
             value: 0,
-            "label": month(date[9].getMonth())+" "+date[9].getFullYear()
+            "label": month(date[9].getMonth())
         },{
             "date": date[10].getFullYear()+"-"+date[10].getMonth()+"-"+date[10].getDate(),
             value: 0,
-            "label": month(date[10].getMonth())+" "+date[10].getFullYear()
+            "label": month(date[10].getMonth())
         },{
             "date": date[11].getFullYear()+"-"+date[11].getMonth()+"-"+date[11].getDate(),
             value: 0,
-            "label": month(date[11].getMonth())+" "+date[11].getFullYear()
+            "label": month(date[11].getMonth())
         }
     ]
     }
@@ -149,6 +149,7 @@ const BarChartComponent = ({reservations, period, specialityColors}: IBarChartPr
             case 9: return "Octobre"
             case 10: return "Novembre"
             case 11: return "Decemebre"
+            default: return ""
         }
     }
 
