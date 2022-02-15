@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../app/hooks";
+import { useAppDispatch } from "../../../app/hooks";
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
@@ -10,30 +10,18 @@ import AddUserForm from "./AddUserForm";
 import { TypographyVariantEnum } from "../../../utils/enum/typography.variant.enum";
 import CustomDivider from "../../../components/CustomDivider/CustomDivider";
 import { ICreateUser } from "./addUser.types";
-import { useNavigate } from "react-router-dom";
 
 const AddUser = () => {
     const [addUserVisible, setAddUserVisible] = useState(false);
     const dispatch = useAppDispatch();
 
-    const navigate = useNavigate();
-
-    const showForm = () => {      
-        if(isAdmin) {
-            setAddUserVisible(true);
-        }
-        else {
-            navigate('/forbidden')
-        }
-    }
+    const showForm = () => setAddUserVisible(true);
     const hideForm = () => setAddUserVisible(false);
 
     const createUser = (user:ICreateUser) => {
         dispatch(addUserThunk(user))
         setAddUserVisible(false)
-    }
-
-    const isAdmin = useAppSelector((state) => state.loginReducer.isAdmin)
+    };
 
     return (
         <>
