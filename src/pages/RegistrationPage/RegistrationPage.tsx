@@ -103,9 +103,6 @@ const RegistrationPage = () => {
                         </FormControl>
                     </Grid>
                 </Grid>
-                <AddLocation />
-            
-                <Locations />
                 <CustomDivider spacing={4}/>
                 <Button color="success" onClick={validateAccount}> Valider mon compte </Button>
         </>
