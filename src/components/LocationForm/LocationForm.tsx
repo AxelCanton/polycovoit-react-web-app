@@ -98,7 +98,7 @@ const LocationForm = ({
             {radioValue === RADIO_VALUE.france ? (
                 <>
                 <Typography sx={{ paddingBottom: 2 }} variant='h6'>France</Typography>
-                <LocationSearchInput setLocation={setSelectedLocationFrance} />
+                <LocationSearchInput label="Ville ou code postal" setLocation={setSelectedLocationFrance} />
                 {renderTypographies()}
                 </>
             ) : (
